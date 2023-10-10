@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon --exec ts-node src/index.ts",
+    "build": "npx tsc",
     "lint": "tsc && eslint --ext .js,.ts src",
     "format": "prettier --write \"**/*.{ts,json}\"",
     "prepare": "husky install"
