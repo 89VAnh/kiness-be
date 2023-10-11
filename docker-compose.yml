@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:5.7
+    restart: unless-stopped
+    env_file: ./.env
+    environment:
+      - MYSQL_ROOT_PASSWORD=Minh2000@
+      - MYSQL_DATABASE=kiness-dev
+    ports:
+      - 3306:3306
+    volumes:
+      - db:/var/lib/mysql
+  app:
+    depends_on:
+      - mysql
+    build: ./
+    restart: unless-stopped
+    env_file: ./.env
+    ports:
+      - 4011:4011
+    environment:
+      - DB_HOST=mysql
+      - DB_USER=root
+      - DB_PASSWORD=Minh2000@
+      - DB_NAME=kiness-dev
+      - DB_PORT=3306
+    stdin_open: true
+    tty: true
+
+volumes: 
+  db:
