@@ -27,7 +27,6 @@ export class Database {
       const [results] = await connection.query(sql, values);
       const [outParam] = await connection.query("SELECT @err_code, @err_msg");
       let err: any = outParam;
-      return results;
       if (err[0]["@err_code"] === 0) {
         return results;
       } else {
