@@ -7,4 +7,8 @@ export const config = {
     password: process.env.DB_PASSWORD || "Minh2000@",
     database: process.env.DB_NAME || "kiness-dev",
   },
+  jwt: {
+    secret: process.env.JWT_SECRET || 'Left to the Right?!?',
+    expiresIn: process.env.JWT_EXPIRES_IN || '10s',
+  }
 };
