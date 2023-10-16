@@ -101,7 +101,7 @@ export class BranchRepository {
   async createTestRegister(testRegister: TestRegister): Promise<any> {
     try {
       const sql =
-        "CALL InsertBranch(?, ?, ?, ?, ?, ?, ?, ?, ?, @err_code, @err_msg)";
+        "CALL InsertTestRegister(?, ?, ?, ?, ?, ?, ?, ?, ?, @err_code, @err_msg)";
       await this.db.query(sql, [
         testRegister.branch_id,
         testRegister.fullname,
