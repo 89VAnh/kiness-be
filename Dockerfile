@@ -5,11 +5,11 @@ FROM node:18-alpine
 WORKDIR /app
  
 # Copy the package.json and yarn.lock files to the working directory
-COPY pnpm-lock.yaml ./
+COPY package.json pnpm-lock.yaml ./
  
 # Install the dependencies using yarn
 RUN npm i -g pnpm \
-		pnpm install
+		pnpm install --frozen-lockfile
  
 # Copy the rest of the application code to the working directory
 COPY . .
