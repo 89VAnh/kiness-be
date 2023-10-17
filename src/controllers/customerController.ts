@@ -46,7 +46,8 @@ export class CustomerController {
   async createCustomer(req: Request, res: Response): Promise<void> {
     try {
       const customer = req.body as Customer;
-      await this.customerService.createCustomer(customer);
+      const result = await this.customerService.createCustomer(customer);
+      console.log(result)
       res.json({ message: 'Đã thêm thành công',results:true });
     } catch (error: any) {
       res.json({ message: error.message, results:false });

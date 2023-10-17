@@ -5,7 +5,11 @@ import { User } from "../models/user";
 import { generateToken } from "../config/jwt";
 @injectable()
 export class UserController {
-  constructor(private userService: UserService) {}
+  constructor(private userService: UserService) { }
+  
+  async isMe(_: Request, res: Response): Promise<void> {
+    res.status(200).json(true)
+  }
 
   async authenticate(req: Request, res: Response): Promise<void> {
     try {

@@ -9,6 +9,6 @@ export const config = {
   },
   jwt: {
     secret: process.env.JWT_SECRET || 'Left to the Right?!?',
-    expiresIn: process.env.JWT_EXPIRES_IN || '10s',
+    expiresIn: process.env.JWT_EXPIRES_IN || '2d',
   }
 };

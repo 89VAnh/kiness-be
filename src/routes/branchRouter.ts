@@ -1,6 +1,7 @@
 import { Router } from "express";
 import { container } from "tsyringe";
 import { BranchController } from "../controllers/branchController";
+import { authenticate } from "../middlewares/authMiddleware";
 
 const branchRouter = Router();
 const branchController = container.resolve(BranchController);
@@ -14,14 +15,17 @@ branchRouter.get(
 );
 branchRouter.post(
   "/create",
+  authenticate,
   branchController.createBranch.bind(branchController),
 );
 branchRouter.post(
   "/update",
+  authenticate,
   branchController.updateBranch.bind(branchController),
 );
 branchRouter.post(
   "/delete",
+  authenticate,
   branchController.deleteBranch.bind(branchController),
 );
 branchRouter.post(

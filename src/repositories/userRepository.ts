@@ -9,7 +9,6 @@ export class UserRepository {
     try {
       const sql = "CALL GetCustomerByAccount(?, @err_code, @err_msg)";
       const [results] = await this.db.query(sql, [username]);
-      console.log(results);
       if (Array.isArray(results) && results.length > 0) {
         let user = results[0];
         if (user.password == password) {
