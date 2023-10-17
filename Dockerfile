@@ -5,17 +5,16 @@ FROM node:18-alpine
 WORKDIR /app
  
 # Copy the package.json and yarn.lock files to the working directory
-COPY package.json pnpm-lock.yaml ./
+COPY package.json ./
  
 # Install the dependencies using yarn
-RUN npm i -g pnpm \
-		pnpm install --frozen-lockfile
+RUN npm i
  
 # Copy the rest of the application code to the working directory
 COPY . .
  
 # Build the TypeScript code
-RUN pnpm run build
+RUN npm run build
  
 # Set the environment variables
 ENV PORT=4011
