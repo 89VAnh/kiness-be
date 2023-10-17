@@ -1,7 +1,8 @@
 import { Request, Response } from "express";
 import { injectable } from "tsyringe";
-import { BranchService } from "../services/branchService";
 import { Branch } from "../models/branch";
+import { TestRegister } from "../models/test-register";
+import { BranchService } from "../services/branchService";
 
 @injectable()
 export class BranchController {
@@ -106,6 +107,15 @@ export class BranchController {
       }
     } catch (error: any) {
       res.json({ message: error.message });
+    }
+  }
+  async createTestRegister(req: Request, res: Response): Promise<void> {
+    try {
+      const testRegister = req.body as TestRegister;
+      await this.branchService.createTestRegister(testRegister);
+      res.json({ message: "Đã thêm thành công", results: true });
+    } catch (error: any) {
+      res.json({ message: error.message, results: false });
     }
   }
 }
