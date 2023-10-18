@@ -17,6 +17,9 @@ services:
       - mysql
     build: ./
     restart: unless-stopped
+    volumes:
+      - /uploads/:/folder/in/container
+      - kiness_uploads:/app/uploads
     env_file: ./.env
     ports:
       - 4011:4011
@@ -31,3 +34,4 @@ services:
 
 volumes: 
   db:
+  kiness_uploads:

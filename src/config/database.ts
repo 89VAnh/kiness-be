@@ -21,7 +21,6 @@ export class Database {
 
   public async query(sql: string, values: any[]): Promise<any> {
     let connection: PoolConnection | null = null;
-    // console.log(this.pool);
     try {
       connection = await this.pool.getConnection();
       const [results] = await connection.query(sql, values);

@@ -13,7 +13,7 @@ export class UserService {
 
   async authenticate(username: string, password: string): Promise<any> {
     let md5_pass = md5(password);
-    let user = await this.userRepository.authenticate(username,md5_pass);
+    let user = await this.userRepository.authenticate(username, md5_pass);
     if (user) {
       let functions = await this.userRepository.getFunctionByUserId(user.user_id);
       let functionTree = this.treeUltility.getFunctionTree(functions, 1, "0");

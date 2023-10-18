@@ -5,16 +5,16 @@ FROM node:18-alpine
 WORKDIR /app
  
 # Copy the package.json and yarn.lock files to the working directory
-COPY package.json ./
+COPY package.json yarn.lock ./
  
-# Install the dependencies using yarn
-RUN npm i
+# Install the dependencies using yarn 
+RUN yarn install
  
 # Copy the rest of the application code to the working directory
 COPY . .
  
 # Build the TypeScript code
-RUN npm run build
+RUN yarn build
  
 # Set the environment variables
 ENV PORT=4011

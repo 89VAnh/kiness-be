@@ -9,7 +9,7 @@ export class BranchController {
   constructor(private branchService: BranchService) {}
 
   async getBranchDropdown(req: Request, res: Response): Promise<void> {
-    const city_id = req.body.city_id;
+    const city_id = req.query.city_id + "";
     try {
       const data = await this.branchService.getBranchDropdown(city_id);
       if (data && data.length > 0) {
