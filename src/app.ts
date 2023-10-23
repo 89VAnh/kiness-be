@@ -4,9 +4,9 @@ import mysql from "mysql2";
 import { errorHandler } from "./errors/errorHandler";
 import router from "./routes";
 import cors from "cors";
-import dotenv from 'dotenv';
+import dotenv from "dotenv";
+import core_router from "./core/routes";
 dotenv.config();
-// import core_router from './core/routes';
 const app = express();
 // Sử dụng cors middleware
 app.use(cors());
@@ -17,6 +17,7 @@ app.use(bodyParser.urlencoded({ limit: "50mb", extended: true }));
 // Sử dụng router
 // app.use('/api', core_router);
 app.use("/api", router);
+app.use("/api-core", core_router);
 // Đăng ký middleware xử lý lỗi toàn cục
 app.use(errorHandler);
 // Middleware tùy chỉnh để xử lý dữ liệu đầu vào

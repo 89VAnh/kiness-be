@@ -1,5 +1,6 @@
 export const config = {
   port: process.env.PORT || 4010,
+  limit_size: process.env.LIMIT_SIZE || 3145728,
   db: {
     host: process.env.DB_HOST || "3.24.161.147",
     port: 3306,
