@@ -1,0 +1,16 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const tsyringe_1 = require("tsyringe");
+const branchController_1 = require("../controllers/branchController");
+const authMiddleware_1 = require("../middlewares/authMiddleware");
+const branchRouter = (0, express_1.Router)();
+const branchController = tsyringe_1.container.resolve(branchController_1.BranchController);
+branchRouter.get("/get-by-id/:id", branchController.getBranchById.bind(branchController));
+branchRouter.get("/dropdown", branchController.getBranchDropdown.bind(branchController));
+branchRouter.post("/create", authMiddleware_1.authenticate, branchController.createBranch.bind(branchController));
+branchRouter.post("/update", authMiddleware_1.authenticate, branchController.updateBranch.bind(branchController));
+branchRouter.post("/delete", authMiddleware_1.authenticate, branchController.deleteBranch.bind(branchController));
+branchRouter.post("/search", branchController.searchBranch.bind(branchController));
+branchRouter.post("/create-test-register", branchController.createTestRegister.bind(branchController));
+exports.default = branchRouter;
