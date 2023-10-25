@@ -17,7 +17,7 @@ COPY . .
 RUN yarn build
  
 # Set the environment variables
-ENV PORT=4011
+ENV PORT=4010
 ENV NODE_ENV=production
  
 # Expose the port on which the server will listen

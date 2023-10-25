@@ -5,11 +5,12 @@ services:
     image: mysql:8.0
     restart: unless-stopped
     env_file: ./.env
+    container_name: kiness_mysql
     environment:
-      - MYSQL_ROOT_PASSWORD=Minh2000@
+      - MYSQL_ROOT_PASSWORD=aiacademy@
       - MYSQL_DATABASE=kiness-dev
     ports:
-      - 3306:3306
+      - 3303:3306
     volumes:
       - db:/var/lib/mysql
   app:
@@ -17,16 +18,17 @@ services:
       - mysql
     build: ./
     restart: unless-stopped
+    container_name: kiness-be-app
     volumes:
       - /uploads/:/folder/in/container
-      - kiness_uploads:/app/uploads
+      - uploads:/app/uploads
     env_file: ./.env
     ports:
-      - 4011:4011
+      - 4010:4010
     environment:
       - DB_HOST=mysql
       - DB_USER=root
-      - DB_PASSWORD=Minh2000@
+      - DB_PASSWORD=aiacademy@
       - DB_NAME=kiness-dev
       - DB_PORT=3306
     stdin_open: true
@@ -34,4 +36,4 @@ services:
 
 volumes: 
   db:
-  kiness_uploads:
+  uploads:
