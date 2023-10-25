@@ -10,7 +10,7 @@ services:
       - MYSQL_ROOT_PASSWORD=aiacademy@
       - MYSQL_DATABASE=kiness-dev
     ports:
-      - 3303:3306
+      - 3306:3306
     volumes:
       - db:/var/lib/mysql
   app:
@@ -18,7 +18,7 @@ services:
       - mysql
     build: ./
     restart: unless-stopped
-    container_name: kiness-be-app
+    container_name: kiness_be_app
     volumes:
       - /uploads/:/folder/in/container
       - uploads:/app/uploads
@@ -28,7 +28,7 @@ services:
     environment:
       - DB_HOST=mysql
       - DB_USER=root
-      - DB_PASSWORD=aiacademy@
+      - DB_PASSWORD=Minh2000@
       - DB_NAME=kiness-dev
       - DB_PORT=3306
     stdin_open: true
