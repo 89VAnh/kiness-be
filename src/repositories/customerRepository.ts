@@ -107,12 +107,10 @@ export class CustomerRepository {
     fullname: string,
     phone_number: string,
     email: string,
-    position_id: number,
-    department_id: number,
   ): Promise<any> {
     try {
       const sql =
-        "CALL SearchCustomer(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, @err_code, @err_msg)";
+        "CALL SearchCustomer(?, ?, ?, ?, ?, ?, ?, ?, @err_code, @err_msg)";
       const [results] = await this.db.query(sql, [
         pageIndex,
         pageSize,
@@ -122,8 +120,6 @@ export class CustomerRepository {
         fullname,
         phone_number,
         email,
-        position_id,
-        department_id,
       ]);
       return results;
     } catch (error: any) {
