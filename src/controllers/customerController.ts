@@ -97,6 +97,8 @@ export class CustomerController {
         object.fullname,
         object.phone_number,
         object.email,
+        object.position_id,
+        object.department_id,
       );
       if (data) {
         res.json({

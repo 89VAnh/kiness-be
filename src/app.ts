@@ -5,9 +5,10 @@ import { errorHandler } from "./errors/errorHandler";
 import router from "./routes";
 import cors from "cors";
 import dotenv from "dotenv";
-import core_router from "./core/routes";
+// import core_router from "./core/routes";
 dotenv.config();
 const app = express();
+app.use('/api/uploads', express.static(__dirname?.replace(/\/src/g, "") + '/uploads'));
 // Sử dụng cors middleware
 app.use(cors());
 // Middleware để xử lý dữ liệu đầu vào
@@ -17,7 +18,7 @@ app.use(bodyParser.urlencoded({ limit: "50mb", extended: true }));
 // Sử dụng router
 // app.use('/api', core_router);
 app.use("/api", router);
-app.use("/api-core", core_router);
+// app.use("/api-core", core_router);
 // Đăng ký middleware xử lý lỗi toàn cục
 app.use(errorHandler);
 // Middleware tùy chỉnh để xử lý dữ liệu đầu vào
