@@ -1,34 +1,37 @@
 import { injectable } from "tsyringe";
+import { Employee } from "../models/employee";
 import { Database } from "../config/database";
-import { Customer } from "../models/customer";
 
 @injectable()
-export class CustomerRepository {
+export class EmployeeRepository {
   constructor(private db: Database) {}
-  async createCustomer(customer: Customer): Promise<any> {
+
+  async createEmployee(employee: Employee): Promise<any> {
     try {
       const sql =
-        "CALL InsertCustomer(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, @err_code, @err_msg)";
+        "CALL InsertEmployee(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, @err_code, @err_msg)";
       await this.db.query(sql, [
-        customer.branch_id,
-        customer.customer_id,
-        customer.customer_name,
-        customer.phone_number,
-        customer.email,
-        customer.address,
-        customer.password,
-        customer.user_id,
-        customer.type,
-        customer.description,
-        customer.is_guest,
-        customer.profile_id,
-        customer.first_name,
-        customer.middle_name,
-        customer.last_name,
-        customer.avatar,
-        customer.gender,
-        customer.birthday,
-        customer.customer_id,
+        employee.branch_id,
+        employee.employee_id,
+        employee.fullname,
+        employee.phone_number,
+        employee.email,
+        employee.position_id,
+        employee.password,
+        employee.user_id,
+        employee.type,
+        employee.description,
+        employee.is_guest,
+        employee.profile_id,
+        employee.first_name,
+        employee.middle_name,
+        employee.last_name,
+        employee.avatar,
+        employee.gender,
+        employee.date_of_birth,
+        employee.user_role_id,
+        employee.role_id,
+        employee.created_by_user_id,
       ]);
       return true;
     } catch (error: any) {
@@ -36,41 +39,39 @@ export class CustomerRepository {
     }
   }
 
-  // async updateCustomer(customer: Customer): Promise<any> {
-  //   try {
-  //     const sql =
-  //       "CALL UpdateCustomer(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, @err_code, @err_msg)";
-  //     // await this.db.query(sql, [
-  //     //   customer.branch_id,
-  //     //   customer.customer_id,
-  //     //   customer.fullname,
-  //     //   customer.phone_number,
-  //     //   customer.email,
-  //     //   customer.position_id,
-  //     //   customer.department_id,
-  //     //   customer.password,
-  //     //   JSON.stringify(customer.list_json_customer_customer),
-  //     //   customer.type,
-  //     //   customer.description,
-  //     //   customer.is_guest,
-  //     //   customer.first_name,
-  //     //   customer.middle_name,
-  //     //   customer.last_name,
-  //     //   customer.avatar,
-  //     //   customer.gender,
-  //     //   customer.date_of_birth,
-  //     //   customer.role_id,
-  //     //   customer.lu_user_id,
-  //     // ]);
-  //     return true;
-  //   } catch (error: any) {
-  //     throw new Error(error.message);
-  //   }
-  // }
-
-  async deleteCustomer(list_json: any, updated_by_id: string): Promise<any> {
+  async updateEmployee(employee: Employee): Promise<any> {
     try {
-      const sql = "CALL DeleteCustomerMulti(?, ?, @err_code, @err_msg)";
+      const sql =
+        "CALL UpdateEmployee(?, ?, ?, ?, ?, ?, ?, ?,  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, @err_code, @err_msg)";
+      await this.db.query(sql, [
+        employee.branch_id,
+        employee.employee_id,
+        employee.fullname,
+        employee.phone_number,
+        employee.email,
+        employee.position_id,
+        employee.password,
+        employee.type,
+        employee.description,
+        employee.is_guest,
+        employee.first_name,
+        employee.middle_name,
+        employee.last_name,
+        employee.avatar,
+        employee.gender,
+        employee.date_of_birth,
+        employee.role_id,
+        employee.lu_user_id,
+      ]);
+      return true;
+    } catch (error: any) {
+      throw new Error(error.message);
+    }
+  }
+
+  async deleteEmployee(list_json: any, updated_by_id: string): Promise<any> {
+    try {
+      const sql = "CALL DeleteEmployeeMulti(?, ?, @err_code, @err_msg)";
       await this.db.query(sql, [JSON.stringify(list_json), updated_by_id]);
       return true;
     } catch (error: any) {
@@ -78,9 +79,9 @@ export class CustomerRepository {
     }
   }
 
-  async getCustomerById(id: string): Promise<any> {
+  async getEmployeeById(id: string): Promise<any> {
     try {
-      const sql = "CALL GetCustomerById(?, @err_code, @err_msg)";
+      const sql = "CALL GetEmployeeById(?, @err_code, @err_msg)";
       const results = await this.db.queryList(sql, [id]);
       return results;
     } catch (error: any) {
@@ -88,9 +89,9 @@ export class CustomerRepository {
     }
   }
 
-  async getCustomerDropdown(): Promise<any> {
+  async getEmployeeDropdown(): Promise<any> {
     try {
-      const sql = "CALL GetCustomerDropdown(@err_code, @err_msg)";
+      const sql = "CALL GetEmployeeDropdown(@err_code, @err_msg)";
       const [results] = await this.db.query(sql, []);
       return results;
     } catch (error: any) {
@@ -98,28 +99,32 @@ export class CustomerRepository {
     }
   }
 
-  async searchCustomer(
+  async searchEmployee(
     pageIndex: number,
     pageSize: number,
     user_id: string,
     search_content: string,
-    customer_id: string,
+    employee_id: string,
     fullname: string,
     phone_number: string,
     email: string,
+    position_id: number,
+    department_id: number,
   ): Promise<any> {
     try {
       const sql =
-        "CALL SearchCustomer(?, ?, ?, ?, ?, ?, ?, ?, @err_code, @err_msg)";
+        "CALL SearchEmployee(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, @err_code, @err_msg)";
       const [results] = await this.db.query(sql, [
         pageIndex,
         pageSize,
         user_id,
         search_content,
-        customer_id,
+        employee_id,
         fullname,
         phone_number,
         email,
+        position_id,
+        department_id,
       ]);
       return results;
     } catch (error: any) {

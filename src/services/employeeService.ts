@@ -1,65 +1,68 @@
 import { injectable } from "tsyringe";
-import { CustomerRepository } from "../repositories/customerRepository";
-import { Customer } from "../models/customer";
+import { EmployeeRepository } from "../repositories/employeeRepository";
+import { Employee } from "../models/employee";
 import { Guid } from "../utils/guid.service";
 import { Md5 } from "ts-md5";
 import nodemailer from "nodemailer";
 import { system_email } from "../config/system_email";
 @injectable()
-export class CustomerService {
+export class EmployeeService {
   constructor(
-    private customerRepository: CustomerRepository,
+    private employeeRepository: EmployeeRepository,
     private guid: Guid,
   ) {}
 
-  async getCustomerDropdown(): Promise<any> {
-    return this.customerRepository.getCustomerDropdown();
+  async getEmployeeDropdown(): Promise<any> {
+    return this.employeeRepository.getEmployeeDropdown();
   }
 
-  async getCustomerById(id: string): Promise<any> {
-    return this.customerRepository.getCustomerById(id);
+  async getEmployeeById(id: string): Promise<any> {
+    return this.employeeRepository.getEmployeeById(id);
   }
 
-  async createCustomer(customer: Customer): Promise<any> {
-    customer.user_id = this.guid.newGuid();
-    customer.profile_id = this.guid.newGuid();
-    customer.password = Md5.hashStr(customer.password);
-    return this.customerRepository.createCustomer(customer);
+  async createEmployee(employee: Employee): Promise<any> {
+    employee.user_id = this.guid.newGuid();
+    employee.profile_id = this.guid.newGuid();
+    employee.user_role_id = this.guid.newGuid();
+    employee.password = Md5.hashStr(employee.password);
+    return this.employeeRepository.createEmployee(employee);
   }
 
-  async updateCustomer(customer: Customer): Promise<any> {
-    // customer.password = Md5.hashStr(customer.password);
-    return customer;
-    // return this.customerRepository.updateCustomer(customer);
+  async updateEmployee(employee: Employee): Promise<any> {
+    // employee.password = Md5.hashStr(employee.password);
+    return this.employeeRepository.updateEmployee(employee);
   }
 
-  async deleteCustomer(list_json: any, updated_by_id: string): Promise<any> {
-    return this.customerRepository.deleteCustomer(list_json, updated_by_id);
+  async deleteEmployee(list_json: any, updated_by_id: string): Promise<any> {
+    return this.employeeRepository.deleteEmployee(list_json, updated_by_id);
   }
-
-  async searchCustomer(
+  async searchEmployee(
     pageIndex: number,
     pageSize: number,
     user_id: string,
     search_content: string,
-    customer_id: string,
-    customer_name: string,
+    employee_id: string,
+    fullname: string,
     phone_number: string,
     email: string,
+    position_id: number,
+    department_id: number,
   ) {
-    let list = await this.customerRepository.searchCustomer(
+    let list = await this.employeeRepository.searchEmployee(
       pageIndex,
       pageSize,
       user_id,
       search_content,
-      customer_id,
-      customer_name,
+      employee_id,
+      fullname,
       phone_number,
       email,
+      position_id,
+      department_id,
     );
     for (let x of list) {
-      if (x.customer_customer) {
-        x.customer_customer = JSON.parse(x.customer_customer);
+      if (x.employee_customer) {
+        x.employee_customer = JSON.parse(x.employee_customer);
       }
     }
     return list;
@@ -85,14 +88,13 @@ export class CustomerService {
       );
     old_password = Md5.hashStr(old_password);
     new_password = Md5.hashStr(new_password);
-    return this.customerRepository.changePassword(
+    return this.employeeRepository.changePassword(
       user_id,
       old_password,
       new_password,
       lu_user_id,
     );
   }
-
   async resetPassword(user_name: string, email: string) {
     const generateRandomString = (length: number) => {
       let result = "";
@@ -108,7 +110,7 @@ export class CustomerService {
     };
     var new_password = generateRandomString(8);
     var hashed_password = Md5.hashStr(new_password);
-    let result = await this.customerRepository.resetPassword(
+    let result = await this.employeeRepository.resetPassword(
       user_name,
       email,
       hashed_password,
@@ -138,7 +140,7 @@ export class CustomerService {
         html: emailBody,
       };
 
-      mailTransporter.sendMail(mailOptions, function (err: any) {
+      mailTransporter.sendMail(mailOptions, function (err) {
         if (err) console.log(err);
       });
     }
@@ -159,7 +161,7 @@ export class CustomerService {
     };
     var new_password = generateRandomString(8);
     var hashed_password = Md5.hashStr(new_password);
-    let email = await this.customerRepository.resetPasswordByAdmin(
+    let email = await this.employeeRepository.resetPasswordByAdmin(
       user_id,
       hashed_password,
       lu_user_id,
@@ -189,7 +191,7 @@ export class CustomerService {
         html: emailBody,
       };
 
-      mailTransporter.sendMail(mailOptions, function (err: any) {
+      mailTransporter.sendMail(mailOptions, function (err) {
         if (err) console.log(err);
       });
     }
