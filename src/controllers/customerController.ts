@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { injectable } from "tsyringe";
-import { CustomerService } from "../services/customerService";
 import { Customer } from "../models/customer";
+import { CustomerService } from "../services/customerService";
 
 @injectable()
 export class CustomerController {
@@ -85,6 +85,8 @@ export class CustomerController {
         fullname: string;
         phone_number: string;
         email: string;
+        position_id: number;
+        department_id: number;
       };
       const data: any = await this.customerService.searchCustomer(
         object.pageIndex,
