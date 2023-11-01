@@ -29,17 +29,11 @@ export class PageService {
     pageIndex: number,
     pageSize: number,
     search_content: string,
-    page_title: string,
-    page_code: string,
-    content: string,
   ): Promise<Page> {
     return this.pageRepository.searchPage(
       pageIndex,
       pageSize,
       search_content,
-      page_title,
-      page_code,
-      content,
     );
   }
 }

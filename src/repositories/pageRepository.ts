@@ -8,7 +8,7 @@ export class PageRepository {
 
   async createPage(page: Page): Promise<any> {
     try {
-      const sql = "CALL InsertPage(?, ?, ?, @err_code, @err_msg)";
+      const sql = "CALL InsertPage(?, ?, ?, ?, @err_code, @err_msg)";
       await this.db.query(sql, [
         page.page_title,
         page.page_code,
@@ -23,8 +23,14 @@ export class PageRepository {
 
   async updatePage(page: Page): Promise<any> {
     try {
-      const sql = "CALL UpdatePage(?, ?, ?, @err_code, @err_msg)";
-      await this.db.query(sql, [page.page_title, page.page_code, page.content, page.lu_user_id]);
+      const sql = "CALL UpdatePage(?, ?, ?, ?, ?, @err_code, @err_msg)";
+      await this.db.query(sql, [
+        page.page_id,
+        page.page_title,
+        page.page_code,
+        page.content,
+        page.lu_user_id,
+      ]);
       return true;
     } catch (error: any) {
       throw new Error(error.message);
@@ -68,19 +74,13 @@ export class PageRepository {
     pageIndex: number,
     pageSize: number,
     search_content: string,
-    page_title: string,
-    page_code: string,
-    content: string,
   ): Promise<any> {
     try {
-      const sql = "CALL SearchPage(?, ?, ?, ?, ?, ?, @err_code, @err_msg)";
+      const sql = "CALL SearchPage(?, ?, ?, @err_code, @err_msg)";
       const [results] = await this.db.query(sql, [
         pageIndex,
         pageSize,
         search_content,
-        page_title,
-        page_code,
-        content,
       ]);
       return results;
     } catch (error: any) {

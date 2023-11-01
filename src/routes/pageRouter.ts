@@ -10,5 +10,5 @@ pageRouter.get('/dropdown', pageController.getPageDropdown.bind(pageController))
 pageRouter.post('/create', authenticate, pageController.createPage.bind(pageController));
 pageRouter.post('/update', authenticate, pageController.updatePage.bind(pageController));
 pageRouter.post('/delete', authenticate, pageController.deletePage.bind(pageController));
-pageRouter.post('/search', pageController.searchPage.bind(pageController));
+pageRouter.post('/search', authenticate, pageController.searchPage.bind(pageController));
 export default pageRouter;
