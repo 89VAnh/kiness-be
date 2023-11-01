@@ -17,7 +17,7 @@ newsRouter.post(
   authenticate,
   newsController.updateNews.bind(newsController),
 );
-newsRouter.post(
+newsRouter.delete(
   "/delete",
   authenticate,
   newsController.deleteNews.bind(newsController),
