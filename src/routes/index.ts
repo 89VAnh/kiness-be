@@ -1,12 +1,13 @@
 import { Router } from "express";
-import newsRouter from "./newsRouter";
-import userRouter from "./userRouter";
-import customerRouter from "./customerRouter";
+import core_router from "../core/routes";
 import branchRouter from "./branchRouter";
 import cityRouter from "./cityRouter";
-import pageRouter from "./pageRouter";
+import customerRouter from "./customerRouter";
 import employeeRouter from "./employeeRouter";
-import core_router from "../core/routes";
+import experienceRegisterRouter from "./experienceRegisterRouter";
+import newsRouter from "./newsRouter";
+import pageRouter from "./pageRouter";
+import userRouter from "./userRouter";
 
 const router = Router();
 
@@ -17,6 +18,7 @@ router.use("/employees", employeeRouter);
 router.use("/cities", cityRouter);
 router.use("/pages", pageRouter);
 router.use("/branches", branchRouter);
+router.use("/experience-register", experienceRegisterRouter);
 router.use("/core", core_router);
 
 export default router;

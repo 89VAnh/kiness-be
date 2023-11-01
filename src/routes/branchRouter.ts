@@ -36,4 +36,5 @@ branchRouter.post(
   "/create-test-register",
   branchController.createTestRegister.bind(branchController),
 );
+
 export default branchRouter;

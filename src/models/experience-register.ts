@@ -1,6 +1,7 @@
 import { BaseModel } from "./base";
 
-export interface TestRegister extends BaseModel {
+export interface ExperienceRegister extends BaseModel {
+  register_id: number;
   branch_id: number;
   fullname: string;
   gender: number;

@@ -118,4 +118,25 @@ export class BranchRepository {
       throw new Error(error.message);
     }
   }
+
+  async createRegisterExperience(testRegister: TestRegister): Promise<any> {
+    try {
+      const sql =
+        "CALL InsertTestRegister(?, ?, ?, ?, ?, ?, ?, ?, ?, @err_code, @err_msg)";
+      await this.db.query(sql, [
+        testRegister.branch_id,
+        testRegister.fullname,
+        testRegister.gender,
+        testRegister.level,
+        testRegister.date,
+        testRegister.phone_number,
+        testRegister.address,
+        testRegister.detail,
+        testRegister.created_by_user_id,
+      ]);
+      return true;
+    } catch (error: any) {
+      throw new Error(error.message);
+    }
+  }
 }

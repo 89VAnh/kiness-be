@@ -1,10 +1,10 @@
-import { injectable } from "tsyringe";
-import { CustomerRepository } from "../repositories/customerRepository";
-import { Customer } from "../models/customer";
-import { Guid } from "../utils/guid.service";
-import { Md5 } from "ts-md5";
 import nodemailer from "nodemailer";
+import { Md5 } from "ts-md5";
+import { injectable } from "tsyringe";
 import { system_email } from "../config/system_email";
+import { Customer } from "../models/customer";
+import { CustomerRepository } from "../repositories/customerRepository";
+import { Guid } from "../utils/guid.service";
 @injectable()
 export class CustomerService {
   constructor(
