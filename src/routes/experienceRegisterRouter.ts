@@ -30,4 +30,12 @@ experienceRegisterRouter.delete(
     experienceRegisterController,
   ),
 );
+
+experienceRegisterRouter.post(
+  "/print",
+  authenticate,
+  experienceRegisterController.printExperienceRegister.bind(
+    experienceRegisterController,
+  ),
+);
 export default experienceRegisterRouter;

@@ -6,7 +6,7 @@ export interface ExperienceRegister extends BaseModel {
   fullname: string;
   gender: number;
   level: string;
-  date: string;
+  date: Date;
   phone_number: string;
   address: string;
   detail: string;

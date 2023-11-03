@@ -36,8 +36,8 @@ export class ExperienceRegisterRepository {
     branch_name: string,
     phone: string,
     address: string,
-    to_date: Date,
     from_date: Date,
+    to_date: Date,
   ): Promise<any> {
     try {
       const sql =
@@ -49,8 +49,8 @@ export class ExperienceRegisterRepository {
         branch_name,
         phone,
         address,
-        to_date,
         from_date,
+        to_date,
       ]);
       return results;
     } catch (error: any) {
