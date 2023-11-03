@@ -26,6 +26,8 @@ export class ExperienceRegisterController {
         branch_name: string;
         phone: string;
         address: string;
+        from_date: Date;
+        to_date: Date;
       };
       const data: any = await this.experienceService.searchExperienceRegister(
         object.pageIndex,
@@ -34,6 +36,8 @@ export class ExperienceRegisterController {
         object.branch_name,
         object.phone,
         object.address,
+        object.from_date,
+        object.to_date,
       );
       if (data) {
         res.json({
@@ -66,6 +70,44 @@ export class ExperienceRegisterController {
       res.json({ message: "Đã xóa thành công", results: true });
     } catch (error: any) {
       res.json({ message: error.message, results: false });
+    }
+  }
+
+  async printExperienceRegister(req: Request, res: Response): Promise<any> {
+    try {
+      const object = req.body as {
+        search_content: string;
+        branch_name: string;
+        phone: string;
+        address: string;
+        from_date: Date;
+        to_date: Date;
+      };
+      const buffer: any = await this.experienceService.printExperienceRegister(
+        object.search_content,
+        object.branch_name,
+        object.phone,
+        object.address,
+        object.from_date,
+        object.to_date,
+      );
+      if (buffer) {
+        res.setHeader(
+          "Content-Type",
+          "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+        );
+
+        const filename = "Danh sách đơn đăng ký trải nghiệm";
+        res.setHeader(
+          "Content-Disposition",
+          `attachment; filename*=UTF-8''${encodeURIComponent(filename)}`,
+        );
+        res.send(buffer);
+      } else {
+        res.json({ message: "Không tồn tại kết quả tìm kiếm" });
+      }
+    } catch (error: any) {
+      res.json({ message: error.message });
     }
   }
 }
