@@ -10,7 +10,6 @@ const experienceRegisterController = container.resolve(
 
 experienceRegisterRouter.post(
   "/create",
-  authenticate,
   experienceRegisterController.createExperienceRegister.bind(
     experienceRegisterController,
   ),
@@ -18,6 +17,7 @@ experienceRegisterRouter.post(
 
 experienceRegisterRouter.post(
   "/search",
+  authenticate,
   experienceRegisterController.searchExperienceRegister.bind(
     experienceRegisterController,
   ),
@@ -25,7 +25,16 @@ experienceRegisterRouter.post(
 
 experienceRegisterRouter.delete(
   "/delete",
+  authenticate,
   experienceRegisterController.deleteExperienceRegister.bind(
+    experienceRegisterController,
+  ),
+);
+
+experienceRegisterRouter.post(
+  "/print",
+  authenticate,
+  experienceRegisterController.printExperienceRegister.bind(
     experienceRegisterController,
   ),
 );
