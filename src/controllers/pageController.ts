@@ -70,17 +70,11 @@ export class PageController {
         pageIndex: number;
         pageSize: number;
         search_content: string;
-        page_title: string;
-        page_code: string;
-        content: string;
       };
       const data: any = await this.pageService.searchPage(
         object.pageIndex,
         object.pageSize,
         object.search_content,
-        object.page_title,
-        object.page_code,
-        object.content,
       );
       if (data) {
         res.json({

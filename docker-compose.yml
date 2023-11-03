@@ -10,7 +10,7 @@ services:
       - MYSQL_ROOT_PASSWORD=aiacademy@
       - MYSQL_DATABASE=kiness-dev
     ports:
-      - 3306:3306
+      - 3303:3306
     volumes:
       - db:/var/lib/mysql
   app:
