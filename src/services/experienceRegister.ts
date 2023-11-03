@@ -21,6 +21,8 @@ export class ExperienceRegisterService {
     branch_name: string,
     phone: string,
     address: string,
+    from_date: Date,
+    to_date: Date,
   ): Promise<any> {
     return this.experienceRepository.searchExperienceRegister(
       pageIndex,
@@ -29,6 +31,8 @@ export class ExperienceRegisterService {
       branch_name,
       phone,
       address,
+      from_date,
+      to_date,
     );
   }
 

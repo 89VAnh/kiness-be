@@ -11,4 +11,5 @@ export interface ExperienceRegister extends BaseModel {
   address: string;
   detail: string;
   status: number;
+  created_date_time: Date;
 }

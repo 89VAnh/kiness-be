@@ -26,6 +26,8 @@ export class ExperienceRegisterController {
         branch_name: string;
         phone: string;
         address: string;
+        from_date: Date;
+        to_date: Date;
       };
       const data: any = await this.experienceService.searchExperienceRegister(
         object.pageIndex,
@@ -34,6 +36,8 @@ export class ExperienceRegisterController {
         object.branch_name,
         object.phone,
         object.address,
+        object.from_date,
+        object.to_date,
       );
       if (data) {
         res.json({

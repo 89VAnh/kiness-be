@@ -36,10 +36,12 @@ export class ExperienceRegisterRepository {
     branch_name: string,
     phone: string,
     address: string,
+    to_date: Date,
+    from_date: Date,
   ): Promise<any> {
     try {
       const sql =
-        "CALL SearchExperienceRegister(?, ?, ?, ?, ?, ?, @err_code, @err_msg)";
+        "CALL SearchExperienceRegister(?, ?, ?, ?, ?, ?, ?, ?, @err_code, @err_msg)";
       const [results] = await this.db.query(sql, [
         pageIndex,
         pageSize,
@@ -47,6 +49,8 @@ export class ExperienceRegisterRepository {
         branch_name,
         phone,
         address,
+        to_date,
+        from_date,
       ]);
       return results;
     } catch (error: any) {
