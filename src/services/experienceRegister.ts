@@ -176,6 +176,32 @@ export class ExperienceRegisterService {
                 right: { style: "thin" },
               };
 
+              if (/status/.test(column.key!)) {
+                let color = "";
+
+                switch (cell.value) {
+                  case statusMap.get(0):
+                    color = "faad14";
+                    break;
+                  case statusMap.get(1):
+                    color = "52c41a";
+                    break;
+                  case statusMap.get(2):
+                    color = "ff4d4f";
+                    break;
+                  default:
+                    break;
+                }
+
+                if (color !== "") {
+                  cell.fill = {
+                    type: "pattern",
+                    pattern: "darkVertical",
+                    fgColor: { argb: color },
+                  };
+                }
+              }
+
               if (!/serial/.test(column.key!)) {
                 if (/date/.test(column.key!)) {
                   maxLength = 10;
