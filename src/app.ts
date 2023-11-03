@@ -8,7 +8,8 @@ import dotenv from "dotenv";
 // import core_router from "./core/routes";
 dotenv.config();
 const app = express();
-app.use('/api/uploads', express.static(__dirname?.replace(/\/src/g, "") + '/uploads'));
+// app.use('/api/uploads', express.static(__dirname?.replace(/\/src/g, "") + '/uploads'));
+app.use('/api/uploads', express.static("/app/uploads"));
 // Sử dụng cors middleware
 app.use(cors());
 // Middleware để xử lý dữ liệu đầu vào

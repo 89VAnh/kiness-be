@@ -1,21 +1,21 @@
 version: '3.8'
 
 services:
-  mysql:
-    image: mysql:8.0
-    restart: unless-stopped
-    env_file: ./.env
-    container_name: kiness_mysql
-    environment:
-      - MYSQL_ROOT_PASSWORD=aiacademy@
-      - MYSQL_DATABASE=kiness-dev
-    ports:
-      - 3303:3306
-    volumes:
-      - db:/var/lib/mysql
+  # mysql:
+  #   image: mysql:8.0
+  #   restart: unless-stopped
+  #   env_file: ./.env
+  #   container_name: kiness_mysql
+  #   environment:
+  #     - MYSQL_ROOT_PASSWORD=aiacademy@
+  #     - MYSQL_DATABASE=kiness-dev
+  #   ports:
+  #     - 3306:3306
+  #   volumes:
+  #     - db:/var/lib/mysql
   app:
-    depends_on:
-      - mysql
+    # depends_on:
+    #   - mysql
     build: ./
     restart: unless-stopped
     container_name: kiness_be_app
@@ -25,15 +25,15 @@ services:
     env_file: ./.env
     ports:
       - 4010:4010
-    environment:
-      - DB_HOST=mysql
-      - DB_USER=root
-      - DB_PASSWORD=Minh2000@
-      - DB_NAME=kiness-dev
-      - DB_PORT=3306
+    # environment:
+    #   - DB_HOST=mysql
+    #   - DB_USER=root
+    #   - DB_PASSWORD=Minh2000@
+    #   - DB_NAME=kiness-dev
+    #   - DB_PORT=3306
     stdin_open: true
     tty: true
 
 volumes: 
-  db:
+  # db:
   uploads:
