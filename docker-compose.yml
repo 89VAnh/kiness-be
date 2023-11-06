@@ -7,8 +7,8 @@ services:
     env_file: ./.env
     container_name: kiness_mysql
     environment:
-      - MYSQL_ROOT_PASSWORD=aiacademy@
-      - MYSQL_DATABASE=kiness-dev
+      - MYSQL_ROOT_PASSWORD=$DB_PASSWORD
+      - MYSQL_DATABASE=$DB_NAME
     ports:
       - 3303:3306
     volumes:
@@ -26,10 +26,10 @@ services:
     ports:
       - 4010:4010
     environment:
-      - DB_HOST=mysql
-      - DB_USER=root
-      - DB_PASSWORD=Minh2000@
-      - DB_NAME=kiness-dev
+      - DB_HOST=$DB_HOST
+      - DB_USER=$DB_USERNAME
+      - DB_PASSWORD=$DB_PASSWORD
+      - DB_NAME=$DB_NAME
       - DB_PORT=3306
     stdin_open: true
     tty: true
