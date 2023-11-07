@@ -135,6 +135,16 @@ export class ExperienceRegisterService {
         [2, "Đã hủy"],
       ]);
 
+      const convertDate = (date: Date) => {
+        return (
+          date.getDate().toString().padStart(2, "0") +
+          "/" +
+          (date.getMonth() + 1).toString().padStart(2, "0") +
+          "/" +
+          date.getFullYear()
+        );
+      };
+
       data
         .map((x, i) => ({ serial: i + 1, ...x }))
         .forEach((register) =>
@@ -142,6 +152,8 @@ export class ExperienceRegisterService {
             ...register,
             gender: genderMap.get(register.gender),
             status: statusMap.get(register.status),
+            date: convertDate(register.date),
+            created_date_time: convertDate(register.created_date_time),
           }),
         );
 
