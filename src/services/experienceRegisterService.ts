@@ -15,6 +15,22 @@ export class ExperienceRegisterService {
     );
   }
 
+  async updateExperienceRegister(
+    experienceRegister: ExperienceRegister,
+  ): Promise<any> {
+    return this.experienceRepository.updateExperienceRegister(
+      experienceRegister,
+    );
+  }
+
+  async updateExperienceRegisterStatus(
+    experienceRegister: ExperienceRegister,
+  ): Promise<any> {
+    return this.experienceRepository.updateExperienceRegisterStatus(
+      experienceRegister,
+    );
+  }
+
   async searchExperienceRegister(
     pageIndex: number,
     pageSize: number,

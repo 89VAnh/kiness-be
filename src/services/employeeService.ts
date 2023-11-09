@@ -1,10 +1,10 @@
-import { injectable } from "tsyringe";
-import { EmployeeRepository } from "../repositories/employeeRepository";
-import { Employee } from "../models/employee";
-import { Guid } from "../utils/guid.service";
-import { Md5 } from "ts-md5";
 import nodemailer from "nodemailer";
+import { Md5 } from "ts-md5";
+import { injectable } from "tsyringe";
 import { system_email } from "../config/system_email";
+import { Employee } from "../models/employee";
+import { EmployeeRepository } from "../repositories/employeeRepository";
+import { Guid } from "../utils/guid.service";
 @injectable()
 export class EmployeeService {
   constructor(
@@ -130,7 +130,7 @@ export class EmployeeService {
                       <p>Hệ thống đã nhận được yêu cầu đổi mật từ bạn.</p>
 
                       <p>Mật khẩu mới của bạn là: <b> ${new_password}</b></p>
-                      <p>Trân trọng.
+                      <p>Trân trọng.</p>
 `;
 
       var mailOptions = {

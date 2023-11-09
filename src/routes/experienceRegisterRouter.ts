@@ -16,6 +16,13 @@ experienceRegisterRouter.post(
 );
 
 experienceRegisterRouter.post(
+  "/update-status",
+  experienceRegisterController.updateExperienceRegisterStatus.bind(
+    experienceRegisterController,
+  ),
+);
+
+experienceRegisterRouter.post(
   "/search",
   authenticate,
   experienceRegisterController.searchExperienceRegister.bind(

@@ -9,6 +9,7 @@ export interface Customer extends BaseModel {
   gender: boolean;
   email: string;
   address: string;
+  verify: number;
 
   // system user
   password: string;
