@@ -6,7 +6,7 @@ export interface Customer extends BaseModel {
   branch_id: number;
   phone_number: string;
   birthday: string;
-  gender: boolean;
+  gender: number;
   email: string;
   address: string;
   verify: number;

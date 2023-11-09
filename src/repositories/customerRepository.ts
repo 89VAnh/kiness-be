@@ -38,14 +38,13 @@ export class CustomerRepository {
 
   async updateCustomer(customer: Customer): Promise<any> {
     try {
-      console.log(customer);
       const sql =
         "CALL UpdateCustomer(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, @err_code, @err_msg)";
       await this.db.query(sql, [
         customer.customer_id,
         customer.customer_name,
         customer.phone_number,
-        customer.date_of_birth,
+        customer.birthday,
         customer.branch_id,
         customer.gender,
         customer.email,
