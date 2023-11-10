@@ -29,8 +29,8 @@ export class CustomerService {
 
   async updateCustomer(customer: Customer): Promise<any> {
     // customer.password = Md5.hashStr(customer.password);
-    return customer;
-    // return this.customerRepository.updateCustomer(customer);
+    // return customer;
+    return this.customerRepository.updateCustomer(customer);
   }
 
   async deleteCustomer(list_json: any, updated_by_id: string): Promise<any> {
