@@ -7,6 +7,7 @@ import employeeRouter from "./employeeRouter";
 import experienceRegisterRouter from "./experienceRegisterRouter";
 import newsRouter from "./newsRouter";
 import pageRouter from "./pageRouter";
+import testRegisterRouter from "./testRegisterRouter";
 import userRouter from "./userRouter";
 
 const router = Router();
@@ -19,6 +20,7 @@ router.use("/cities", cityRouter);
 router.use("/pages", pageRouter);
 router.use("/branches", branchRouter);
 router.use("/experience-register", experienceRegisterRouter);
+router.use("/test-register", testRegisterRouter);
 router.use("/core", core_router);
 
 export default router;
