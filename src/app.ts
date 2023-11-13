@@ -6,7 +6,7 @@ import router from "./routes";
 import cors from "cors";
 import dotenv from "dotenv";
 // import core_router from "./core/routes";
-dotenv.config();
+dotenv.config({ path: '../.env' });
 const app = express();
 app.use('/api/uploads', express.static(__dirname?.replace(/\/src/g, "") + '/uploads'));
 // Sử dụng cors middleware
