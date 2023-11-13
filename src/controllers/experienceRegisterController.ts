@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { injectable } from "tsyringe";
 import { ExperienceRegister } from "../models/experience-register";
-import { ExperienceRegisterService } from "../services/experienceRegister";
+import { ExperienceRegisterService } from "../services/experienceRegisterService";
 
 @injectable()
 export class ExperienceRegisterController {
@@ -12,6 +12,31 @@ export class ExperienceRegisterController {
       const experienceRegister = req.body as ExperienceRegister;
       await this.experienceService.createExperienceRegister(experienceRegister);
       res.json({ message: "Đã thêm thành công", results: true });
+    } catch (error: any) {
+      res.json({ message: error.message, results: false });
+    }
+  }
+
+  async updateExperienceRegister(req: Request, res: Response): Promise<void> {
+    try {
+      const experienceRegister = req.body as ExperienceRegister;
+      await this.experienceService.updateExperienceRegister(experienceRegister);
+      res.json({ message: "Đã sửa thành công", results: true });
+    } catch (error: any) {
+      res.json({ message: error.message, results: false });
+    }
+  }
+
+  async updateExperienceRegisterStatus(
+    req: Request,
+    res: Response,
+  ): Promise<void> {
+    try {
+      const experienceRegister = req.body as ExperienceRegister;
+      await this.experienceService.updateExperienceRegisterStatus(
+        experienceRegister,
+      );
+      res.json({ message: "Đã thay đổi trạng thái thành công", results: true });
     } catch (error: any) {
       res.json({ message: error.message, results: false });
     }

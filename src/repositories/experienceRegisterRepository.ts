@@ -29,6 +29,47 @@ export class ExperienceRegisterRepository {
     }
   }
 
+  async updateExperienceRegister(
+    experienceRegister: ExperienceRegister,
+  ): Promise<any> {
+    try {
+      const sql =
+        "CALL UpdateExperienceRegister(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, @err_code, @err_msg)";
+      await this.db.query(sql, [
+        experienceRegister.register_id,
+        experienceRegister.branch_id,
+        experienceRegister.fullname,
+        experienceRegister.gender,
+        experienceRegister.level,
+        experienceRegister.date,
+        experienceRegister.phone_number,
+        experienceRegister.address,
+        experienceRegister.detail,
+        experienceRegister.lu_user_id,
+      ]);
+      return true;
+    } catch (error: any) {
+      throw new Error(error.message);
+    }
+  }
+
+  async updateExperienceRegisterStatus(
+    experienceRegister: ExperienceRegister,
+  ): Promise<any> {
+    try {
+      const sql =
+        "CALL UpdateExperienceRegisterStatus(?, ?, ?, @err_code, @err_msg)";
+      await this.db.query(sql, [
+        experienceRegister.register_id,
+        experienceRegister.status,
+        experienceRegister.lu_user_id,
+      ]);
+      return true;
+    } catch (error: any) {
+      throw new Error(error.message);
+    }
+  }
+
   async searchExperienceRegister(
     pageIndex: number,
     pageSize: number,

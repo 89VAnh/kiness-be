@@ -36,37 +36,27 @@ export class CustomerRepository {
     }
   }
 
-  // async updateCustomer(customer: Customer): Promise<any> {
-  //   try {
-  //     const sql =
-  //       "CALL UpdateCustomer(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, @err_code, @err_msg)";
-  //     // await this.db.query(sql, [
-  //     //   customer.branch_id,
-  //     //   customer.customer_id,
-  //     //   customer.fullname,
-  //     //   customer.phone_number,
-  //     //   customer.email,
-  //     //   customer.position_id,
-  //     //   customer.department_id,
-  //     //   customer.password,
-  //     //   JSON.stringify(customer.list_json_customer_customer),
-  //     //   customer.type,
-  //     //   customer.description,
-  //     //   customer.is_guest,
-  //     //   customer.first_name,
-  //     //   customer.middle_name,
-  //     //   customer.last_name,
-  //     //   customer.avatar,
-  //     //   customer.gender,
-  //     //   customer.date_of_birth,
-  //     //   customer.role_id,
-  //     //   customer.lu_user_id,
-  //     // ]);
-  //     return true;
-  //   } catch (error: any) {
-  //     throw new Error(error.message);
-  //   }
-  // }
+  async updateCustomer(customer: Customer): Promise<any> {
+    try {
+      const sql =
+        "CALL UpdateCustomer(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, @err_code, @err_msg)";
+      await this.db.query(sql, [
+        customer.customer_id,
+        customer.customer_name,
+        customer.phone_number,
+        customer.birthday,
+        customer.branch_id,
+        customer.gender,
+        customer.email,
+        customer.address,
+        customer.verify,
+        customer.lu_user_id,
+      ]);
+      return true;
+    } catch (error: any) {
+      throw new Error(error.message);
+    }
+  }
 
   async deleteCustomer(list_json: any, updated_by_id: string): Promise<any> {
     try {

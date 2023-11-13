@@ -15,6 +15,22 @@ export class ExperienceRegisterService {
     );
   }
 
+  async updateExperienceRegister(
+    experienceRegister: ExperienceRegister,
+  ): Promise<any> {
+    return this.experienceRepository.updateExperienceRegister(
+      experienceRegister,
+    );
+  }
+
+  async updateExperienceRegisterStatus(
+    experienceRegister: ExperienceRegister,
+  ): Promise<any> {
+    return this.experienceRepository.updateExperienceRegisterStatus(
+      experienceRegister,
+    );
+  }
+
   async searchExperienceRegister(
     pageIndex: number,
     pageSize: number,
@@ -135,6 +151,16 @@ export class ExperienceRegisterService {
         [2, "Đã hủy"],
       ]);
 
+      const convertDate = (date: Date) => {
+        return (
+          date.getDate().toString().padStart(2, "0") +
+          "/" +
+          (date.getMonth() + 1).toString().padStart(2, "0") +
+          "/" +
+          date.getFullYear()
+        );
+      };
+
       data
         .map((x, i) => ({ serial: i + 1, ...x }))
         .forEach((register) =>
@@ -142,6 +168,8 @@ export class ExperienceRegisterService {
             ...register,
             gender: genderMap.get(register.gender),
             status: statusMap.get(register.status),
+            date: convertDate(register.date),
+            created_date_time: convertDate(register.created_date_time),
           }),
         );
 
@@ -175,6 +203,32 @@ export class ExperienceRegisterService {
                 bottom: { style: "thin" },
                 right: { style: "thin" },
               };
+
+              if (/status/.test(column.key!)) {
+                let color = "";
+
+                switch (cell.value) {
+                  case statusMap.get(0):
+                    color = "faad14";
+                    break;
+                  case statusMap.get(1):
+                    color = "52c41a";
+                    break;
+                  case statusMap.get(2):
+                    color = "ff4d4f";
+                    break;
+                  default:
+                    break;
+                }
+
+                if (color !== "") {
+                  cell.fill = {
+                    type: "pattern",
+                    pattern: "darkVertical",
+                    fgColor: { argb: color },
+                  };
+                }
+              }
 
               if (!/serial/.test(column.key!)) {
                 if (/date/.test(column.key!)) {
