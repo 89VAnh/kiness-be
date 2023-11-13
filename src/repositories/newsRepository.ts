@@ -8,11 +8,13 @@ export class NewsRepository {
 
   async createNews(news: News): Promise<any> {
     try {
-      const sql = "CALL InsertNews(?, ?, ?, ?, ?, @err_code, @err_msg)";
+      const sql = "CALL InsertNews(?, ?, ?, ?, ?, ?, @err_code, @err_msg)";
+
       await this.db.query(sql, [
         news.news_title,
         news.content,
         news.content_html,
+        news.thumbnail,
         (news.views = 0),
         news.created_by_user_id,
       ]);
@@ -24,14 +26,17 @@ export class NewsRepository {
 
   async updateNews(news: News): Promise<any> {
     try {
-      const sql = "CALL UpdateNews(?, ?, ?, ?, ?, @err_code, @err_msg)";
+      const sql = "CALL UpdateNews(?, ?, ?, ?, ?, ?, ? ,@err_code, @err_msg)";
       await this.db.query(sql, [
+        news.news_id,
         news.news_title,
         news.content,
         news.content_html,
+        news.thumbnail,
         news.views,
         news.lu_user_id,
       ]);
+
       return true;
     } catch (error: any) {
       throw new Error(error.message);
