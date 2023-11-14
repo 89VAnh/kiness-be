@@ -1,37 +1,25 @@
 import Excel, { Column } from "exceljs";
 import { injectable } from "tsyringe";
-import { ExperienceRegister } from "../models/experience-register";
-import { ExperienceRegisterRepository } from "../repositories/experienceRegisterRespository";
+import { TestRegister } from "../models/test-register";
+import { TestRegisterRepository } from "../repositories/testRegisterRespository";
 
 @injectable()
-export class ExperienceRegisterService {
-  constructor(private experienceRepository: ExperienceRegisterRepository) {}
+export class TestRegisterService {
+  constructor(private testRepository: TestRegisterRepository) {}
 
-  async createExperienceRegister(
-    experienceRegister: ExperienceRegister,
-  ): Promise<any> {
-    return this.experienceRepository.createExperienceRegister(
-      experienceRegister,
-    );
+  async createTestRegister(testRegister: TestRegister): Promise<any> {
+    return this.testRepository.createTestRegister(testRegister);
   }
 
-  async updateExperienceRegister(
-    experienceRegister: ExperienceRegister,
-  ): Promise<any> {
-    return this.experienceRepository.updateExperienceRegister(
-      experienceRegister,
-    );
+  async updateTestRegister(testRegister: TestRegister): Promise<any> {
+    return this.testRepository.updateTestRegister(testRegister);
   }
 
-  async updateExperienceRegisterStatus(
-    experienceRegister: ExperienceRegister,
-  ): Promise<any> {
-    return this.experienceRepository.updateExperienceRegisterStatus(
-      experienceRegister,
-    );
+  async updateTestRegisterStatus(testRegister: TestRegister): Promise<any> {
+    return this.testRepository.updateTestRegisterStatus(testRegister);
   }
 
-  async searchExperienceRegister(
+  async searchTestRegister(
     pageIndex: number,
     pageSize: number,
     search_content: string,
@@ -41,7 +29,7 @@ export class ExperienceRegisterService {
     from_date: Date,
     to_date: Date,
   ): Promise<any> {
-    return this.experienceRepository.searchExperienceRegister(
+    return this.testRepository.searchTestRegister(
       pageIndex,
       pageSize,
       search_content,
@@ -53,17 +41,14 @@ export class ExperienceRegisterService {
     );
   }
 
-  async deleteExperienceRegister(
+  async deleteTestRegister(
     list_json: any,
     updated_by_id: string,
   ): Promise<any> {
-    return this.experienceRepository.deleteExperienceRegister(
-      list_json,
-      updated_by_id,
-    );
+    return this.testRepository.deleteTestRegister(list_json, updated_by_id);
   }
 
-  async printExperienceRegister(
+  async printTestRegister(
     search_content: string,
     branch_name: string,
     phone: string,
@@ -71,17 +56,16 @@ export class ExperienceRegisterService {
     from_date: Date,
     to_date: Date,
   ) {
-    const data: ExperienceRegister[] =
-      await this.experienceRepository.searchExperienceRegister(
-        0,
-        0,
-        search_content,
-        branch_name,
-        phone,
-        address,
-        from_date,
-        to_date,
-      );
+    const data: TestRegister[] = await this.testRepository.searchTestRegister(
+      0,
+      0,
+      search_content,
+      branch_name,
+      phone,
+      address,
+      from_date,
+      to_date,
+    );
 
     if (data.length > 0) {
       const cols: Partial<Column>[] = [
