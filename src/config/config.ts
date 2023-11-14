@@ -4,8 +4,8 @@ export const config = {
   port: process.env.PORT || 4010,
   limit_size: process.env.LIMIT_SIZE || 3145728,
   db: {
-    host: process.env.DB_HOST || "0.0.0.0",
-    port: Number(process.env.DB_PORT || 3306),
+    host: process.env.DB_HOST || "125.212.203.57",
+    port: Number(process.env.DB_PORT || 13306),
     username: process.env.DB_USERNAME || "root",
     password: process.env.DB_PASSWORD || "aiavn@123",
     database: process.env.DB_NAME || "kiness",

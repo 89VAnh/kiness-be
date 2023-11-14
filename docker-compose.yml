@@ -1,21 +1,21 @@
 version: '3.8'
 
 services:
-  mysql:
-    image: mysql:8.0
-    restart: unless-stopped
-    env_file: ./.env
-    container_name: kiness_mysql
-    environment:
-      - MYSQL_ROOT_PASSWORD=$DB_PASSWORD
-      - MYSQL_DATABASE=$DB_NAME
-    ports:
-      - 3303:3306
-    volumes:
-      - db:/var/lib/mysql
+  # mysql:
+  #   image: mysql:8.0
+  #   restart: unless-stopped
+  #   env_file: ./.env
+  #   container_name: kiness_mysql
+  #   environment:
+  #     - MYSQL_ROOT_PASSWORD=$DB_PASSWORD
+  #     - MYSQL_DATABASE=$DB_NAME
+  #   ports:
+  #     - 3303:3306
+  #   volumes:
+  #     - db:/var/lib/mysql
   app:
-    depends_on:
-      - mysql
+    # depends_on:
+    #   - mysql
     build: ./
     restart: unless-stopped
     container_name: kiness_be_app
@@ -30,10 +30,10 @@ services:
       - DB_USER=$DB_USERNAME
       - DB_PASSWORD=$DB_PASSWORD
       - DB_NAME=$DB_NAME
-      - DB_PORT=3306
+      - DB_PORT=$DB_PORT
     stdin_open: true
     tty: true
 
 volumes: 
-  db:
+  # db:
   uploads:
