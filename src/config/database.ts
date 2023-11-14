@@ -1,5 +1,5 @@
-import { injectable } from "tsyringe";
 import { Pool, PoolConnection, createPool } from "mysql2/promise";
+import { injectable } from "tsyringe";
 import { config } from "./config";
 
 // Cấu hình kết nối MySQL
