@@ -1,6 +1,6 @@
 import Excel, { Column } from "exceljs";
 import { injectable } from "tsyringe";
-import { TestRegister } from "../models/test-register";
+import { SearchTestRegister, TestRegister } from "../models/test-register";
 import { TestRegisterRepository } from "../repositories/testRegisterRespository";
 
 @injectable()
@@ -19,26 +19,8 @@ export class TestRegisterService {
     return this.testRepository.updateTestRegisterStatus(testRegister);
   }
 
-  async searchTestRegister(
-    pageIndex: number,
-    pageSize: number,
-    search_content: string,
-    branch_name: string,
-    phone: string,
-    address: string,
-    from_date: Date,
-    to_date: Date,
-  ): Promise<any> {
-    return this.testRepository.searchTestRegister(
-      pageIndex,
-      pageSize,
-      search_content,
-      branch_name,
-      phone,
-      address,
-      from_date,
-      to_date,
-    );
+  async searchTestRegister(search: SearchTestRegister): Promise<any> {
+    return this.testRepository.searchTestRegister(search);
   }
 
   async deleteTestRegister(
@@ -48,24 +30,11 @@ export class TestRegisterService {
     return this.testRepository.deleteTestRegister(list_json, updated_by_id);
   }
 
-  async printTestRegister(
-    search_content: string,
-    branch_name: string,
-    phone: string,
-    address: string,
-    from_date: Date,
-    to_date: Date,
-  ) {
-    const data: TestRegister[] = await this.testRepository.searchTestRegister(
-      0,
-      0,
-      search_content,
-      branch_name,
-      phone,
-      address,
-      from_date,
-      to_date,
-    );
+  async printTestRegister(search: SearchTestRegister) {
+    search.pageIndex = 0;
+    search.pageSize = 0;
+    const data: TestRegister[] =
+      await this.testRepository.searchTestRegister(search);
 
     if (data.length > 0) {
       const cols: Partial<Column>[] = [
