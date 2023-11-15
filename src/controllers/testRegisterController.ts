@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { injectable } from "tsyringe";
-import { TestRegister } from "../models/test-register";
+import { SearchTestRegister, TestRegister } from "../models/test-register";
 import { TestRegisterService } from "../services/testRegisterService";
 
 @injectable()
@@ -39,26 +39,8 @@ export class TestRegisterController {
 
   async searchTestRegister(req: Request, res: Response): Promise<any> {
     try {
-      const object = req.body as {
-        pageIndex: number;
-        pageSize: number;
-        search_content: string;
-        branch_name: string;
-        phone: string;
-        address: string;
-        from_date: Date;
-        to_date: Date;
-      };
-      const data: any = await this.testService.searchTestRegister(
-        object.pageIndex,
-        object.pageSize,
-        object.search_content,
-        object.branch_name,
-        object.phone,
-        object.address,
-        object.from_date,
-        object.to_date,
-      );
+      const object = req.body as SearchTestRegister;
+      const data: any = await this.testService.searchTestRegister(object);
       if (data) {
         res.json({
           totalItems: Math.ceil(
@@ -95,22 +77,8 @@ export class TestRegisterController {
 
   async printTestRegister(req: Request, res: Response): Promise<any> {
     try {
-      const object = req.body as {
-        search_content: string;
-        branch_name: string;
-        phone: string;
-        address: string;
-        from_date: Date;
-        to_date: Date;
-      };
-      const buffer: any = await this.testService.printTestRegister(
-        object.search_content,
-        object.branch_name,
-        object.phone,
-        object.address,
-        object.from_date,
-        object.to_date,
-      );
+      const object = req.body as SearchTestRegister;
+      const buffer: any = await this.testService.printTestRegister(object);
       if (buffer) {
         res.setHeader(
           "Content-Type",

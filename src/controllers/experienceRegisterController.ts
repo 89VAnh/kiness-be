@@ -1,6 +1,9 @@
 import { Request, Response } from "express";
 import { injectable } from "tsyringe";
-import { ExperienceRegister } from "../models/experience-register";
+import {
+  ExperienceRegister,
+  SearchExperienceRegister,
+} from "../models/experience-register";
 import { ExperienceRegisterService } from "../services/experienceRegisterService";
 
 @injectable()
@@ -44,26 +47,9 @@ export class ExperienceRegisterController {
 
   async searchExperienceRegister(req: Request, res: Response): Promise<any> {
     try {
-      const object = req.body as {
-        pageIndex: number;
-        pageSize: number;
-        search_content: string;
-        branch_name: string;
-        phone: string;
-        address: string;
-        from_date: Date;
-        to_date: Date;
-      };
-      const data: any = await this.experienceService.searchExperienceRegister(
-        object.pageIndex,
-        object.pageSize,
-        object.search_content,
-        object.branch_name,
-        object.phone,
-        object.address,
-        object.from_date,
-        object.to_date,
-      );
+      const object = req.body as SearchExperienceRegister;
+      const data: any =
+        await this.experienceService.searchExperienceRegister(object);
       if (data) {
         res.json({
           totalItems: Math.ceil(
@@ -100,22 +86,9 @@ export class ExperienceRegisterController {
 
   async printExperienceRegister(req: Request, res: Response): Promise<any> {
     try {
-      const object = req.body as {
-        search_content: string;
-        branch_name: string;
-        phone: string;
-        address: string;
-        from_date: Date;
-        to_date: Date;
-      };
-      const buffer: any = await this.experienceService.printExperienceRegister(
-        object.search_content,
-        object.branch_name,
-        object.phone,
-        object.address,
-        object.from_date,
-        object.to_date,
-      );
+      const object = req.body as SearchExperienceRegister;
+      const buffer: any =
+        await this.experienceService.printExperienceRegister(object);
       if (buffer) {
         res.setHeader(
           "Content-Type",
