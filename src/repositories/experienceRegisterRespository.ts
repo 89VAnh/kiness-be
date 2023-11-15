@@ -1,6 +1,9 @@
 import { injectable } from "tsyringe";
 import { Database } from "../config/database";
-import { ExperienceRegister } from "../models/experience-register";
+import {
+  ExperienceRegister,
+  SearchExperienceRegister,
+} from "../models/experience-register";
 
 @injectable()
 export class ExperienceRegisterRepository {
@@ -71,27 +74,21 @@ export class ExperienceRegisterRepository {
   }
 
   async searchExperienceRegister(
-    pageIndex: number,
-    pageSize: number,
-    search_content: string,
-    branch_name: string,
-    phone: string,
-    address: string,
-    from_date: Date,
-    to_date: Date,
+    search: SearchExperienceRegister,
   ): Promise<any> {
     try {
       const sql =
-        "CALL SearchExperienceRegister(?, ?, ?, ?, ?, ?, ?, ?, @err_code, @err_msg)";
+        "CALL SearchExperienceRegister(?, ?, ?, ?, ?, ?, ?, ?, ?, @err_code, @err_msg)";
       const [results] = await this.db.query(sql, [
-        pageIndex,
-        pageSize,
-        search_content,
-        branch_name,
-        phone,
-        address,
-        from_date,
-        to_date,
+        search.pageIndex,
+        search.pageSize,
+        search.user_id,
+        search.search_content,
+        search.branch_name,
+        search.phone,
+        search.address,
+        search.from_date,
+        search.to_date,
       ]);
       return results;
     } catch (error: any) {

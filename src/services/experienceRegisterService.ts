@@ -1,6 +1,9 @@
 import Excel, { Column } from "exceljs";
 import { injectable } from "tsyringe";
-import { ExperienceRegister } from "../models/experience-register";
+import {
+  ExperienceRegister,
+  SearchExperienceRegister,
+} from "../models/experience-register";
 import { ExperienceRegisterRepository } from "../repositories/experienceRegisterRespository";
 
 @injectable()
@@ -32,25 +35,9 @@ export class ExperienceRegisterService {
   }
 
   async searchExperienceRegister(
-    pageIndex: number,
-    pageSize: number,
-    search_content: string,
-    branch_name: string,
-    phone: string,
-    address: string,
-    from_date: Date,
-    to_date: Date,
+    search: SearchExperienceRegister,
   ): Promise<any> {
-    return this.experienceRepository.searchExperienceRegister(
-      pageIndex,
-      pageSize,
-      search_content,
-      branch_name,
-      phone,
-      address,
-      from_date,
-      to_date,
-    );
+    return this.experienceRepository.searchExperienceRegister(search);
   }
 
   async deleteExperienceRegister(
@@ -63,25 +50,11 @@ export class ExperienceRegisterService {
     );
   }
 
-  async printExperienceRegister(
-    search_content: string,
-    branch_name: string,
-    phone: string,
-    address: string,
-    from_date: Date,
-    to_date: Date,
-  ) {
+  async printExperienceRegister(search: SearchExperienceRegister) {
+    search.pageIndex = 0;
+    search.pageSize = 0;
     const data: ExperienceRegister[] =
-      await this.experienceRepository.searchExperienceRegister(
-        0,
-        0,
-        search_content,
-        branch_name,
-        phone,
-        address,
-        from_date,
-        to_date,
-      );
+      await this.experienceRepository.searchExperienceRegister(search);
 
     if (data.length > 0) {
       const cols: Partial<Column>[] = [

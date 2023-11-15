@@ -13,3 +13,15 @@ export interface ExperienceRegister extends BaseModel {
   status: number;
   created_date_time: Date;
 }
+
+export interface SearchExperienceRegister {
+  pageIndex: number;
+  pageSize: number;
+  user_id: string;
+  search_content: string;
+  branch_name: string;
+  phone: string;
+  address: string;
+  from_date: Date;
+  to_date: Date;
+}
