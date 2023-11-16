@@ -101,23 +101,17 @@ export class UserRepository {
 
   async resetPassword(user: User, password: string): Promise<any> {
     try {
-      const sql =
-        "CALL UpdatePasswordUser(?, ?, ?, @err_code, @err_msg)";
-      await this.db.query(sql, [
-        user.email,
-        user.password,
-        user.lu_user_id,
-      ]);
+      const sql = "CALL UpdatePasswordUser(?, ?, ?, @err_code, @err_msg)";
+      await this.db.query(sql, [user.email, user.password, user.lu_user_id]);
       return password;
     } catch (error: any) {
       throw new Error(error.message);
     }
   }
-  
+
   async changePassword(user: any): Promise<any> {
     try {
-      const sql =
-        "CALL ChangePasswordUser(?, ?, ?, ?, ?, @err_code, @err_msg)";
+      const sql = "CALL ChangePasswordUser(?, ?, ?, ?, ?, @err_code, @err_msg)";
       await this.db.query(sql, [
         user.user_name,
         user.password,
@@ -201,7 +195,6 @@ export class UserRepository {
         email,
         phone_number,
       ]);
-      console.log(results);
       return results;
     } catch (error: any) {
       throw new Error(error.message);

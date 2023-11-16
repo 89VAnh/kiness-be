@@ -54,7 +54,6 @@ export class BranchRegisterRepository {
     updated_by_id: string,
   ): Promise<any> {
     try {
-      console.log(list_json);
       const sql = "CALL DeleteRegisterBranchMulti(?, ?, @err_code, @err_msg)";
       await this.db.query(sql, [JSON.stringify(list_json), updated_by_id]);
       return true;
