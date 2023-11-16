@@ -78,7 +78,7 @@ export class ExperienceRegisterRepository {
   ): Promise<any> {
     try {
       const sql =
-        "CALL SearchExperienceRegister(?, ?, ?, ?, ?, ?, ?, ?, ?, @err_code, @err_msg)";
+        "CALL SearchExperienceRegister(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, @err_code, @err_msg)";
       const [results] = await this.db.query(sql, [
         search.pageIndex,
         search.pageSize,
@@ -87,6 +87,7 @@ export class ExperienceRegisterRepository {
         search.branch_name,
         search.phone,
         search.address,
+        search.status,
         search.from_date,
         search.to_date,
       ]);

@@ -21,6 +21,7 @@ export interface SearchTestRegister {
   branch_name: string;
   phone: string;
   address: string;
+  status: number;
   from_date: Date;
   to_date: Date;
 }
