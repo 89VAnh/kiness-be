@@ -11,6 +11,7 @@ import pageRouter from "./pageRouter";
 import slideRouter from "./slideRouter";
 import testRegisterRouter from "./testRegisterRouter";
 import userRouter from "./userRouter";
+import emailRouter from "./emailRouter";
 
 const router = Router();
 
@@ -26,5 +27,6 @@ router.use("/experience-register", experienceRegisterRouter);
 router.use("/test-register", testRegisterRouter);
 router.use("/branch-register", branchRegisterRouter);
 router.use("/core", core_router);
+router.use("/email", emailRouter);
 
 export default router;

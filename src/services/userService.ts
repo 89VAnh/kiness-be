@@ -77,16 +77,27 @@ export class UserService {
     return null;
   }
   
-  async creatUser(user: User): Promise<any> {
-
+  async createUser(user: User): Promise<any> {
     user.password = md5(user.password);
-    return this.userRepository.creatUser(user);
+    return this.userRepository.createUser(user);
   }
 
   async updateUser(user: User): Promise<any> {
     return this.userRepository.updateUser(user);
   }
   
+  async resetPassword(user: User): Promise<any> {
+    const ran = Math.random();
+    const password = Math.round(ran * 100000000) + "";
+    user.password = md5(password);
+    return this.userRepository.resetPassword(user, password);
+  }
+
+  async changePassword(user: any): Promise<any> {
+    user.password = md5(user.password);
+    user.new_password = md5(user.new_password);
+    return this.userRepository.changePassword(user);
+  }
 
   async getUserById(id: string): Promise<any> {
     return this.userRepository.getUserById(id);

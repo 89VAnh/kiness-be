@@ -8,6 +8,8 @@ import dotenv from "dotenv";
 // import core_router from "./core/routes";
 dotenv.config({ path: '../.env' });
 const app = express();
+app.use(express.json());
+app.use(express.urlencoded({extended: true}));
 app.use('/api/uploads', express.static(__dirname?.replace(/\/src/g, "") + '/uploads'));
 // Sử dụng cors middleware
 app.use(cors());

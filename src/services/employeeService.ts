@@ -24,6 +24,7 @@ export class EmployeeService {
     employee.user_id = this.guid.newGuid();
     employee.profile_id = this.guid.newGuid();
     employee.user_role_id = this.guid.newGuid();
+    employee.role_id = employee.role_id || 1 + "";
     employee.password = Md5.hashStr(employee.password);
     return this.employeeRepository.createEmployee(employee);
   }
