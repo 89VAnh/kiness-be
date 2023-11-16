@@ -30,7 +30,7 @@ export class BranchRegisterRepository {
   async searchBranchRegister(search: SearchBranchRegister): Promise<any> {
     try {
       const sql =
-        "CALL SearchBranchRegister(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, @err_code, @err_msg)";
+        "CALL SearchBranchRegister(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, @err_code, @err_msg)";
       const [results] = await this.db.query(sql, [
         search.pageIndex,
         search.pageSize,
@@ -40,6 +40,7 @@ export class BranchRegisterRepository {
         search.phone,
         search.address,
         search.city_name,
+        search.status,
         search.from_date,
         search.to_date,
       ]);
