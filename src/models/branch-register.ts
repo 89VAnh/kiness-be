@@ -7,6 +7,7 @@ export interface BranchRegister extends BaseModel {
   phone_number: string;
   address: string;
   email: string;
+  status: number;
 }
 
 export interface SearchBranchRegister {
@@ -17,7 +18,9 @@ export interface SearchBranchRegister {
   branch_name: string;
   phone: string;
   address: string;
+  email: string;
   city_name: string;
+  status: number;
   from_date: Date;
   to_date: Date;
 }

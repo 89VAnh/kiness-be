@@ -9,6 +9,7 @@ export interface ExperienceRegister extends BaseModel {
   date: Date;
   phone_number: string;
   address: string;
+  email: string;
   detail: string;
   status: number;
   created_date_time: Date;
@@ -22,6 +23,8 @@ export interface SearchExperienceRegister {
   branch_name: string;
   phone: string;
   address: string;
+  email: string;
+  status: number;
   from_date: Date;
   to_date: Date;
 }

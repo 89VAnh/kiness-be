@@ -66,7 +66,7 @@ export class TestRegisterRepository {
   async searchTestRegister(search: SearchTestRegister): Promise<any> {
     try {
       const sql =
-        "CALL SearchTestRegister(?, ?, ?, ?, ?, ?, ?, ?, ?, @err_code, @err_msg)";
+        "CALL SearchTestRegister(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, @err_code, @err_msg)";
       const [results] = await this.db.query(sql, [
         search.pageIndex,
         search.pageSize,
@@ -75,6 +75,7 @@ export class TestRegisterRepository {
         search.branch_name,
         search.phone,
         search.address,
+        search.status,
         search.from_date,
         search.to_date,
       ]);
