@@ -13,6 +13,7 @@ import pageRouter from "./pageRouter";
 import slideRouter from "./slideRouter";
 import testRegisterRouter from "./testRegisterRouter";
 import userRouter from "./userRouter";
+import positionRouter from "./positionRouter";
 
 const router = Router();
 
@@ -24,6 +25,7 @@ router.use("/cities", cityRouter);
 router.use("/pages", pageRouter);
 router.use("/slides", slideRouter);
 router.use("/branches", branchRouter);
+router.use("/positions", positionRouter);
 router.use("/experience-register", experienceRegisterRouter);
 router.use("/test-register", testRegisterRouter);
 router.use("/branch-register", branchRegisterRouter);
