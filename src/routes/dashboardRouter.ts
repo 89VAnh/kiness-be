@@ -31,4 +31,16 @@ dashboardRouter.get(
   dashboardController.countBranchRegister.bind(dashboardController),
 );
 
+dashboardRouter.get(
+  "/count-employee",
+  authenticate,
+  dashboardController.countEmployee.bind(dashboardController),
+);
+
+dashboardRouter.get(
+  "/count-news",
+  authenticate,
+  dashboardController.countNews.bind(dashboardController),
+);
+
 export default dashboardRouter;

@@ -8,16 +8,12 @@ export class DashboardController {
 
   async countCustomer(req: Request, res: Response): Promise<void> {
     try {
-      const user_id = req.params.user_id;
-      const data: any = await this.dashboardService.countCustomer(user_id);
+      const body = req.body as { user_id: string };
+      const user_id = body.user_id;
 
-      if (data && data.length > 0) {
-        let total: any = data[0][0];
-        if (total) {
-          res.json(total);
-        } else {
-          res.json({ message: "Bản ghi không tồn tại" });
-        }
+      const total: number = await this.dashboardService.countCustomer(user_id);
+      if (total === 0 || total) {
+        res.json({ total });
       } else {
         res.json({ message: "Bản ghi không tồn tại" });
       }
@@ -45,16 +41,13 @@ export class DashboardController {
 
   async countTestRegister(req: Request, res: Response): Promise<void> {
     try {
-      const user_id = req.params.user_id;
-      const data: any = await this.dashboardService.countTestRegister(user_id);
+      const body = req.body as { user_id: string };
+      const user_id = body.user_id;
 
-      if (data && data.length > 0) {
-        let total: any = data[0][0];
-        if (total) {
-          res.json(total);
-        } else {
-          res.json({ message: "Bản ghi không tồn tại" });
-        }
+      const total: number =
+        await this.dashboardService.countTestRegister(user_id);
+      if (total === 0 || total) {
+        res.json({ total });
       } else {
         res.json({ message: "Bản ghi không tồn tại" });
       }
@@ -65,17 +58,45 @@ export class DashboardController {
 
   async countBranchRegister(req: Request, res: Response): Promise<void> {
     try {
-      const user_id = req.params.user_id;
-      const data: any =
-        await this.dashboardService.countBranchRegister(user_id);
+      const body = req.body as { user_id: string };
+      const user_id = body.user_id;
 
-      if (data && data.length > 0) {
-        let total: any = data[0][0];
-        if (total) {
-          res.json(total);
-        } else {
-          res.json({ message: "Bản ghi không tồn tại" });
-        }
+      const total: number =
+        await this.dashboardService.countBranchRegister(user_id);
+      if (total === 0 || total) {
+        res.json({ total });
+      } else {
+        res.json({ message: "Bản ghi không tồn tại" });
+      }
+    } catch (error: any) {
+      res.json({ message: error.message });
+    }
+  }
+
+  async countEmployee(req: Request, res: Response): Promise<void> {
+    try {
+      const body = req.body as { user_id: string };
+      const user_id = body.user_id;
+
+      const total: number = await this.dashboardService.countEmployee(user_id);
+      if (total === 0 || total) {
+        res.json({ total });
+      } else {
+        res.json({ message: "Bản ghi không tồn tại" });
+      }
+    } catch (error: any) {
+      res.json({ message: error.message });
+    }
+  }
+
+  async countNews(req: Request, res: Response): Promise<void> {
+    try {
+      const body = req.body as { user_id: string };
+      const user_id = body.user_id;
+
+      const total: number = await this.dashboardService.countNews(user_id);
+      if (total === 0 || total) {
+        res.json({ total });
       } else {
         res.json({ message: "Bản ghi không tồn tại" });
       }

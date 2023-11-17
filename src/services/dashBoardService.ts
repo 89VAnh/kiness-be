@@ -19,4 +19,12 @@ export class DashboardService {
   async countBranchRegister(user_id: string): Promise<number> {
     return this.dashboardRepository.countBranchRegister(user_id);
   }
+
+  async countEmployee(user_id: string): Promise<number> {
+    return this.dashboardRepository.countEmployee(user_id);
+  }
+
+  async countNews(user_id: string): Promise<number> {
+    return this.dashboardRepository.countNews(user_id);
+  }
 }
