@@ -1,7 +1,6 @@
 import { injectable } from "tsyringe";
 import { Database } from "../config/database";
-import { Branch } from "../models/branch";
-import { TestRegister } from "../models/test-register";
+import { Branch, SearchBranch } from "../models/branch";
 
 @injectable()
 export class BranchRepository {
@@ -9,12 +8,14 @@ export class BranchRepository {
 
   async createBranch(branch: Branch): Promise<any> {
     try {
-      const sql = "CALL InsertBranch(?, ?, ?, ?, ?, @err_code, @err_msg)";
+      const sql = "CALL InsertBranch(?, ?, ?, ?, ?, ?, ?, @err_code, @err_msg)";
       await this.db.query(sql, [
+        branch.city_id,
         branch.branch_name,
         branch.phone,
         branch.fax,
         branch.address,
+        branch.thumbnail,
         branch.created_by_user_id,
       ]);
       return true;
@@ -25,12 +26,14 @@ export class BranchRepository {
 
   async updateBranch(branch: Branch): Promise<any> {
     try {
-      const sql = "CALL UpdateBranch(?, ?, ?, ?, ?, @err_code, @err_msg)";
+      const sql = "CALL UpdateBranch(?, ?, ?, ?, ?, ?, ?, @err_code, @err_msg)";
       await this.db.query(sql, [
+        branch.city_id,
         branch.branch_name,
         branch.phone,
         branch.fax,
         branch.address,
+        branch.thumbnail,
         branch.lu_user_id,
       ]);
       return true;
@@ -72,69 +75,19 @@ export class BranchRepository {
     }
   }
 
-  async searchBranch(
-    pageIndex: number,
-    pageSize: number,
-    search_content: string,
-    branch_name: string,
-    phone: string,
-    fax: string,
-    address: string,
-  ): Promise<any> {
+  async searchBranch(search: SearchBranch): Promise<any> {
     try {
       const sql = "CALL SearchBranch(?, ?, ?, ?, ?, ?, ?, @err_code, @err_msg)";
       const [results] = await this.db.query(sql, [
-        pageIndex,
-        pageSize,
-        search_content,
-        branch_name,
-        phone,
-        fax,
-        address,
+        search.pageIndex,
+        search.pageSize,
+        search.search_content,
+        search.branch_name,
+        search.phone,
+        search.fax,
+        search.address,
       ]);
       return results;
-    } catch (error: any) {
-      throw new Error(error.message);
-    }
-  }
-
-  async createTestRegister(testRegister: TestRegister): Promise<any> {
-    try {
-      const sql =
-        "CALL InsertTestRegister(?, ?, ?, ?, ?, ?, ?, ?, ?, @err_code, @err_msg)";
-      await this.db.query(sql, [
-        testRegister.branch_id,
-        testRegister.fullname,
-        testRegister.gender,
-        testRegister.level,
-        testRegister.date,
-        testRegister.phone_number,
-        testRegister.address,
-        testRegister.detail,
-        testRegister.created_by_user_id,
-      ]);
-      return true;
-    } catch (error: any) {
-      throw new Error(error.message);
-    }
-  }
-
-  async createRegisterExperience(testRegister: TestRegister): Promise<any> {
-    try {
-      const sql =
-        "CALL InsertTestRegister(?, ?, ?, ?, ?, ?, ?, ?, ?, @err_code, @err_msg)";
-      await this.db.query(sql, [
-        testRegister.branch_id,
-        testRegister.fullname,
-        testRegister.gender,
-        testRegister.level,
-        testRegister.date,
-        testRegister.phone_number,
-        testRegister.address,
-        testRegister.detail,
-        testRegister.created_by_user_id,
-      ]);
-      return true;
     } catch (error: any) {
       throw new Error(error.message);
     }

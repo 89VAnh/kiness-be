@@ -32,9 +32,4 @@ branchRouter.post(
   "/search",
   branchController.searchBranch.bind(branchController),
 );
-branchRouter.post(
-  "/create-test-register",
-  branchController.createTestRegister.bind(branchController),
-);
-
 export default branchRouter;

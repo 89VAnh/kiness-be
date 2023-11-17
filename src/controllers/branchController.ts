@@ -1,7 +1,6 @@
 import { Request, Response } from "express";
 import { injectable } from "tsyringe";
-import { Branch } from "../models/branch";
-import { TestRegister } from "../models/test-register";
+import { Branch, SearchBranch } from "../models/branch";
 import { BranchService } from "../services/branchService";
 
 @injectable()
@@ -71,24 +70,8 @@ export class BranchController {
 
   async searchBranch(req: Request, res: Response): Promise<void> {
     try {
-      const object = req.body as {
-        pageIndex: number;
-        pageSize: number;
-        search_content: string;
-        branch_name: string;
-        phone: string;
-        fax: string;
-        address: string;
-      };
-      const data: any = await this.branchService.searchBranch(
-        object.pageIndex,
-        object.pageSize,
-        object.search_content,
-        object.branch_name,
-        object.phone,
-        object.fax,
-        object.address,
-      );
+      const object = req.body as SearchBranch;
+      const data: any = await this.branchService.searchBranch(object);
       if (data) {
         res.json({
           totalItems: Math.ceil(
@@ -107,15 +90,6 @@ export class BranchController {
       }
     } catch (error: any) {
       res.json({ message: error.message });
-    }
-  }
-  async createTestRegister(req: Request, res: Response): Promise<void> {
-    try {
-      const testRegister = req.body as TestRegister;
-      await this.branchService.createTestRegister(testRegister);
-      res.json({ message: "Đã thêm thành công", results: true });
-    } catch (error: any) {
-      res.json({ message: error.message, results: false });
     }
   }
 }
