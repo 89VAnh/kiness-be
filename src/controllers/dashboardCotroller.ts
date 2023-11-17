@@ -8,7 +8,8 @@ export class DashboardController {
 
   async countCustomer(req: Request, res: Response): Promise<void> {
     try {
-      const body = req.body as { user_id: string };
+      const body = req.query as { user_id: string; };
+    
       const user_id = body.user_id;
 
       const total: number = await this.dashboardService.countCustomer(user_id);
@@ -24,7 +25,7 @@ export class DashboardController {
 
   async countExperienceRegister(req: Request, res: Response): Promise<void> {
     try {
-      const body = req.body as { user_id: string };
+      const body = req.query as { user_id: string };
       const user_id = body.user_id;
 
       const total: number =
@@ -41,7 +42,7 @@ export class DashboardController {
 
   async countTestRegister(req: Request, res: Response): Promise<void> {
     try {
-      const body = req.body as { user_id: string };
+      const body = req.query as { user_id: string };
       const user_id = body.user_id;
 
       const total: number =
@@ -58,7 +59,7 @@ export class DashboardController {
 
   async countBranchRegister(req: Request, res: Response): Promise<void> {
     try {
-      const body = req.body as { user_id: string };
+      const body = req.query as { user_id: string };
       const user_id = body.user_id;
 
       const total: number =
@@ -75,7 +76,7 @@ export class DashboardController {
 
   async countEmployee(req: Request, res: Response): Promise<void> {
     try {
-      const body = req.body as { user_id: string };
+      const body = req.query as { user_id: string };
       const user_id = body.user_id;
 
       const total: number = await this.dashboardService.countEmployee(user_id);
@@ -91,7 +92,7 @@ export class DashboardController {
 
   async countNews(req: Request, res: Response): Promise<void> {
     try {
-      const body = req.body as { user_id: string };
+      const body = req.query as { user_id: string };
       const user_id = body.user_id;
 
       const total: number = await this.dashboardService.countNews(user_id);
