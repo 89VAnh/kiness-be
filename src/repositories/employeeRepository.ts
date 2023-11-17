@@ -42,24 +42,18 @@ export class EmployeeRepository {
   async updateEmployee(employee: Employee): Promise<any> {
     try {
       const sql =
-        "CALL UpdateEmployee(?, ?, ?, ?, ?, ?, ?, ?,  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, @err_code, @err_msg)";
+        "CALL UpdateEmployee(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, @err_code, @err_msg)";
       await this.db.query(sql, [
-        employee.branch_id,
+        employee.user_id,
         employee.employee_id,
         employee.fullname,
         employee.phone_number,
-        employee.email,
+        new Date(employee.date_of_birth),
+        employee.branch_id,
         employee.position_id,
-        employee.password,
-        employee.type,
-        employee.description,
-        employee.is_guest,
-        employee.first_name,
-        employee.middle_name,
-        employee.last_name,
-        employee.avatar,
         employee.gender,
-        employee.date_of_birth,
+        employee.email,
+        employee.avatar,
         employee.role_id,
         employee.lu_user_id,
       ]);
@@ -109,11 +103,10 @@ export class EmployeeRepository {
     phone_number: string,
     email: string,
     position_id: number,
-    department_id: number,
   ): Promise<any> {
     try {
       const sql =
-        "CALL SearchEmployee(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, @err_code, @err_msg)";
+        "CALL SearchEmployee(?, ?, ?, ?, ?, ?, ?, ?, ?, @err_code, @err_msg)";
       const [results] = await this.db.query(sql, [
         pageIndex,
         pageSize,
@@ -124,7 +117,6 @@ export class EmployeeRepository {
         phone_number,
         email,
         position_id,
-        department_id,
       ]);
       return results;
     } catch (error: any) {
