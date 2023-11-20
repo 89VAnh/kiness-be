@@ -8,7 +8,7 @@ export class CustomerRepository {
   async createCustomer(customer: Customer): Promise<any> {
     try {
       const sql =
-        "CALL InsertCustomer(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, @err_code, @err_msg)";
+        "CALL InsertCustomer(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, @err_code, @err_msg)";
       await this.db.query(sql, [
         customer.branch_id,
         customer.customer_id,
@@ -28,6 +28,8 @@ export class CustomerRepository {
         customer.avatar,
         customer.gender,
         customer.birthday,
+        customer.user_role_id,
+        customer.role_id,
         customer.customer_id,
       ]);
       return true;

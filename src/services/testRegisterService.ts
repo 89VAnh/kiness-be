@@ -1,60 +1,40 @@
 import Excel, { Column } from "exceljs";
 import { injectable } from "tsyringe";
-import {
-  ExperienceRegister,
-  SearchExperienceRegister,
-} from "../models/experience-register";
-import { ExperienceRegisterRepository } from "../repositories/experienceRegisterRespository";
+import { SearchTestRegister, TestRegister } from "../models/test-register";
+import { TestRegisterRepository } from "../repositories/testRegisterRespository";
 
 @injectable()
-export class ExperienceRegisterService {
-  constructor(private experienceRepository: ExperienceRegisterRepository) {}
+export class TestRegisterService {
+  constructor(private testRepository: TestRegisterRepository) {}
 
-  async createExperienceRegister(
-    experienceRegister: ExperienceRegister,
-  ): Promise<any> {
-    return this.experienceRepository.createExperienceRegister(
-      experienceRegister,
-    );
+  async createTestRegister(testRegister: TestRegister): Promise<any> {
+    return this.testRepository.createTestRegister(testRegister);
   }
 
-  async updateExperienceRegister(
-    experienceRegister: ExperienceRegister,
-  ): Promise<any> {
-    return this.experienceRepository.updateExperienceRegister(
-      experienceRegister,
-    );
+  async updateTestRegister(testRegister: TestRegister): Promise<any> {
+    return this.testRepository.updateTestRegister(testRegister);
   }
 
-  async updateExperienceRegisterStatus(
-    experienceRegister: ExperienceRegister,
-  ): Promise<any> {
-    return this.experienceRepository.updateExperienceRegisterStatus(
-      experienceRegister,
-    );
+  async updateTestRegisterStatus(testRegister: TestRegister): Promise<any> {
+    return this.testRepository.updateTestRegisterStatus(testRegister);
   }
 
-  async searchExperienceRegister(
-    search: SearchExperienceRegister,
-  ): Promise<any> {
-    return this.experienceRepository.searchExperienceRegister(search);
+  async searchTestRegister(search: SearchTestRegister): Promise<any> {
+    return this.testRepository.searchTestRegister(search);
   }
 
-  async deleteExperienceRegister(
+  async deleteTestRegister(
     list_json: any,
     updated_by_id: string,
   ): Promise<any> {
-    return this.experienceRepository.deleteExperienceRegister(
-      list_json,
-      updated_by_id,
-    );
+    return this.testRepository.deleteTestRegister(list_json, updated_by_id);
   }
 
-  async printExperienceRegister(search: SearchExperienceRegister) {
+  async printTestRegister(search: SearchTestRegister) {
     search.pageIndex = 0;
     search.pageSize = 0;
-    const data: ExperienceRegister[] =
-      await this.experienceRepository.searchExperienceRegister(search);
+    const data: TestRegister[] =
+      await this.testRepository.searchTestRegister(search);
 
     if (data.length > 0) {
       const cols: Partial<Column>[] = [

@@ -62,7 +62,7 @@ export class UserController {
   async createUser(req: Request, res: Response): Promise<void> {
     try {
       const role = req.body as User;
-      await this.userService.creatUser(role);
+      await this.userService.createUser(role);
       res.json({ message: "Đã thêm thành công", results: true });
     } catch (error: any) {
       res.json({ message: error.message, results: false });
@@ -74,6 +74,26 @@ export class UserController {
       const role = req.body as User;
       await this.userService.updateUser(role);
       res.json({ message: "Đã cập nhật thành công", results: true });
+    } catch (error: any) {
+      res.json({ message: error.message, results: false });
+    }
+  }
+
+  async resetPassword(req: Request, res: Response): Promise<void> {
+    try {
+      const role = req.body as User;
+      const results = await this.userService.resetPassword(role);
+      res.json({ message: "Đã cập nhật thành công", results });
+    } catch (error: any) {
+      res.json({ message: error.message, results: false });
+    }
+  }
+  
+  async changePassword(req: Request, res: Response): Promise<void> {
+    try {
+      const role = req.body;
+      const results = await this.userService.changePassword(role);
+      res.json({ message: "Đã cập nhật thành công", results });
     } catch (error: any) {
       res.json({ message: error.message, results: false });
     }

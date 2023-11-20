@@ -1,55 +1,46 @@
 import { Request, Response } from "express";
 import { injectable } from "tsyringe";
-import {
-  ExperienceRegister,
-  SearchExperienceRegister,
-} from "../models/experience-register";
-import { ExperienceRegisterService } from "../services/experienceRegisterService";
+import { SearchTestRegister, TestRegister } from "../models/test-register";
+import { TestRegisterService } from "../services/testRegisterService";
 
 @injectable()
-export class ExperienceRegisterController {
-  constructor(private experienceService: ExperienceRegisterService) {}
+export class TestRegisterController {
+  constructor(private testService: TestRegisterService) {}
 
-  async createExperienceRegister(req: Request, res: Response): Promise<void> {
+  async createTestRegister(req: Request, res: Response): Promise<void> {
     try {
-      const experienceRegister = req.body as ExperienceRegister;
-      await this.experienceService.createExperienceRegister(experienceRegister);
+      const testRegister = req.body as TestRegister;
+      await this.testService.createTestRegister(testRegister);
       res.json({ message: "Đã thêm thành công", results: true });
     } catch (error: any) {
       res.json({ message: error.message, results: false });
     }
   }
 
-  async updateExperienceRegister(req: Request, res: Response): Promise<void> {
+  async updateTestRegister(req: Request, res: Response): Promise<void> {
     try {
-      const experienceRegister = req.body as ExperienceRegister;
-      await this.experienceService.updateExperienceRegister(experienceRegister);
+      const testRegister = req.body as TestRegister;
+      await this.testService.updateTestRegister(testRegister);
       res.json({ message: "Đã sửa thành công", results: true });
     } catch (error: any) {
       res.json({ message: error.message, results: false });
     }
   }
 
-  async updateExperienceRegisterStatus(
-    req: Request,
-    res: Response,
-  ): Promise<void> {
+  async updateTestRegisterStatus(req: Request, res: Response): Promise<void> {
     try {
-      const experienceRegister = req.body as ExperienceRegister;
-      await this.experienceService.updateExperienceRegisterStatus(
-        experienceRegister,
-      );
+      const testRegister = req.body as TestRegister;
+      await this.testService.updateTestRegisterStatus(testRegister);
       res.json({ message: "Đã thay đổi trạng thái thành công", results: true });
     } catch (error: any) {
       res.json({ message: error.message, results: false });
     }
   }
 
-  async searchExperienceRegister(req: Request, res: Response): Promise<any> {
+  async searchTestRegister(req: Request, res: Response): Promise<any> {
     try {
-      const object = req.body as SearchExperienceRegister;
-      const data: any =
-        await this.experienceService.searchExperienceRegister(object);
+      const object = req.body as SearchTestRegister;
+      const data: any = await this.testService.searchTestRegister(object);
       if (data) {
         res.json({
           totalItems: Math.ceil(
@@ -71,10 +62,10 @@ export class ExperienceRegisterController {
     }
   }
 
-  async deleteExperienceRegister(req: Request, res: Response): Promise<void> {
+  async deleteTestRegister(req: Request, res: Response): Promise<void> {
     try {
       const object = req.body as { list_json: any; updated_by_id: string };
-      await this.experienceService.deleteExperienceRegister(
+      await this.testService.deleteTestRegister(
         object.list_json,
         object.updated_by_id,
       );
@@ -84,11 +75,10 @@ export class ExperienceRegisterController {
     }
   }
 
-  async printExperienceRegister(req: Request, res: Response): Promise<any> {
+  async printTestRegister(req: Request, res: Response): Promise<any> {
     try {
-      const object = req.body as SearchExperienceRegister;
-      const buffer: any =
-        await this.experienceService.printExperienceRegister(object);
+      const object = req.body as SearchTestRegister;
+      const buffer: any = await this.testService.printTestRegister(object);
       if (buffer) {
         res.setHeader(
           "Content-Type",
