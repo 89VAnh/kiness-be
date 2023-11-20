@@ -24,7 +24,8 @@ export class EmployeeService {
     employee.user_id = this.guid.newGuid();
     employee.profile_id = this.guid.newGuid();
     employee.user_role_id = this.guid.newGuid();
-    employee.password = Md5.hashStr(employee.password);
+    employee.role_id = employee.role_id || 1 + "";
+    employee.password = Md5.hashStr(employee.password || "123456");
     return this.employeeRepository.createEmployee(employee);
   }
 
@@ -46,7 +47,6 @@ export class EmployeeService {
     phone_number: string,
     email: string,
     position_id: number,
-    department_id: number,
   ) {
     let list = await this.employeeRepository.searchEmployee(
       pageIndex,
@@ -58,7 +58,6 @@ export class EmployeeService {
       phone_number,
       email,
       position_id,
-      department_id,
     );
     for (let x of list) {
       if (x.employee_customer) {

@@ -1,18 +1,31 @@
 import { Request, Response } from "express";
 import { injectable } from "tsyringe";
-import { News } from "../models/news";
-import { NewsService } from "../services/newsService";
+import { Position } from "../models/position";
+import { PositionService } from "../services/positionService";
 
 @injectable()
-export class NewsController {
-  constructor(private newsService: NewsService) {}
+export class PositionController {
+  constructor(private positionService: PositionService) {}
 
-  async getNewsById(req: Request, res: Response): Promise<void> {
+  async getPositionDropdown(_: Request, res: Response): Promise<void> {
+    try {
+      const data = await this.positionService.getPositionDropdown();
+      if (data && data.length > 0) {
+        res.json(data);
+      } else {
+        res.json({ message: "Không lấy được danh sách" });
+      }
+    } catch (error: any) {
+      res.json({ message: error.message });
+    }
+  }
+
+  async getPositionById(req: Request, res: Response): Promise<void> {
     try {
       const id = req.params.id;
-      const news = await this.newsService.getNewsById(id);
-      if (news) {
-        res.json(news);
+      const position = await this.positionService.getPositionById(id);
+      if (position) {
+        res.json(position);
       } else {
         res.json({ message: "Bản ghi không tồn tại" });
       }
@@ -21,51 +34,58 @@ export class NewsController {
     }
   }
 
-  async createNews(req: Request, res: Response): Promise<void> {
+  async createPosition(req: Request, res: Response): Promise<void> {
     try {
-      const news = req.body as News;
-      await this.newsService.createNews(news);
+      const position = req.body as Position;
+      await this.positionService.createPosition(position);
       res.json({ message: "Đã thêm thành công", results: true });
     } catch (error: any) {
       res.json({ message: error.message, results: false });
     }
   }
 
-  async updateNews(req: Request, res: Response): Promise<void> {
+  async updatePosition(req: Request, res: Response): Promise<void> {
     try {
-      const news = req.body as News;
-      await this.newsService.updateNews(news);
+      const position = req.body as Position;
+      await this.positionService.updatePosition(position);
       res.json({ message: "Đã cập nhật thành công", results: true });
     } catch (error: any) {
       res.json({ message: error.message, results: false });
     }
   }
 
-  async deleteNews(req: Request, res: Response): Promise<void> {
+  async deletePosition(req: Request, res: Response): Promise<void> {
     try {
       const object = req.body as { list_json: any; updated_by_id: string };
-      await this.newsService.deleteNews(object.list_json, object.updated_by_id);
+      await this.positionService.deletePosition(
+        object.list_json,
+        object.updated_by_id,
+      );
       res.json({ message: "Đã xóa thành công", results: true });
     } catch (error: any) {
       res.json({ message: error.message, results: false });
     }
   }
 
-  async searchNews(req: Request, res: Response): Promise<void> {
+  async searchPosition(req: Request, res: Response): Promise<void> {
     try {
       const object = req.body as {
         pageIndex: number;
         pageSize: number;
         search_content: string;
-        news_title: string;
-        content: string;
+        position_name: string;
+        phone: string;
+        fax: string;
+        address: string;
       };
-      const data: any = await this.newsService.searchNews(
+      const data: any = await this.positionService.searchPosition(
         object.pageIndex,
         object.pageSize,
         object.search_content,
-        object.news_title,
-        object.content,
+        object.position_name,
+        object.phone,
+        object.fax,
+        object.address,
       );
       if (data) {
         res.json({

@@ -23,6 +23,8 @@ export class CustomerService {
   async createCustomer(customer: Customer): Promise<any> {
     customer.user_id = this.guid.newGuid();
     customer.profile_id = this.guid.newGuid();
+    customer.user_role_id = this.guid.newGuid();
+    customer.role_id = customer.role_id || 2 + "";
     customer.password = Md5.hashStr(customer.password);
     return this.customerRepository.createCustomer(customer);
   }

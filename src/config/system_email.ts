@@ -1,4 +1,4 @@
 export const system_email = {
-  email: "",
-  password: "",
+  email: "kiness.vietnam.notify@gmail.com",
+  password: "wthfxuosfsktwjej",
 };

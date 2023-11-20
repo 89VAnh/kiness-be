@@ -1,26 +1,25 @@
 import { BaseModel } from "./base";
 
-export interface TestRegister extends BaseModel {
+export interface BranchRegister extends BaseModel {
   register_id: number;
-  branch_id: number;
-  fullname: string;
-  gender: number;
-  level: string;
-  date: Date;
+  city_id: number;
+  branch_name: string;
   phone_number: string;
   address: string;
-  detail: string;
+  email: string;
   status: number;
 }
 
-export interface SearchTestRegister {
+export interface SearchBranchRegister {
   pageIndex: number;
   pageSize: number;
   user_id: string;
-  search_content: string;
+  search_conent: string;
   branch_name: string;
   phone: string;
   address: string;
+  email: string;
+  city_name: string;
   status: number;
   from_date: Date;
   to_date: Date;

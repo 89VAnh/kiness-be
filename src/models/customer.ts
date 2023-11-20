@@ -26,4 +26,8 @@ export interface Customer extends BaseModel {
   last_name: string;
   avatar: string;
   date_of_birth: string;
+
+  // user_roles
+  user_role_id: string;
+  role_id: string;
 }
