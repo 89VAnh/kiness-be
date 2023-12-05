@@ -8,6 +8,7 @@ export interface Branch extends BaseModel {
   fax: string;
   address: string;
   thumbnail: string;
+  open_time: string;
 }
 
 export interface SearchBranch {
@@ -18,4 +19,6 @@ export interface SearchBranch {
   phone: string;
   fax: string;
   address: string;
+  thumbnail: string;
+  open_time: string;
 }
