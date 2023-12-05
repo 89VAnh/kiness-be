@@ -7,4 +7,7 @@ export interface Branch extends BaseModel {
   phone: string;
   fax: string;
   address: string;
+  thumbnail: string;
+  open_time: string;
+  
 }
