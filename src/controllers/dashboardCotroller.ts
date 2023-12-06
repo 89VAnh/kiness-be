@@ -8,8 +8,8 @@ export class DashboardController {
 
   async countCustomer(req: Request, res: Response): Promise<void> {
     try {
-      const body = req.query as { user_id: string; };
-    
+      const body = req.query as { user_id: string };
+
       const user_id = body.user_id;
 
       const total: number = await this.dashboardService.countCustomer(user_id);
@@ -96,6 +96,22 @@ export class DashboardController {
       const user_id = body.user_id;
 
       const total: number = await this.dashboardService.countNews(user_id);
+      if (total === 0 || total) {
+        res.json({ total });
+      } else {
+        res.json({ message: "Bản ghi không tồn tại" });
+      }
+    } catch (error: any) {
+      res.json({ message: error.message });
+    }
+  }
+
+  async countBranch(req: Request, res: Response): Promise<void> {
+    try {
+      const body = req.query as { user_id: string };
+      const user_id = body.user_id;
+
+      const total: number = await this.dashboardService.countBranch(user_id);
       if (total === 0 || total) {
         res.json({ total });
       } else {

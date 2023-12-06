@@ -43,4 +43,10 @@ dashboardRouter.get(
   dashboardController.countNews.bind(dashboardController),
 );
 
+dashboardRouter.get(
+  "/count-branch",
+  authenticate,
+  dashboardController.countBranch.bind(dashboardController),
+);
+
 export default dashboardRouter;

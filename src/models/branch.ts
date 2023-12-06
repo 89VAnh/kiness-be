@@ -9,6 +9,8 @@ export interface Branch extends BaseModel {
   address: string;
   thumbnail: string;
   open_time: string;
+  close_time: string;
+  embed_map: string;
 }
 
 export interface SearchBranch {
@@ -21,4 +23,6 @@ export interface SearchBranch {
   address: string;
   thumbnail: string;
   open_time: string;
+  close_time: string;
+  embed_map: string;
 }
