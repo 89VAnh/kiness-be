@@ -8,27 +8,9 @@ const dashboardRouter = Router();
 const dashboardController = container.resolve(DashboardController);
 
 dashboardRouter.get(
-  "/count-customer",
-  authenticate,
-  dashboardController.countCustomer.bind(dashboardController),
-);
-
-dashboardRouter.get(
   "/count-experience-register",
   authenticate,
   dashboardController.countExperienceRegister.bind(dashboardController),
-);
-
-dashboardRouter.get(
-  "/count-test-register",
-  authenticate,
-  dashboardController.countTestRegister.bind(dashboardController),
-);
-
-dashboardRouter.get(
-  "/count-branch-register",
-  authenticate,
-  dashboardController.countBranchRegister.bind(dashboardController),
 );
 
 dashboardRouter.get(
@@ -38,9 +20,15 @@ dashboardRouter.get(
 );
 
 dashboardRouter.get(
-  "/count-news",
+  "/count-branch",
   authenticate,
-  dashboardController.countNews.bind(dashboardController),
+  dashboardController.countBranch.bind(dashboardController),
+);
+
+dashboardRouter.get(
+  "/count-request",
+  authenticate,
+  dashboardController.countRequest.bind(dashboardController),
 );
 
 export default dashboardRouter;
