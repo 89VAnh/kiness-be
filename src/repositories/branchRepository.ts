@@ -8,7 +8,7 @@ export class BranchRepository {
 
   async createBranch(branch: Branch): Promise<any> {
     try {
-      const sql = "CALL InsertBranch(?, ?, ?, ?, ?, ?, ?, @err_code, @err_msg)";
+      const sql = "CALL InsertBranch(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, @err_code, @err_msg)";
       await this.db.query(sql, [
         branch.city_id,
         branch.branch_name,
@@ -16,6 +16,9 @@ export class BranchRepository {
         branch.fax,
         branch.address,
         branch.thumbnail,
+        branch.open_time,
+        branch.close_time,
+        branch.embed_map,
         branch.created_by_user_id,
       ]);
       return true;
@@ -26,14 +29,18 @@ export class BranchRepository {
 
   async updateBranch(branch: Branch): Promise<any> {
     try {
-      const sql = "CALL UpdateBranch(?, ?, ?, ?, ?, ?, ?, @err_code, @err_msg)";
+      const sql = "CALL UpdateBranch(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, @err_code, @err_msg)";
       await this.db.query(sql, [
+        branch.branch_id,
         branch.city_id,
         branch.branch_name,
         branch.phone,
         branch.fax,
         branch.address,
         branch.thumbnail,
+        branch.open_time,
+        branch.close_time,
+        branch.embed_map,
         branch.lu_user_id,
       ]);
       return true;
