@@ -69,4 +69,15 @@ export class DashboardRepository {
       throw new Error(error.message);
     }
   }
+
+  async countBranch(user_id: string): Promise<number> {
+    try {
+      const sql = "CALL CountBranch(?, @err_code, @err_msg)";
+      const [results] = await this.db.query(sql, [user_id]);
+      const r = Number(results[0].total);
+      return r;
+    } catch (error: any) {
+      throw new Error(error.message);
+    }
+  }
 }

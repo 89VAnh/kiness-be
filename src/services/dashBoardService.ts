@@ -27,4 +27,8 @@ export class DashboardService {
   async countNews(user_id: string): Promise<number> {
     return this.dashboardRepository.countNews(user_id);
   }
+
+  async countBranch(user_id: string): Promise<number> {
+    return this.dashboardRepository.countBranch(user_id);
+  }
 }

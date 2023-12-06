@@ -1,32 +1,18 @@
 import { Request, Response } from "express";
 import { injectable } from "tsyringe";
-import { Branch, SearchBranch } from "../models/branch";
-import { BranchService } from "../services/branchService";
+import { Researcher } from "../models/researcher";
+import { ResearcherService } from "../services/researcherService";
 
 @injectable()
-export class BranchController {
-  constructor(private branchService: BranchService) {}
+export class ResearcherController {
+  constructor(private researcherService: ResearcherService) {}
 
-  async getBranchDropdown(req: Request, res: Response): Promise<void> {
-    const city_id = req.query.city_id + "";
-    try {
-      const data = await this.branchService.getBranchDropdown(city_id);
-      if (data && data.length > 0) {
-        res.json(data);
-      } else {
-        res.json({ message: "Không lấy được danh sách" });
-      }
-    } catch (error: any) {
-      res.json({ message: error.message });
-    }
-  }
-
-  async getBranchById(req: Request, res: Response): Promise<void> {
+  async getResearcherById(req: Request, res: Response): Promise<void> {
     try {
       const id = req.params.id;
-      const branch = await this.branchService.getBranchById(id);
-      if (branch) {
-        res.json(branch);
+      const researcher = await this.researcherService.getResearcherById(id);
+      if (researcher) {
+        res.json(researcher);
       } else {
         res.json({ message: "Bản ghi không tồn tại" });
       }
@@ -35,30 +21,30 @@ export class BranchController {
     }
   }
 
-  async createBranch(req: Request, res: Response): Promise<void> {
+  async createResearcher(req: Request, res: Response): Promise<void> {
     try {
-      const branch = req.body as Branch;
-      await this.branchService.createBranch(branch);
+      const researcher = req.body as Researcher;
+      await this.researcherService.createResearcher(researcher);
       res.json({ message: "Đã thêm thành công", results: true });
     } catch (error: any) {
       res.json({ message: error.message, results: false });
     }
   }
 
-  async updateBranch(req: Request, res: Response): Promise<void> {
+  async updateResearcher(req: Request, res: Response): Promise<void> {
     try {
-      const branch = req.body as Branch;
-      await this.branchService.updateBranch(branch);
+      const researcher = req.body as Researcher;
+      await this.researcherService.updateResearcher(researcher);
       res.json({ message: "Đã cập nhật thành công", results: true });
     } catch (error: any) {
       res.json({ message: error.message, results: false });
     }
   }
 
-  async deleteBranch(req: Request, res: Response): Promise<void> {
+  async deleteResearcher(req: Request, res: Response): Promise<void> {
     try {
       const object = req.body as { list_json: any; updated_by_id: string };
-      await this.branchService.deleteBranch(
+      await this.researcherService.deleteResearcher(
         object.list_json,
         object.updated_by_id,
       );
@@ -68,10 +54,22 @@ export class BranchController {
     }
   }
 
-  async searchBranch(req: Request, res: Response): Promise<void> {
+  async searchResearcher(req: Request, res: Response): Promise<void> {
     try {
-      const object = req.body as SearchBranch;
-      const data: any = await this.branchService.searchBranch(object);
+      const object = req.body as {
+        pageIndex: number;
+        pageSize: number;
+        search_content: string;
+        researcher_title: string;
+        content: string;
+      };
+      const data: any = await this.researcherService.searchResearcher(
+        object.pageIndex,
+        object.pageSize,
+        object.search_content,
+        object.researcher_title,
+        object.content,
+      );
       if (data) {
         res.json({
           totalItems: Math.ceil(

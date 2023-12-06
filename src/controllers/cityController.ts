@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { injectable } from "tsyringe";
+import { City, SearchCity } from "../models/city";
 import { CityService } from "../services/cityService";
-import { City } from "../models/city";
 
 @injectable()
 export class CityController {
@@ -66,20 +66,8 @@ export class CityController {
 
   async searchCity(req: Request, res: Response): Promise<void> {
     try {
-      const object = req.body as {
-        pageIndex: number;
-        pageSize: number;
-        search_content: string;
-        city_name: string;
-        code: string;
-      };
-      const data: any = await this.cityService.searchCity(
-        object.pageIndex,
-        object.pageSize,
-        object.search_content,
-        object.city_name,
-        object.code,
-      );
+      const object = req.body as SearchCity;
+      const data: any = await this.cityService.searchCity(object);
       if (data) {
         res.json({
           totalItems: Math.ceil(
