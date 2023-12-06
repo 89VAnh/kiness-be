@@ -8,10 +8,11 @@ export class SlideRepository {
 
   async createSlide(slide: Slide): Promise<any> {
     try {
-      const sql = "CALL InsertSlide(?, ?, ?, ?, @err_code, @err_msg)";
+      const sql = "CALL InsertSlide(?, ?, ?, ?, ?, @err_code, @err_msg)";
       await this.db.query(sql, [
         slide.slide_caption,
-        slide.image,
+        slide.image_big,
+        slide.image_small,
         slide.order,
         slide.created_by_user_id,
       ]);
@@ -23,11 +24,12 @@ export class SlideRepository {
 
   async updateSlide(slide: Slide): Promise<any> {
     try {
-      const sql = "CALL UpdateSlide(?, ?, ?, ?, ?, @err_code, @err_msg)";
+      const sql = "CALL UpdateSlide(?, ?, ?, ?, ?, ?, @err_code, @err_msg)";
       await this.db.query(sql, [
         slide.slide_id,
         slide.slide_caption,
-        slide.image,
+        slide.image_big,
+        slide.image_small,
         slide.order,
         slide.lu_user_id,
       ]);

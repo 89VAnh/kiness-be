@@ -1,6 +1,6 @@
 import { injectable } from "tsyringe";
 import { Database } from "../config/database";
-import { City } from "../models/city";
+import { City, SearchCity } from "../models/city";
 
 @injectable()
 export class CityRepository {
@@ -8,7 +8,7 @@ export class CityRepository {
 
   async createCity(city: City): Promise<any> {
     try {
-      const sql = "CALL InsertCity(?, ?, ?, ?, ?, @err_code, @err_msg)";
+      const sql = "CALL InsertCity(?, ?, ?, @err_code, @err_msg)";
       await this.db.query(sql, [
         city.city_name,
         city.code,
@@ -22,8 +22,13 @@ export class CityRepository {
 
   async updateCity(city: City): Promise<any> {
     try {
-      const sql = "CALL UpdateCity(?, ?, ?, ?, ?, @err_code, @err_msg)";
-      await this.db.query(sql, [city.city_name, city.code, city.lu_user_id]);
+      const sql = "CALL UpdateCity(?, ?, ?, ?, @err_code, @err_msg)";
+      await this.db.query(sql, [
+        city.city_id,
+        city.city_name,
+        city.code,
+        city.lu_user_id,
+      ]);
       return true;
     } catch (error: any) {
       throw new Error(error.message);
@@ -63,21 +68,15 @@ export class CityRepository {
     }
   }
 
-  async searchCity(
-    pageIndex: number,
-    pageSize: number,
-    search_content: string,
-    city_name: string,
-    code: string,
-  ): Promise<any> {
+  async searchCity(search: SearchCity): Promise<any> {
     try {
       const sql = "CALL SearchCity(?, ?, ?, ?, ?, @err_code, @err_msg)";
       const [results] = await this.db.query(sql, [
-        pageIndex,
-        pageSize,
-        search_content,
-        city_name,
-        code,
+        search.pageIndex,
+        search.pageSize,
+        search.search_content,
+        search.city_name,
+        search.code,
       ]);
       return results;
     } catch (error: any) {
