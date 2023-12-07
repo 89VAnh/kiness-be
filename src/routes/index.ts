@@ -10,10 +10,11 @@ import employeeRouter from "./employeeRouter";
 import experienceRegisterRouter from "./experienceRegisterRouter";
 import newsRouter from "./newsRouter";
 import pageRouter from "./pageRouter";
+import positionRouter from "./positionRouter";
+import researcherRouter from "./researcherRouter";
 import slideRouter from "./slideRouter";
 import testRegisterRouter from "./testRegisterRouter";
 import userRouter from "./userRouter";
-import positionRouter from "./positionRouter";
 
 const router = Router();
 
@@ -32,5 +33,6 @@ router.use("/branch-register", branchRegisterRouter);
 router.use("/core", core_router);
 router.use("/email", emailRouter);
 router.use("/dashboard", dashboardRouter);
+router.use("/researcher", researcherRouter);
 
 export default router;

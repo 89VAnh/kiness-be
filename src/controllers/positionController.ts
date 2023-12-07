@@ -83,9 +83,6 @@ export class PositionController {
         object.pageSize,
         object.search_content,
         object.position_name,
-        object.phone,
-        object.fax,
-        object.address,
       );
       if (data) {
         res.json({

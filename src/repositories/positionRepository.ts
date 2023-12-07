@@ -22,10 +22,7 @@ export class PositionRepository {
   async updatePosition(position: Position): Promise<any> {
     try {
       const sql = "CALL UpdatePosition(?, ?, @err_code, @err_msg)";
-      await this.db.query(sql, [
-        position.position_name,
-        position.lu_user_id,
-      ]);
+      await this.db.query(sql, [position.position_name, position.lu_user_id]);
       return true;
     } catch (error: any) {
       throw new Error(error.message);
@@ -70,20 +67,14 @@ export class PositionRepository {
     pageSize: number,
     search_content: string,
     position_name: string,
-    phone: string,
-    fax: string,
-    address: string,
   ): Promise<any> {
     try {
-      const sql = "CALL SearchPosition(?, ?, ?, ?, ?, ?, ?, @err_code, @err_msg)";
+      const sql = "CALL SearchPosition(?, ?, ?, ?, @err_code, @err_msg)";
       const [results] = await this.db.query(sql, [
         pageIndex,
         pageSize,
         search_content,
         position_name,
-        phone,
-        fax,
-        address,
       ]);
       return results;
     } catch (error: any) {

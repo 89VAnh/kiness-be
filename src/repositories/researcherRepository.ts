@@ -13,7 +13,7 @@ export class ResearcherRepository {
 
       await this.db.query(sql, [
         researcher.name,
-        researcher.position,
+        researcher.position_id,
         researcher.image_url,
         researcher.story,
         researcher.paper,
@@ -33,7 +33,7 @@ export class ResearcherRepository {
       await this.db.query(sql, [
         researcher.researcher_id,
         researcher.name,
-        researcher.position,
+        researcher.position_id,
         researcher.image_url,
         researcher.story,
         researcher.paper,
