@@ -8,9 +8,10 @@ export class PositionRepository {
 
   async createPosition(position: Position): Promise<any> {
     try {
-      const sql = "CALL InsertPosition(?, ?, @err_code, @err_msg)";
+      const sql = "CALL InsertPosition(?, ?, ?, @err_code, @err_msg)";
       await this.db.query(sql, [
         position.position_name,
+        position.description,
         position.created_by_user_id,
       ]);
       return true;
@@ -69,7 +70,7 @@ export class PositionRepository {
     position_name: string,
   ): Promise<any> {
     try {
-      const sql = "CALL SearchPosition(?, ?, ?, ?, @err_code, @err_msg)";
+      const sql = "CALL SearchPositions(?, ?, ?, ?, @err_code, @err_msg)";
       const [results] = await this.db.query(sql, [
         pageIndex,
         pageSize,

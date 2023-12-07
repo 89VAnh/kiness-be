@@ -56,7 +56,7 @@ export class PositionController {
 
   async deletePosition(req: Request, res: Response): Promise<void> {
     try {
-      const object = req.body as { list_json: any; updated_by_id: string };
+      const object = req.body.data as { list_json: any; updated_by_id: string };
       await this.positionService.deletePosition(
         object.list_json,
         object.updated_by_id,
