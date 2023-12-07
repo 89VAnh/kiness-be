@@ -14,6 +14,8 @@ import slideRouter from "./slideRouter";
 import testRegisterRouter from "./testRegisterRouter";
 import userRouter from "./userRouter";
 import positionRouter from "./positionRouter";
+import faqTopicRouter from "./faqTopicRouter";
+import faqRouter from "./faqRouter";
 
 const router = Router();
 
@@ -32,5 +34,7 @@ router.use("/branch-register", branchRegisterRouter);
 router.use("/core", core_router);
 router.use("/email", emailRouter);
 router.use("/dashboard", dashboardRouter);
+router.use("/faq-topic", faqTopicRouter);
+router.use("/faq", faqRouter);
 
 export default router;
