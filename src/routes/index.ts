@@ -17,6 +17,9 @@ import userRouter from "./userRouter";
 import positionRouter from "./positionRouter";
 import faqTopicRouter from "./faqTopicRouter";
 import faqRouter from "./faqRouter";
+import requestRouter from "./requestRouter";
+import growthStoryRouter from "./growthStoryRouter";
+import postureStoryRouter from "./postureStoryRouter";
 
 const router = Router();
 
@@ -38,5 +41,8 @@ router.use("/dashboard", dashboardRouter);
 router.use("/researcher", researcherRouter);
 router.use("/faq-topic", faqTopicRouter);
 router.use("/faq", faqRouter);
+router.use("/request", requestRouter);
+router.use("/growth-story", growthStoryRouter);
+router.use("/posture-story", postureStoryRouter);
 
 export default router;

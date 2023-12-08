@@ -14,7 +14,7 @@ export class BranchController {
       if (data && data.length > 0) {
         res.json(data);
       } else {
-        res.json({ message: "Không lấy được danh sách" });
+        res.json({ message: "Không lấy được danh sách " });
       }
     } catch (error: any) {
       res.json({ message: error.message });

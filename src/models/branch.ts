@@ -16,6 +16,7 @@ export interface Branch extends BaseModel {
 export interface SearchBranch {
   pageIndex: number;
   pageSize: number;
+  city_id: number;
   search_content: string;
   branch_name: string;
   phone: string;
