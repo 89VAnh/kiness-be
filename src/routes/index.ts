@@ -18,6 +18,7 @@ import positionRouter from "./positionRouter";
 import faqTopicRouter from "./faqTopicRouter";
 import faqRouter from "./faqRouter";
 import requestRouter from "./requestRouter";
+import growthStoryRouter from "./growthStoryRouter";
 
 const router = Router();
 
@@ -40,5 +41,6 @@ router.use("/researcher", researcherRouter);
 router.use("/faq-topic", faqTopicRouter);
 router.use("/faq", faqRouter);
 router.use("/request", requestRouter);
+router.use("/growth-story", growthStoryRouter);
 
 export default router;
