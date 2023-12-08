@@ -10,10 +10,9 @@ export class ResearcherRepository {
     try {
       const sql =
         "CALL InsertResearcher(?, ?, ?, ?, ?, ?, ?, @err_code, @err_msg)";
-
       await this.db.query(sql, [
         researcher.name,
-        researcher.position,
+        researcher.position_id,
         researcher.image_url,
         researcher.story,
         researcher.paper,
@@ -33,14 +32,13 @@ export class ResearcherRepository {
       await this.db.query(sql, [
         researcher.researcher_id,
         researcher.name,
-        researcher.position,
+        researcher.position_id,
         researcher.image_url,
         researcher.story,
         researcher.paper,
         researcher.degree,
         researcher.lu_user_id,
       ]);
-
       return true;
     } catch (error: any) {
       throw new Error(error.message);
@@ -70,20 +68,30 @@ export class ResearcherRepository {
     }
   }
 
+  async getResearcherDropdown(): Promise<any> {
+    try {
+      const sql = "CALL GetResearcherDropdown(@err_code, @err_msg)";
+      const [results] = await this.db.query(sql, []);
+      return results;
+    } catch (error: any) {
+      throw new Error(error.message);
+    }
+  }
+
   async searchResearcher(
     pageIndex: number,
     pageSize: number,
     search_content: string,
-    name: string,
+    researcher_name: string,
     position: string,
   ): Promise<any> {
     try {
-      const sql = "CALL SearchResearcher(?, ?, ?, ?, ?, @err_code, @err_msg)";
+      const sql = "CALL SearchResearchers(?, ?, ?, ?, ?, @err_code, @err_msg)";
       const [results] = await this.db.query(sql, [
         pageIndex,
         pageSize,
         search_content,
-        name,
+        researcher_name,
         position,
       ]);
       return results;
