@@ -14,7 +14,7 @@ export class ExperienceRegisterRepository {
   ): Promise<any> {
     try {
       const sql =
-        "CALL InsertExperienceRegister(?, ?, ?, ?, ?, ?, ?, ?, ?, @err_code, @err_msg)";
+        "CALL InsertExperienceRegister(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, @err_code, @err_msg)";
       await this.db.query(sql, [
         experienceRegister.branch_id,
         experienceRegister.fullname,
@@ -24,6 +24,7 @@ export class ExperienceRegisterRepository {
         experienceRegister.phone_number,
         experienceRegister.address,
         experienceRegister.detail,
+        experienceRegister.email,
         experienceRegister.created_by_user_id,
       ]);
       return true;
@@ -37,7 +38,7 @@ export class ExperienceRegisterRepository {
   ): Promise<any> {
     try {
       const sql =
-        "CALL UpdateExperienceRegister(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, @err_code, @err_msg)";
+        "CALL UpdateExperienceRegister(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, @err_code, @err_msg)";
       await this.db.query(sql, [
         experienceRegister.register_id,
         experienceRegister.branch_id,
@@ -48,6 +49,7 @@ export class ExperienceRegisterRepository {
         experienceRegister.phone_number,
         experienceRegister.address,
         experienceRegister.detail,
+        experienceRegister.email,
         experienceRegister.lu_user_id,
       ]);
       return true;

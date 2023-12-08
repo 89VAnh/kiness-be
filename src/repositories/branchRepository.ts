@@ -84,11 +84,12 @@ export class BranchRepository {
 
   async searchBranch(search: SearchBranch): Promise<any> {
     try {
-      const sql = "CALL SearchBranch(?, ?, ?, ?, ?, ?, ?, @err_code, @err_msg)";
+      const sql = "CALL SearchBranch(?, ?, ?, ?, ?, ?, ?, ?, @err_code, @err_msg)";
       const [results] = await this.db.query(sql, [
         search.pageIndex,
         search.pageSize,
         search.search_content,
+        search.city_id,
         search.branch_name,
         search.phone,
         search.fax,
