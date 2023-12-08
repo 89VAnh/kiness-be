@@ -10,6 +10,7 @@ import employeeRouter from "./employeeRouter";
 import experienceRegisterRouter from "./experienceRegisterRouter";
 import newsRouter from "./newsRouter";
 import pageRouter from "./pageRouter";
+import researcherRouter from "./researcherRouter";
 import slideRouter from "./slideRouter";
 import testRegisterRouter from "./testRegisterRouter";
 import userRouter from "./userRouter";
@@ -34,6 +35,7 @@ router.use("/branch-register", branchRegisterRouter);
 router.use("/core", core_router);
 router.use("/email", emailRouter);
 router.use("/dashboard", dashboardRouter);
+router.use("/researcher", researcherRouter);
 router.use("/faq-topic", faqTopicRouter);
 router.use("/faq", faqRouter);
 

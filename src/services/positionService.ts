@@ -30,18 +30,12 @@ export class PositionService {
     pageSize: number,
     search_content: string,
     position_name: string,
-    phone: string,
-    fax: string,
-    address: string,
   ): Promise<Position> {
     return this.positionRepository.searchPosition(
       pageIndex,
       pageSize,
       search_content,
       position_name,
-      phone,
-      fax,
-      address,
     );
   }
 }
