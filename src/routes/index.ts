@@ -17,6 +17,7 @@ import userRouter from "./userRouter";
 import positionRouter from "./positionRouter";
 import faqTopicRouter from "./faqTopicRouter";
 import faqRouter from "./faqRouter";
+import requestRouter from "./requestRouter";
 
 const router = Router();
 
@@ -38,5 +39,6 @@ router.use("/dashboard", dashboardRouter);
 router.use("/researcher", researcherRouter);
 router.use("/faq-topic", faqTopicRouter);
 router.use("/faq", faqRouter);
+router.use("/request", requestRouter);
 
 export default router;
