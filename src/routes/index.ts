@@ -21,6 +21,7 @@ import requestRouter from "./requestRouter";
 import growthStoryRouter from "./growthStoryRouter";
 import postureStoryRouter from "./postureStoryRouter";
 import lateStoryRouter from "./lateStoryRouter";
+import obesityStoryRouter from "./obesityRouter";
 
 const router = Router();
 
@@ -46,5 +47,6 @@ router.use("/request", requestRouter);
 router.use("/growth-story", growthStoryRouter);
 router.use("/posture-story", postureStoryRouter);
 router.use("/late-story", lateStoryRouter);
+router.use("/obesity-story", obesityStoryRouter);
 
 export default router;
