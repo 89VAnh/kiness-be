@@ -18,6 +18,11 @@ growthStoryRouter.post(
     growthStoryController.updateGrowthStory.bind(growthStoryController)
 );
 
+growthStoryRouter.patch(
+    "/update-view-count/:id",
+    growthStoryController.updateViewCountGrowthStory.bind(growthStoryController)
+);
+
 growthStoryRouter.delete(
     "/delete/:id",
     authenticate,

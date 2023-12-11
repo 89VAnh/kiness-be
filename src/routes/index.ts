@@ -22,6 +22,7 @@ import growthStoryRouter from "./growthStoryRouter";
 import postureStoryRouter from "./postureStoryRouter";
 import lateStoryRouter from "./lateStoryRouter";
 import obesityStoryRouter from "./obesityRouter";
+import growthArticleRouter from "./growthArticleRouter copy";
 
 const router = Router();
 
@@ -48,5 +49,6 @@ router.use("/growth-story", growthStoryRouter);
 router.use("/posture-story", postureStoryRouter);
 router.use("/late-story", lateStoryRouter);
 router.use("/obesity-story", obesityStoryRouter);
+router.use("/growth-article", growthArticleRouter);
 
 export default router;
