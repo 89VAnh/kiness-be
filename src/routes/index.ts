@@ -1,5 +1,6 @@
 import { Router } from "express";
 import core_router from "../core/routes";
+import articleAuthorRouter from "./articleAuthorRouter";
 import branchRegisterRouter from "./branchRegisterRouter";
 import branchRouter from "./branchRouter";
 import cityRouter from "./cityRouter";
@@ -8,18 +9,19 @@ import dashboardRouter from "./dashboardRouter";
 import emailRouter from "./emailRouter";
 import employeeRouter from "./employeeRouter";
 import experienceRegisterRouter from "./experienceRegisterRouter";
+import faqRouter from "./faqRouter";
+import faqTopicRouter from "./faqTopicRouter";
+import growthStoryRouter from "./growthStoryRouter";
 import newsRouter from "./newsRouter";
 import pageRouter from "./pageRouter";
+import positionRouter from "./positionRouter";
+import postureStoryRouter from "./postureStoryRouter";
+import requestRouter from "./requestRouter";
+import researchArticleRouter from "./researchArticleRouter";
 import researcherRouter from "./researcherRouter";
 import slideRouter from "./slideRouter";
 import testRegisterRouter from "./testRegisterRouter";
 import userRouter from "./userRouter";
-import positionRouter from "./positionRouter";
-import faqTopicRouter from "./faqTopicRouter";
-import faqRouter from "./faqRouter";
-import requestRouter from "./requestRouter";
-import growthStoryRouter from "./growthStoryRouter";
-import postureStoryRouter from "./postureStoryRouter";
 
 const router = Router();
 
@@ -44,5 +46,7 @@ router.use("/faq", faqRouter);
 router.use("/request", requestRouter);
 router.use("/growth-story", growthStoryRouter);
 router.use("/posture-story", postureStoryRouter);
+router.use("/research-article", researchArticleRouter);
+router.use("/article-author", articleAuthorRouter);
 
 export default router;
