@@ -18,6 +18,11 @@ lateStoryRouter.post(
     lateStoryController.updateLateStory.bind(lateStoryController)
 );
 
+lateStoryRouter.patch(
+    "/update-view-count/:id",
+    lateStoryController.updateViewCountLateStory.bind(lateStoryController)
+);
+
 lateStoryRouter.delete(
     "/delete/:id",
     authenticate,

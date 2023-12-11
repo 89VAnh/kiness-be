@@ -14,6 +14,10 @@ export class LateStoryService {
         await this.lateStoryRepository.updateLateStory(ls);
     }
 
+    async updateViewCountLateStory(late_story_id: number): Promise<any> {
+        await this.lateStoryRepository.updateViewCountLateStory(late_story_id);
+    }
+
     async deleteLateStory(late_story_id: number): Promise<any> {
         await this.lateStoryRepository.deleteLateStory(late_story_id);
     }

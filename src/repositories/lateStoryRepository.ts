@@ -46,6 +46,18 @@ export class LateStoryRepository {
         }
     }
 
+    async updateViewCountLateStory(late_story_id: number): Promise<any> {
+        try {
+            const sql = "CALL UpdateViewCountLateStory(?, @err_code, @err_msg)";
+            await this.db.query(sql, [
+                late_story_id
+            ]);
+        }
+        catch(error: any) {
+            throw new DatabaseError(error.message);
+        }
+    }
+
     async deleteLateStory(late_story_id: number) : Promise<any> {
         try {
             const sql = "CALL DeleteLateStory(?, @err_code, @err_msg)";
