@@ -14,6 +14,10 @@ export class PostureStoryService {
         await this.postureStoryRepository.updatePostureStory(ps);
     }
 
+    async updateViewCountPostureStory(posture_story_id: number): Promise<any> {
+        await this.postureStoryRepository.updateViewCountPostureStory(posture_story_id);
+    }
+
     async deletePostureStory(posture_story_id: number): Promise<any> {
         await this.postureStoryRepository.deletePostureStory(posture_story_id);
     }

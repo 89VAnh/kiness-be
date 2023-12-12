@@ -18,6 +18,11 @@ postureStoryRouter.post(
     postureStoryController.updatePostureStory.bind(postureStoryController)
 );
 
+postureStoryRouter.patch(
+    "/update-view-count/:id",
+    postureStoryController.updateViewCountPostureStory.bind(postureStoryController)
+);
+
 postureStoryRouter.delete(
     "/delete/:id",
     authenticate,
