@@ -1,18 +1,18 @@
 import { Request, Response } from "express";
 import { injectable } from "tsyringe";
-import { GrowthStoryService } from "../services/growthStoryService";
-import { GrowthStoryModel, SearchClientGrowthStoryModel, SearchGrowthStoryModel } from "../models/growth-story";
+import { LateStoryService } from "../services/lateStoryService";
+import { LateStoryModel, SearchClientLateStoryModel, SearchLateStoryModel } from "../models/late-story";
 import { DatabaseError } from "../utils/DatabaseError";
 import { UserError } from "../utils/UserError";
 
 @injectable()
-export class GrowthStoryController {
-    constructor (private growthStoryService: GrowthStoryService) {}
+export class LateStoryController {
+    constructor (private lateStoryService: LateStoryService) {}
 
-    async createGrowthStory(req: Request, res: Response): Promise<any> {
+    async createLateStory(req: Request, res: Response): Promise<any> {
         try {
-            const gs_model = req.body as GrowthStoryModel;
-            await this.growthStoryService.createGrowthStory(gs_model);
+            const ls_model = req.body as LateStoryModel;
+            await this.lateStoryService.createLateStory(ls_model);
             res.json({message: "Đã thêm thành công", success: true});
         }
         catch(error: any) {
@@ -29,10 +29,10 @@ export class GrowthStoryController {
         }
     }
 
-    async updateGrowthStory(req: Request, res: Response): Promise<any> {
+    async updateLateStory(req: Request, res: Response): Promise<any> {
         try {
-            const gs_model = req.body as GrowthStoryModel;
-            await this.growthStoryService.updateGrowthStory(gs_model);
+            const ls_model = req.body as LateStoryModel;
+            await this.lateStoryService.updateLateStory(ls_model);
             res.json({message: "Cập nhật thành công", success: true});
         }
         catch(error: any) {
@@ -49,10 +49,10 @@ export class GrowthStoryController {
         }
     }
 
-    async updateViewCountGrowthStory(req: Request, res: Response): Promise<any> {
+    async updateViewCountLateStory(req: Request, res: Response): Promise<any> {
         try {
-            const growth_story_id = Number(req.params.id);
-            await this.growthStoryService.updateViewCountGrowthStory(growth_story_id);
+            const late_story_id = Number(req.params.id);
+            await this.lateStoryService.updateViewCountLateStory(late_story_id);
             res.json({message: "Cập nhật thành công", success: true});
         }
         catch(error: any) {
@@ -69,10 +69,10 @@ export class GrowthStoryController {
         }
     }
 
-    async deleteGrowthStory(req: Request, res: Response): Promise<any> {
+    async deleteLateStory(req: Request, res: Response): Promise<any> {
         try {
-            const growth_story_id = Number(req.params.id);
-            await this.growthStoryService.deleteGrowthStory(growth_story_id);
+            const late_story_id = Number(req.params.id);
+            await this.lateStoryService.deleteLateStory(late_story_id);
             res.json({message: "Xóa thành công", success: true});
         }
         catch(error: any) {
@@ -89,10 +89,10 @@ export class GrowthStoryController {
         }
     }
 
-    async getDetailGrowthStory(req: Request, res: Response): Promise<any> {
+    async getDetailLateStory(req: Request, res: Response): Promise<any> {
         try {
-            const growth_story_id = Number(req.params.id);
-            const data = await this.growthStoryService.getDetailGrowthStory(growth_story_id);
+            const late_story_id = Number(req.params.id);
+            const data = await this.lateStoryService.getDetailLateStory(late_story_id);
             res.json({data: data, success: true});
         }
         catch(error: any) {
@@ -109,10 +109,10 @@ export class GrowthStoryController {
         }
     }
 
-    async getDetailClientGrowthStory(req: Request, res: Response): Promise<any> {
+    async getDetailClientLateStory(req: Request, res: Response): Promise<any> {
         try {
-            const growth_story_id = Number(req.params.id);
-            const data = await this.growthStoryService.getDetailClientGrowthStory(growth_story_id);
+            const late_story_id = Number(req.params.id);
+            const data = await this.lateStoryService.getDetailClientLateStory(late_story_id);
             res.json({data: data, success: true});
         }
         catch(error: any) {
@@ -129,10 +129,10 @@ export class GrowthStoryController {
         }
     }
 
-    async searchGrowthStories(req: Request, res: Response): Promise<any> {
+    async searchLateStories(req: Request, res: Response): Promise<any> {
         try {
-            const object = req.body as SearchGrowthStoryModel;
-            const data = await this.growthStoryService.searchGrowthStories(object);
+            const object = req.body as SearchLateStoryModel;
+            const data = await this.lateStoryService.searchLateStories(object);
             if (data) {
                 var results = {
                     totalItems: Math.ceil(
@@ -165,10 +165,10 @@ export class GrowthStoryController {
         }
     }
 
-    async searchClientGrowthStories(req: Request, res: Response): Promise<any> {
+    async searchClientLateStories(req: Request, res: Response): Promise<any> {
         try {
-            const object = req.body as SearchClientGrowthStoryModel;
-            const data = await this.growthStoryService.searchClientGrowthStories(object);
+            const object = req.body as SearchClientLateStoryModel;
+            const data = await this.lateStoryService.searchClientLateStories(object);
             if (data) {
                 var results = {
                     totalItems: Math.ceil(

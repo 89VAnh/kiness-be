@@ -46,6 +46,18 @@ export class PostureStoryRepository {
         }
     }
 
+    async updateViewCountPostureStory(posture_story_id: number): Promise<any> {
+        try {
+            const sql = "CALL UpdateViewCountPostureStory(?, @err_code, @err_msg)";
+            await this.db.query(sql, [
+                posture_story_id
+            ]);
+        }
+        catch(error: any) {
+            throw new DatabaseError(error.message);
+        }
+    }
+
     async deletePostureStory(posture_story_id: number) : Promise<any> {
         try {
             const sql = "CALL DeletePostureStory(?, @err_code, @err_msg)";

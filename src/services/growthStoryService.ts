@@ -14,6 +14,10 @@ export class GrowthStoryService {
         await this.growthStoryRepository.updateGrowthStory(gs);
     }
 
+    async updateViewCountGrowthStory(growth_story_id: number): Promise<any> {
+        await this.growthStoryRepository.updateViewCountGrowthStory(growth_story_id);
+    }
+
     async deleteGrowthStory(growth_story_id: number): Promise<any> {
         await this.growthStoryRepository.deleteGrowthStory(growth_story_id);
     }

@@ -20,6 +20,10 @@ import faqRouter from "./faqRouter";
 import requestRouter from "./requestRouter";
 import growthStoryRouter from "./growthStoryRouter";
 import postureStoryRouter from "./postureStoryRouter";
+import roleRouter from "./roleRouter";
+import lateStoryRouter from "./lateStoryRouter";
+import obesityStoryRouter from "./obesityRouter";
+import growthArticleRouter from "./growthArticleRouter copy";
 
 const router = Router();
 
@@ -44,5 +48,9 @@ router.use("/faq", faqRouter);
 router.use("/request", requestRouter);
 router.use("/growth-story", growthStoryRouter);
 router.use("/posture-story", postureStoryRouter);
+router.use("/role", roleRouter);
+router.use("/late-story", lateStoryRouter);
+router.use("/obesity-story", obesityStoryRouter);
+router.use("/growth-article", growthArticleRouter);
 
 export default router;
