@@ -46,6 +46,18 @@ export class GrowthStoryRepository {
         }
     }
 
+    async updateViewCountGrowthStory(growth_story_id: number): Promise<any> {
+        try {
+            const sql = "CALL UpdateViewCountGrowthStory(?, @err_code, @err_msg)";
+            await this.db.query(sql, [
+                growth_story_id
+            ]);
+        }
+        catch(error: any) {
+            throw new DatabaseError(error.message);
+        }
+    }
+
     async deleteGrowthStory(growth_story_id: number) : Promise<any> {
         try {
             const sql = "CALL DeleteGrowthStory(?, @err_code, @err_msg)";
