@@ -14,6 +14,7 @@ import faqTopicRouter from "./faqTopicRouter";
 import growthArticleRouter from "./growthArticleRouter copy";
 import growthStoryRouter from "./growthStoryRouter";
 import lateStoryRouter from "./lateStoryRouter";
+import licenseOfInventionRouter from "./licenseOfInventionRouter";
 import newsRouter from "./newsRouter";
 import obesityStoryRouter from "./obesityRouter";
 import pageRouter from "./pageRouter";
@@ -56,5 +57,6 @@ router.use("/obesity-story", obesityStoryRouter);
 router.use("/growth-article", growthArticleRouter);
 router.use("/research-article", researchArticleRouter);
 router.use("/article-author", articleAuthorRouter);
+router.use("/license-of-invention", licenseOfInventionRouter);
 
 export default router;
