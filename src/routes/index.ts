@@ -1,5 +1,6 @@
 import { Router } from "express";
 import core_router from "../core/routes";
+import articleAuthorRouter from "./articleAuthorRouter";
 import branchRegisterRouter from "./branchRegisterRouter";
 import branchRouter from "./branchRouter";
 import cityRouter from "./cityRouter";
@@ -8,22 +9,23 @@ import dashboardRouter from "./dashboardRouter";
 import emailRouter from "./emailRouter";
 import employeeRouter from "./employeeRouter";
 import experienceRegisterRouter from "./experienceRegisterRouter";
+import faqRouter from "./faqRouter";
+import faqTopicRouter from "./faqTopicRouter";
+import growthArticleRouter from "./growthArticleRouter copy";
+import growthStoryRouter from "./growthStoryRouter";
+import lateStoryRouter from "./lateStoryRouter";
 import newsRouter from "./newsRouter";
+import obesityStoryRouter from "./obesityRouter";
 import pageRouter from "./pageRouter";
+import positionRouter from "./positionRouter";
+import postureStoryRouter from "./postureStoryRouter";
+import requestRouter from "./requestRouter";
+import researchArticleRouter from "./researchArticleRouter";
 import researcherRouter from "./researcherRouter";
+import roleRouter from "./roleRouter";
 import slideRouter from "./slideRouter";
 import testRegisterRouter from "./testRegisterRouter";
 import userRouter from "./userRouter";
-import positionRouter from "./positionRouter";
-import faqTopicRouter from "./faqTopicRouter";
-import faqRouter from "./faqRouter";
-import requestRouter from "./requestRouter";
-import growthStoryRouter from "./growthStoryRouter";
-import postureStoryRouter from "./postureStoryRouter";
-import roleRouter from "./roleRouter";
-import lateStoryRouter from "./lateStoryRouter";
-import obesityStoryRouter from "./obesityRouter";
-import growthArticleRouter from "./growthArticleRouter copy";
 
 const router = Router();
 
@@ -52,5 +54,7 @@ router.use("/role", roleRouter);
 router.use("/late-story", lateStoryRouter);
 router.use("/obesity-story", obesityStoryRouter);
 router.use("/growth-article", growthArticleRouter);
+router.use("/research-article", researchArticleRouter);
+router.use("/article-author", articleAuthorRouter);
 
 export default router;
