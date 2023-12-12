@@ -23,6 +23,7 @@ import postureStoryRouter from "./postureStoryRouter";
 import lateStoryRouter from "./lateStoryRouter";
 import obesityStoryRouter from "./obesityRouter";
 import growthArticleRouter from "./growthArticleRouter copy";
+import videoRouter from "./videoRouter";
 
 const router = Router();
 
@@ -50,5 +51,6 @@ router.use("/posture-story", postureStoryRouter);
 router.use("/late-story", lateStoryRouter);
 router.use("/obesity-story", obesityStoryRouter);
 router.use("/growth-article", growthArticleRouter);
+router.use("/video", videoRouter);
 
 export default router;
