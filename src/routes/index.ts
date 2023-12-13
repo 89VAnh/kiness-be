@@ -27,6 +27,7 @@ import roleRouter from "./roleRouter";
 import slideRouter from "./slideRouter";
 import testRegisterRouter from "./testRegisterRouter";
 import userRouter from "./userRouter";
+import videoRouter from "./videoRouter";
 
 const router = Router();
 
@@ -55,6 +56,7 @@ router.use("/role", roleRouter);
 router.use("/late-story", lateStoryRouter);
 router.use("/obesity-story", obesityStoryRouter);
 router.use("/growth-article", growthArticleRouter);
+router.use("/video", videoRouter);
 router.use("/research-article", researchArticleRouter);
 router.use("/article-author", articleAuthorRouter);
 router.use("/license-of-invention", licenseOfInventionRouter);
