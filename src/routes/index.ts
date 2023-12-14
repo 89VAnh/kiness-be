@@ -28,6 +28,7 @@ import slideRouter from "./slideRouter";
 import testRegisterRouter from "./testRegisterRouter";
 import userRouter from "./userRouter";
 import videoRouter from "./videoRouter";
+import funcRouter from "./functionRouter";
 
 const router = Router();
 
@@ -60,5 +61,6 @@ router.use("/video", videoRouter);
 router.use("/research-article", researchArticleRouter);
 router.use("/article-author", articleAuthorRouter);
 router.use("/license-of-invention", licenseOfInventionRouter);
+router.use("/function", funcRouter);
 
 export default router;
