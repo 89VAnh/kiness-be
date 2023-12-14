@@ -14,7 +14,7 @@ export class BookRepository {
       await this.db.query(sql, [
         b.title,
         b.image_url,
-        b.book_id,
+        b.author_id,
         b.publication_date,
         b.created_by_user_id,
       ]);
