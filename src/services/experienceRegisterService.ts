@@ -114,8 +114,8 @@ export class ExperienceRegisterService {
       worksheet.columns = cols;
 
       const genderMap = new Map<number, string>([
-        [0, "Nam"],
-        [1, "Nữ"],
+        [1, "Nam"],
+        [0, "Nữ"],
       ]);
 
       const statusMap = new Map<number, string>([
