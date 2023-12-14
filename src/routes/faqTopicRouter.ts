@@ -7,50 +7,36 @@ const faqTopicRouter = Router();
 const faqTopicController = container.resolve(FAQTopicController);
 
 faqTopicRouter.post(
-    "/create",
-    authenticate,
-    faqTopicController.createFAQTopic.bind(
-        faqTopicController
-    )
+  "/create",
+  authenticate,
+  faqTopicController.createFAQTopic.bind(faqTopicController),
 );
 
 faqTopicRouter.post(
-    "/update",
-    authenticate,
-    faqTopicController.updateFAQTopic.bind(
-        faqTopicController
-    )
+  "/update",
+  authenticate,
+  faqTopicController.updateFAQTopic.bind(faqTopicController),
 );
 
 faqTopicRouter.get(
-    "/get-detail/:id",
-    faqTopicController.getFAQTopic.bind(
-        faqTopicController
-    )
+  "/get-detail/:id",
+  faqTopicController.getFAQTopic.bind(faqTopicController),
 );
 
 faqTopicRouter.delete(
-    "/delete/:id",
-    authenticate,
-    faqTopicController.deleteFAQTopic.bind(
-        faqTopicController
-    )
+  "/delete/:id",
+  authenticate,
+  faqTopicController.deleteFAQTopic.bind(faqTopicController),
 );
 
 faqTopicRouter.get(
-    "/get-dropdown",
-    faqTopicController.getFAQTopicDropdown.bind(
-        faqTopicController
-    )
+  "/get-dropdown",
+  faqTopicController.getFAQTopicDropdown.bind(faqTopicController),
 );
 
 faqTopicRouter.post(
-    "/search",
-    faqTopicController.searchFAQTopics.bind(
-        faqTopicController
-    )
+  "/search",
+  faqTopicController.searchFAQTopics.bind(faqTopicController),
 );
 
 export default faqTopicRouter;
-
-

@@ -29,7 +29,7 @@ uploadRouter.post(
       }
     }
     return res.json({ path: filePath, result: true });
-  }
+  },
 );
 
 export default uploadRouter;

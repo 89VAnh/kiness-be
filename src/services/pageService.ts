@@ -30,10 +30,6 @@ export class PageService {
     pageSize: number,
     search_content: string,
   ): Promise<Page> {
-    return this.pageRepository.searchPage(
-      pageIndex,
-      pageSize,
-      search_content,
-    );
+    return this.pageRepository.searchPage(pageIndex, pageSize, search_content);
   }
 }

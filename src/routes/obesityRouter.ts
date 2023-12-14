@@ -7,49 +7,54 @@ const obesityStoryRouter = Router();
 const obesityStoryController = container.resolve(ObesityStoryController);
 
 obesityStoryRouter.post(
-    "/create",
-    authenticate,
-    obesityStoryController.createObesityStory.bind(obesityStoryController)
+  "/create",
+  authenticate,
+  obesityStoryController.createObesityStory.bind(obesityStoryController),
 );
 
 obesityStoryRouter.post(
-    "/update",
-    authenticate,
-    obesityStoryController.updateObesityStory.bind(obesityStoryController)
+  "/update",
+  authenticate,
+  obesityStoryController.updateObesityStory.bind(obesityStoryController),
 );
 
 obesityStoryRouter.patch(
-    "/update-view-count/:id",
-    obesityStoryController.updateViewCountObesityStory.bind(obesityStoryController)
+  "/update-view-count/:id",
+  obesityStoryController.updateViewCountObesityStory.bind(
+    obesityStoryController,
+  ),
 );
 
 obesityStoryRouter.delete(
-    "/delete/:id",
-    authenticate,
-    obesityStoryController.deleteObesityStory.bind(obesityStoryController)
+  "/delete/:id",
+  authenticate,
+  obesityStoryController.deleteObesityStory.bind(obesityStoryController),
 );
 
 obesityStoryRouter.get(
-    "/get-detail/:id",
-    authenticate,
-    obesityStoryController.getDetailObesityStory.bind(obesityStoryController)
+  "/get-detail/:id",
+  authenticate,
+  obesityStoryController.getDetailObesityStory.bind(obesityStoryController),
 );
 
 obesityStoryRouter.get(
-    "/get-detail-client/:id",
-    obesityStoryController.getDetailClientObesityStory.bind(obesityStoryController)
+  "/get-detail-client/:id",
+  obesityStoryController.getDetailClientObesityStory.bind(
+    obesityStoryController,
+  ),
 );
 
 obesityStoryRouter.post(
-    "/search",
-    authenticate,
-    obesityStoryController.searchObesityStories.bind(obesityStoryController)
+  "/search",
+  authenticate,
+  obesityStoryController.searchObesityStories.bind(obesityStoryController),
 );
 
 obesityStoryRouter.post(
-    "/search-client",
-    obesityStoryController.searchClientObesityStories.bind(obesityStoryController)
+  "/search-client",
+  obesityStoryController.searchClientObesityStories.bind(
+    obesityStoryController,
+  ),
 );
-
 
 export default obesityStoryRouter;

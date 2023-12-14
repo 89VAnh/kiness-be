@@ -23,7 +23,6 @@ export class DashboardController {
     }
   }
 
-
   async countEmployee(req: Request, res: Response): Promise<void> {
     try {
       const body = req.query as { user_id: string };

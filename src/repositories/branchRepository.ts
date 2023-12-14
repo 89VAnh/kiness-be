@@ -8,7 +8,8 @@ export class BranchRepository {
 
   async createBranch(branch: Branch): Promise<any> {
     try {
-      const sql = "CALL InsertBranch(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, @err_code, @err_msg)";
+      const sql =
+        "CALL InsertBranch(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, @err_code, @err_msg)";
       await this.db.query(sql, [
         branch.city_id,
         branch.branch_name,
@@ -29,7 +30,8 @@ export class BranchRepository {
 
   async updateBranch(branch: Branch): Promise<any> {
     try {
-      const sql = "CALL UpdateBranch(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, @err_code, @err_msg)";
+      const sql =
+        "CALL UpdateBranch(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, @err_code, @err_msg)";
       await this.db.query(sql, [
         branch.branch_id,
         branch.city_id,
@@ -84,7 +86,8 @@ export class BranchRepository {
 
   async searchBranch(search: SearchBranch): Promise<any> {
     try {
-      const sql = "CALL SearchBranch(?, ?, ?, ?, ?, ?, ?, ?, @err_code, @err_msg)";
+      const sql =
+        "CALL SearchBranch(?, ?, ?, ?, ?, ?, ?, ?, @err_code, @err_msg)";
       const [results] = await this.db.query(sql, [
         search.pageIndex,
         search.pageSize,

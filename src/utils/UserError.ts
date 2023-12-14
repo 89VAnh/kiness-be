@@ -1,8 +1,8 @@
-export class UserError extends Error{
-    constructor (msg: string) {
-        super(msg);
+export class UserError extends Error {
+  constructor(msg: string) {
+    super(msg);
 
-        // Set the prototype explicitly.
-        Object.setPrototypeOf(this, UserError.prototype);
-    }
+    // Set the prototype explicitly.
+    Object.setPrototypeOf(this, UserError.prototype);
+  }
 }
