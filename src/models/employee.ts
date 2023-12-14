@@ -10,7 +10,7 @@ export interface Employee {
   created_date_time: Date;
   lu_updated: Date;
   lu_user_id: string;
-  
+
   // system user
   user_id: string;
   password: string;

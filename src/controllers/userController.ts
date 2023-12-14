@@ -5,10 +5,10 @@ import { User } from "../models/user";
 import { generateToken } from "../config/jwt";
 @injectable()
 export class UserController {
-  constructor(private userService: UserService) { }
-  
+  constructor(private userService: UserService) {}
+
   async isMe(_: Request, res: Response): Promise<void> {
-    res.status(200).json(true)
+    res.status(200).json(true);
   }
 
   async authenticate(req: Request, res: Response): Promise<void> {
@@ -27,11 +27,14 @@ export class UserController {
       res.json({ message: error.message });
     }
   }
-  
+
   async authenticateEmployee(req: Request, res: Response): Promise<void> {
     try {
       const { username, password } = req.body;
-      const user = await this.userService.authenticateEmployee(username, password);
+      const user = await this.userService.authenticateEmployee(
+        username,
+        password,
+      );
       if (user) {
         // Tạo mã thông báo JWT
         const token = generateToken(user);
@@ -88,7 +91,7 @@ export class UserController {
       res.json({ message: error.message, results: false });
     }
   }
-  
+
   async changePassword(req: Request, res: Response): Promise<void> {
     try {
       const role = req.body;

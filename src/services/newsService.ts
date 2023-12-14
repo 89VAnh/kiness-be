@@ -21,7 +21,7 @@ export class NewsService {
   async deleteNews(list_json: any, updated_by_id: string): Promise<any> {
     return this.newsRepository.deleteNews(list_json, updated_by_id);
   }
-  
+
   async searchNews(
     pageIndex: number,
     pageSize: number,

@@ -57,7 +57,10 @@ export class SlideController {
   async deleteSlide(req: Request, res: Response): Promise<void> {
     try {
       const object = req.body as { list_json: any; updated_by_id: string };
-      await this.slideService.deleteSlide(object.list_json, object.updated_by_id);
+      await this.slideService.deleteSlide(
+        object.list_json,
+        object.updated_by_id,
+      );
       res.json({ message: "Đã xóa thành công", results: true });
     } catch (error: any) {
       res.json({ message: error.message, results: false });

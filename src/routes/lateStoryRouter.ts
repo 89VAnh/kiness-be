@@ -7,49 +7,48 @@ const lateStoryRouter = Router();
 const lateStoryController = container.resolve(LateStoryController);
 
 lateStoryRouter.post(
-    "/create",
-    authenticate,
-    lateStoryController.createLateStory.bind(lateStoryController)
+  "/create",
+  authenticate,
+  lateStoryController.createLateStory.bind(lateStoryController),
 );
 
 lateStoryRouter.post(
-    "/update",
-    authenticate,
-    lateStoryController.updateLateStory.bind(lateStoryController)
+  "/update",
+  authenticate,
+  lateStoryController.updateLateStory.bind(lateStoryController),
 );
 
 lateStoryRouter.patch(
-    "/update-view-count/:id",
-    lateStoryController.updateViewCountLateStory.bind(lateStoryController)
+  "/update-view-count/:id",
+  lateStoryController.updateViewCountLateStory.bind(lateStoryController),
 );
 
 lateStoryRouter.delete(
-    "/delete/:id",
-    authenticate,
-    lateStoryController.deleteLateStory.bind(lateStoryController)
+  "/delete/:id",
+  authenticate,
+  lateStoryController.deleteLateStory.bind(lateStoryController),
 );
 
 lateStoryRouter.get(
-    "/get-detail/:id",
-    authenticate,
-    lateStoryController.getDetailLateStory.bind(lateStoryController)
+  "/get-detail/:id",
+  authenticate,
+  lateStoryController.getDetailLateStory.bind(lateStoryController),
 );
 
 lateStoryRouter.get(
-    "/get-detail-client/:id",
-    lateStoryController.getDetailClientLateStory.bind(lateStoryController)
+  "/get-detail-client/:id",
+  lateStoryController.getDetailClientLateStory.bind(lateStoryController),
 );
 
 lateStoryRouter.post(
-    "/search",
-    authenticate,
-    lateStoryController.searchLateStories.bind(lateStoryController)
+  "/search",
+  authenticate,
+  lateStoryController.searchLateStories.bind(lateStoryController),
 );
 
 lateStoryRouter.post(
-    "/search-client",
-    lateStoryController.searchClientLateStories.bind(lateStoryController)
+  "/search-client",
+  lateStoryController.searchClientLateStories.bind(lateStoryController),
 );
-
 
 export default lateStoryRouter;

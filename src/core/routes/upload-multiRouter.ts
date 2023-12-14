@@ -19,7 +19,7 @@ uploadmultiRouter.post(
       fileUrls.push(file.path);
     });
     res.json(fileUrls);
-  }
+  },
 );
 
 export default uploadmultiRouter;
