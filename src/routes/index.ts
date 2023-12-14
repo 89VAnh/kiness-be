@@ -1,6 +1,8 @@
 import { Router } from "express";
 import core_router from "../core/routes";
 import articleAuthorRouter from "./articleAuthorRouter";
+import bookAuthorRouter from "./bookAuthorRouter";
+import bookRouter from "./bookRouter";
 import branchRegisterRouter from "./branchRegisterRouter";
 import branchRouter from "./branchRouter";
 import cityRouter from "./cityRouter";
@@ -60,5 +62,7 @@ router.use("/video", videoRouter);
 router.use("/research-article", researchArticleRouter);
 router.use("/article-author", articleAuthorRouter);
 router.use("/license-of-invention", licenseOfInventionRouter);
+router.use("/book-author", bookAuthorRouter);
+router.use("/book", bookRouter);
 
 export default router;
