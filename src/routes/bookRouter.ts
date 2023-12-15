@@ -30,10 +30,6 @@ bookRouter.get(
   bookController.getDetailBook.bind(bookController),
 );
 
-bookRouter.post(
-  "/search",
-  authenticate,
-  bookController.searchBooks.bind(bookController),
-);
+bookRouter.post("/search", bookController.searchBooks.bind(bookController));
 
 export default bookRouter;

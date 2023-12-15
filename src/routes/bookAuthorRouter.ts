@@ -38,7 +38,6 @@ bookAuthorRouter.post(
 
 bookAuthorRouter.get(
   "/get-dropdown",
-  authenticate,
   bookAuthorController.getBookAuthorDropdown.bind(bookAuthorController),
 );
 
