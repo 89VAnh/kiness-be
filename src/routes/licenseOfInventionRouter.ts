@@ -42,7 +42,6 @@ licenseOfInventionRouter.get(
 
 licenseOfInventionRouter.post(
   "/search",
-  authenticate,
   licenseOfInventionController.searchLicenses.bind(
     licenseOfInventionController,
   ),
