@@ -71,6 +71,7 @@ export class UserService {
         middle_name: user.middle_name,
         last_name: user.last_name,
         position_id: user.position_id,
+        position_name: user.position_name,
         full_name: user.full_name,
         avatar: user.avatar,
         gender: user.gender,
