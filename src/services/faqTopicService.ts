@@ -27,14 +27,14 @@ export class FAQTopicService {
   }
 
   async searchFAQTopics(
-    pageIndex: number,
-    pageSize: number,
+    page_index: number,
+    page_size: number,
     searchContent?: string,
     topic_id?: number,
   ): Promise<any> {
     return await this.faqTopicRepository.searchFAQTopics(
-      pageIndex,
-      pageSize,
+      page_index,
+      page_size,
       searchContent,
       topic_id,
     );

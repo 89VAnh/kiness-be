@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { injectable } from "tsyringe";
-import { FunctionService } from "../services/functionService";
 import { FunctionModel } from "../models/function";
+import { FunctionService } from "../services/functionService";
 
 @injectable()
 export class FunctionController {
@@ -57,8 +57,8 @@ export class FunctionController {
   async searchFunction(req: Request, res: Response): Promise<any> {
     try {
       const object = req.body as {
-        pageIndex: number;
-        pageSize: number;
+        page_index: number;
+        page_size: number;
         search_content: string;
         function_id: string;
         parent_id: string;
@@ -68,8 +68,8 @@ export class FunctionController {
         level: number;
       };
       const data: any = await this.funcService.searchFunction(
-        object.pageIndex,
-        object.pageSize,
+        object.page_index,
+        object.page_size,
         object.search_content,
         object.function_id,
         object.parent_id,
@@ -80,15 +80,15 @@ export class FunctionController {
       );
       if (data) {
         res.json({
-          totalItems: Math.ceil(
+          total_items: Math.ceil(
             data && data.length > 0 ? data[0].RecordCount : 0,
           ),
-          page: object.pageIndex,
-          pageSize: object.pageSize,
+          page: object.page_index,
+          page_size: object.page_size,
           data: data,
-          pageCount: Math.ceil(
+          page_count: Math.ceil(
             (data && data.length > 0 ? data[0].RecordCount : 0) /
-              (object.pageSize ? object.pageSize : 1),
+              (object.page_size ? object.page_size : 1),
           ),
         });
       } else {

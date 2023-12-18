@@ -14,8 +14,8 @@ export interface TestRegister extends BaseModel {
 }
 
 export interface SearchTestRegister {
-  pageIndex: number;
-  pageSize: number;
+  page_index: number;
+  page_size: number;
   user_id: string;
   search_content: string;
   branch_name: string;

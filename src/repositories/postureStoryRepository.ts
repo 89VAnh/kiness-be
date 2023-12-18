@@ -95,8 +95,8 @@ export class PostureStoryRepository {
     try {
       const sql = "CALL SearchPostureStories(?, ?, ?, ?, @err_code, @err_msg)";
       const [results] = await this.db.query(sql, [
-        search_ps_model.pageIndex,
-        search_ps_model.pageSize,
+        search_ps_model.page_index,
+        search_ps_model.page_size,
         search_ps_model.search_content,
         search_ps_model.is_draft,
       ]);
@@ -113,8 +113,8 @@ export class PostureStoryRepository {
       const sql =
         "CALL SearchClientPostureStories(?, ?, ?, @err_code, @err_msg)";
       const [results] = await this.db.query(sql, [
-        search_client_ps.pageIndex,
-        search_client_ps.pageSize,
+        search_client_ps.page_index,
+        search_client_ps.page_size,
         search_client_ps.search_content,
       ]);
       return results;

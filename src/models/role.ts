@@ -8,8 +8,8 @@ export interface Role extends BaseModel {
 }
 
 export interface SearchRole {
-  pageIndex: number;
-  pageSize: number;
+  page_index: number;
+  page_size: number;
   search_content: string;
   role_name: string;
   role_code: string;

@@ -12,14 +12,14 @@ export interface PostureStoryModel extends BaseModel {
 }
 
 export interface SearchPostureStoryModel {
-  pageIndex: number;
-  pageSize: number;
+  page_index: number;
+  page_size: number;
   search_content: string;
   is_draft: boolean;
 }
 
 export interface SearchClientPostureStoryModel {
-  pageIndex: number;
-  pageSize: number;
+  page_index: number;
+  page_size: number;
   search_content: string;
 }

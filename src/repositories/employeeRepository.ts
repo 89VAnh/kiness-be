@@ -94,8 +94,8 @@ export class EmployeeRepository {
   }
 
   async searchEmployee(
-    pageIndex: number,
-    pageSize: number,
+    page_index: number,
+    page_size: number,
     user_id: string,
     search_content: string,
     employee_id: string,
@@ -108,8 +108,8 @@ export class EmployeeRepository {
       const sql =
         "CALL SearchEmployee(?, ?, ?, ?, ?, ?, ?, ?, ?, @err_code, @err_msg)";
       const [results] = await this.db.query(sql, [
-        pageIndex,
-        pageSize,
+        page_index,
+        page_size,
         user_id,
         search_content,
         employee_id,

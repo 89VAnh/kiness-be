@@ -66,13 +66,13 @@ export class ArticleAuthorController {
         await this.articleAuthorService.searchArticleAuthor(object);
       if (data) {
         res.json({
-          totalItems: Math.ceil(
+          total_items: Math.ceil(
             data && data.length > 0 ? data[0].RecordCount : 0,
           ),
           page: object.page_index,
-          pageSize: object.page_size,
+          page_size: object.page_size,
           data: data,
-          pageCount: Math.ceil(
+          page_count: Math.ceil(
             (data && data.length > 0 ? data[0].RecordCount : 0) /
               (object.page_size ? object.page_size : 1),
           ),

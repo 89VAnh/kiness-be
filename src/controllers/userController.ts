@@ -1,8 +1,8 @@
 import { Request, Response } from "express";
 import { injectable } from "tsyringe";
-import { UserService } from "../services/userService";
-import { User } from "../models/user";
 import { generateToken } from "../config/jwt";
+import { User } from "../models/user";
+import { UserService } from "../services/userService";
 @injectable()
 export class UserController {
   constructor(private userService: UserService) {}
@@ -115,8 +115,8 @@ export class UserController {
   async searchUser(req: Request, res: Response): Promise<void> {
     try {
       const object = req.body as {
-        pageIndex: number;
-        pageSize: number;
+        page_index: number;
+        page_size: number;
         search_content: string;
         user_name: string;
         full_name: string;
@@ -127,8 +127,8 @@ export class UserController {
         description: string;
       };
       const data: any = await this.userService.searchUser(
-        object.pageIndex,
-        object.pageSize,
+        object.page_index,
+        object.page_size,
         object.search_content,
         object.user_name,
         object.full_name,
@@ -140,15 +140,15 @@ export class UserController {
       );
       if (data) {
         res.json({
-          totalItems: Math.ceil(
+          total_items: Math.ceil(
             data && data.length > 0 ? data[0].RecordCount : 0,
           ),
-          page: object.pageIndex,
-          pageSize: object.pageSize,
+          page: object.page_index,
+          page_size: object.page_size,
           data: data,
-          pageCount: Math.ceil(
+          page_count: Math.ceil(
             (data && data.length > 0 ? data[0].RecordCount : 0) /
-              (object.pageSize ? object.pageSize : 1),
+              (object.page_size ? object.page_size : 1),
           ),
         });
       } else {

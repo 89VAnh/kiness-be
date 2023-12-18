@@ -1,13 +1,13 @@
 import { Request, Response } from "express";
 import { injectable } from "tsyringe";
-import { RequestService } from "../services/requestService";
-import { DatabaseError } from "../utils/DatabaseError";
 import {
   GetClientReadRequestModel,
   RequestModel,
   SearchClientRequestModel,
   SearchRequestModel,
 } from "../models/request";
+import { RequestService } from "../services/requestService";
+import { DatabaseError } from "../utils/DatabaseError";
 import { UserError } from "../utils/UserError";
 
 @injectable()
@@ -105,15 +105,15 @@ export class RequestController {
       var data = await this.reqService.searchRequests(object);
       if (data) {
         var results = {
-          totalItems: Math.ceil(
+          total_items: Math.ceil(
             data && data.length > 0 ? data[0].RecordCount : 0,
           ),
-          page: object.pageIndex,
-          pageSize: object.pageSize,
+          page: object.page_index,
+          page_size: object.page_size,
           data: data,
-          pageCount: Math.ceil(
+          page_count: Math.ceil(
             (data && data.length > 0 ? data[0].RecordCount : 0) /
-              (object.pageSize ? object.pageSize : 1),
+              (object.page_size ? object.page_size : 1),
           ),
         };
         res.json({ data: results, success: true });
@@ -138,15 +138,15 @@ export class RequestController {
       var data = await this.reqService.searchClientRequests(object);
       if (data) {
         var results = {
-          totalItems: Math.ceil(
+          total_items: Math.ceil(
             data && data.length > 0 ? data[0].RecordCount : 0,
           ),
-          page: object.pageIndex,
-          pageSize: object.pageSize,
+          page: object.page_index,
+          page_size: object.page_size,
           data: data,
-          pageCount: Math.ceil(
+          page_count: Math.ceil(
             (data && data.length > 0 ? data[0].RecordCount : 0) /
-              (object.pageSize ? object.pageSize : 1),
+              (object.page_size ? object.page_size : 1),
           ),
         };
         res.json({ data: results, success: true });

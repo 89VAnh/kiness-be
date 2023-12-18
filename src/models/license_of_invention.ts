@@ -9,7 +9,7 @@ export interface LicenseOfInventionModel extends BaseModel {
 }
 
 export interface SearchLicenseOfInventionModel {
-  pageIndex: number;
-  pageSize: number;
+  page_index: number;
+  page_size: number;
   search_content: string;
 }

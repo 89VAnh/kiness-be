@@ -67,8 +67,8 @@ export class NewsRepository {
   }
 
   async searchNews(
-    pageIndex: number,
-    pageSize: number,
+    page_index: number,
+    page_size: number,
     search_content: string,
     news_title: string,
     content: string,
@@ -76,8 +76,8 @@ export class NewsRepository {
     try {
       const sql = "CALL SearchNews(?, ?, ?, ?, ?, @err_code, @err_msg)";
       const [results] = await this.db.query(sql, [
-        pageIndex,
-        pageSize,
+        page_index,
+        page_size,
         search_content,
         news_title,
         content,

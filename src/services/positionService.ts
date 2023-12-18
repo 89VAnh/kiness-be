@@ -26,14 +26,14 @@ export class PositionService {
     return this.positionRepository.deletePosition(list_json, updated_by_id);
   }
   async searchPosition(
-    pageIndex: number,
-    pageSize: number,
+    page_index: number,
+    page_size: number,
     search_content: string,
     position_name: string,
   ): Promise<Position> {
     return this.positionRepository.searchPosition(
-      pageIndex,
-      pageSize,
+      page_index,
+      page_size,
       search_content,
       position_name,
     );

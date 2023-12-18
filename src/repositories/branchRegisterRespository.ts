@@ -32,8 +32,8 @@ export class BranchRegisterRepository {
       const sql =
         "CALL SearchBranchRegister(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, @err_code, @err_msg)";
       const [results] = await this.db.query(sql, [
-        search.pageIndex,
-        search.pageSize,
+        search.page_index,
+        search.page_size,
         search.user_id,
         search.search_conent,
         search.branch_name,

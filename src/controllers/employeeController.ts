@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { injectable } from "tsyringe";
-import { EmployeeService } from "../services/employeeService";
 import { Employee } from "../models/employee";
+import { EmployeeService } from "../services/employeeService";
 
 @injectable()
 export class EmployeeController {
@@ -76,8 +76,8 @@ export class EmployeeController {
   async searchEmployee(req: Request, res: Response): Promise<void> {
     try {
       const object = req.body as {
-        pageIndex: number;
-        pageSize: number;
+        page_index: number;
+        page_size: number;
         user_id: string;
         search_content: string;
         employee_id: string;
@@ -88,8 +88,8 @@ export class EmployeeController {
         department_id: number;
       };
       const data: any = await this.employeeService.searchEmployee(
-        object.pageIndex,
-        object.pageSize,
+        object.page_index,
+        object.page_size,
         object.user_id,
         object.search_content,
         object.employee_id,
@@ -100,15 +100,15 @@ export class EmployeeController {
       );
       if (data) {
         res.json({
-          totalItems: Math.ceil(
+          total_items: Math.ceil(
             data && data.length > 0 ? data[0].RecordCount : 0,
           ),
-          page: object.pageIndex,
-          pageSize: object.pageSize,
+          page: object.page_index,
+          page_size: object.page_size,
           data: data,
-          pageCount: Math.ceil(
+          page_count: Math.ceil(
             (data && data.length > 0 ? data[0].RecordCount : 0) /
-              (object.pageSize ? object.pageSize : 1),
+              (object.page_size ? object.page_size : 1),
           ),
         });
       } else {

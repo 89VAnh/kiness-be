@@ -61,8 +61,8 @@ export class VideoRepository {
     try {
       const sql = "CALL SearchVideos(?, ?, ?, ?, @err_code, @err_msg)";
       const [results] = await this.db.query(sql, [
-        object.pageIndex,
-        object.pageSize,
+        object.page_index,
+        object.page_size,
         object.search_content,
         object.is_foreign,
       ]);
