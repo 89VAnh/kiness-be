@@ -11,8 +11,8 @@ export interface BranchRegister extends BaseModel {
 }
 
 export interface SearchBranchRegister {
-  pageIndex: number;
-  pageSize: number;
+  page_index: number;
+  page_size: number;
   user_id: string;
   search_conent: string;
   branch_name: string;

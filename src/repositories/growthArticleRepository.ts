@@ -95,8 +95,8 @@ export class GrowthArticleRepository {
     try {
       const sql = "CALL SearchGrowthArticles(?, ?, ?, ?, @err_code, @err_msg)";
       const [results] = await this.db.query(sql, [
-        search_ga_model.pageIndex,
-        search_ga_model.pageSize,
+        search_ga_model.page_index,
+        search_ga_model.page_size,
         search_ga_model.search_content,
         search_ga_model.is_draft,
       ]);
@@ -113,8 +113,8 @@ export class GrowthArticleRepository {
       const sql =
         "CALL SearchClientGrowthArticles(?, ?, ?, @err_code, @err_msg)";
       const [results] = await this.db.query(sql, [
-        search_client_ga.pageIndex,
-        search_client_ga.pageSize,
+        search_client_ga.page_index,
+        search_client_ga.page_size,
         search_client_ga.search_content,
       ]);
       return results;

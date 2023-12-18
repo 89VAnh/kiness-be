@@ -30,8 +30,8 @@ export class FunctionService {
   }
 
   async searchFunction(
-    pageIndex: number,
-    pageSize: number,
+    page_index: number,
+    page_size: number,
     search_content: string,
     function_id: string,
     parent_id: string,
@@ -41,8 +41,8 @@ export class FunctionService {
     level: number,
   ): Promise<any> {
     let dbResults = await this.functionRepository.searchFunction(
-      pageIndex,
-      pageSize,
+      page_index,
+      page_size,
       search_content,
       function_id,
       parent_id,

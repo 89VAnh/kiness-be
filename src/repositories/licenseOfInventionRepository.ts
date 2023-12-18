@@ -75,8 +75,8 @@ export class LicenseOfInventionRepository {
     try {
       const sql = "CALL SearchLicenses(?, ?, ?, @err_code, @err_msg)";
       const [results] = await this.db.query(sql, [
-        search_li_model.pageIndex,
-        search_li_model.pageSize,
+        search_li_model.page_index,
+        search_li_model.page_size,
         search_li_model.search_content,
       ]);
       return results;

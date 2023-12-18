@@ -12,14 +12,14 @@ export interface GrowthStoryModel extends BaseModel {
 }
 
 export interface SearchGrowthStoryModel {
-  pageIndex: number;
-  pageSize: number;
+  page_index: number;
+  page_size: number;
   search_content: string;
   is_draft: boolean;
 }
 
 export interface SearchClientGrowthStoryModel {
-  pageIndex: number;
-  pageSize: number;
+  page_index: number;
+  page_size: number;
   search_content: string;
 }

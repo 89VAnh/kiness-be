@@ -1,11 +1,11 @@
 import { Request, Response } from "express";
 import { injectable } from "tsyringe";
-import { GrowthStoryService } from "../services/growthStoryService";
 import {
   GrowthStoryModel,
   SearchClientGrowthStoryModel,
   SearchGrowthStoryModel,
 } from "../models/growth-story";
+import { GrowthStoryService } from "../services/growthStoryService";
 import { DatabaseError } from "../utils/DatabaseError";
 import { UserError } from "../utils/UserError";
 
@@ -125,15 +125,15 @@ export class GrowthStoryController {
       const data = await this.growthStoryService.searchGrowthStories(object);
       if (data) {
         var results = {
-          totalItems: Math.ceil(
+          total_items: Math.ceil(
             data && data.length > 0 ? data[0].RecordCount : 0,
           ),
-          page: object.pageIndex,
-          pageSize: object.pageSize,
+          page: object.page_index,
+          page_size: object.page_size,
           data: data,
-          pageCount: Math.ceil(
+          page_count: Math.ceil(
             (data && data.length > 0 ? data[0].RecordCount : 0) /
-              (object.pageSize ? object.pageSize : 1),
+              (object.page_size ? object.page_size : 1),
           ),
         };
         res.json({ data: results, success: true });
@@ -159,15 +159,15 @@ export class GrowthStoryController {
         await this.growthStoryService.searchClientGrowthStories(object);
       if (data) {
         var results = {
-          totalItems: Math.ceil(
+          total_items: Math.ceil(
             data && data.length > 0 ? data[0].RecordCount : 0,
           ),
-          page: object.pageIndex,
-          pageSize: object.pageSize,
+          page: object.page_index,
+          page_size: object.page_size,
           data: data,
-          pageCount: Math.ceil(
+          page_count: Math.ceil(
             (data && data.length > 0 ? data[0].RecordCount : 0) /
-              (object.pageSize ? object.pageSize : 1),
+              (object.page_size ? object.page_size : 1),
           ),
         };
         res.json({ data: results, success: true });

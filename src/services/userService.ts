@@ -114,8 +114,8 @@ export class UserService {
   }
 
   async searchUser(
-    pageIndex: number,
-    pageSize: number,
+    page_index: number,
+    page_size: number,
     search_content: string,
     user_name: string,
     full_name: string,
@@ -126,8 +126,8 @@ export class UserService {
     description: string,
   ): Promise<any> {
     return this.userRepository.searchUser(
-      pageIndex,
-      pageSize,
+      page_index,
+      page_size,
       search_content,
       user_name,
       full_name,

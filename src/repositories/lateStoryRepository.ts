@@ -93,8 +93,8 @@ export class LateStoryRepository {
     try {
       const sql = "CALL SearchLateStories(?, ?, ?, ?, @err_code, @err_msg)";
       const [results] = await this.db.query(sql, [
-        search_ls_model.pageIndex,
-        search_ls_model.pageSize,
+        search_ls_model.page_index,
+        search_ls_model.page_size,
         search_ls_model.search_content,
         search_ls_model.is_draft,
       ]);
@@ -110,8 +110,8 @@ export class LateStoryRepository {
     try {
       const sql = "CALL SearchClientLateStories(?, ?, ?, @err_code, @err_msg)";
       const [results] = await this.db.query(sql, [
-        search_client_ls.pageIndex,
-        search_client_ls.pageSize,
+        search_client_ls.page_index,
+        search_client_ls.page_size,
         search_client_ls.search_content,
       ]);
       return results;

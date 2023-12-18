@@ -77,8 +77,8 @@ export class CustomerController {
   async searchCustomer(req: Request, res: Response): Promise<void> {
     try {
       const object = req.body as {
-        pageIndex: number;
-        pageSize: number;
+        page_index: number;
+        page_size: number;
         user_id: string;
         search_content: string;
         customer_id: string;
@@ -89,8 +89,8 @@ export class CustomerController {
         department_id: number;
       };
       const data: any = await this.customerService.searchCustomer(
-        object.pageIndex,
-        object.pageSize,
+        object.page_index,
+        object.page_size,
         object.user_id,
         object.search_content,
         object.customer_id,
@@ -100,15 +100,15 @@ export class CustomerController {
       );
       if (data) {
         res.json({
-          totalItems: Math.ceil(
+          total_items: Math.ceil(
             data && data.length > 0 ? data[0].RecordCount : 0,
           ),
-          page: object.pageIndex,
-          pageSize: object.pageSize,
+          page: object.page_index,
+          page_size: object.page_size,
           data: data,
-          pageCount: Math.ceil(
+          page_count: Math.ceil(
             (data && data.length > 0 ? data[0].RecordCount : 0) /
-              (object.pageSize ? object.pageSize : 1),
+              (object.page_size ? object.page_size : 1),
           ),
         });
       } else {

@@ -64,16 +64,16 @@ export class PositionRepository {
   }
 
   async searchPosition(
-    pageIndex: number,
-    pageSize: number,
+    page_index: number,
+    page_size: number,
     search_content: string,
     position_name: string,
   ): Promise<any> {
     try {
       const sql = "CALL SearchPositions(?, ?, ?, ?, @err_code, @err_msg)";
       const [results] = await this.db.query(sql, [
-        pageIndex,
-        pageSize,
+        page_index,
+        page_size,
         search_content,
         position_name,
       ]);
