@@ -62,8 +62,8 @@ export class FAQRepository {
     try {
       const sql = "CALL SearchFAQs(?, ?, ?, ?, @err_code, @err_msg)";
       let [results] = await this.db.query(sql, [
-        faq_search.pageIndex,
-        faq_search.pageSize,
+        faq_search.page_index,
+        faq_search.page_size,
         faq_search.search_content,
         faq_search.topic_id,
       ]);

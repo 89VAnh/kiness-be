@@ -65,16 +65,16 @@ export class FAQTopicRepository {
   }
 
   async searchFAQTopics(
-    pageIndex: number,
-    pageSize: number,
+    page_index: number,
+    page_size: number,
     searchContent?: string,
     topic_id?: number,
   ): Promise<any> {
     try {
       const sql = "CALL SearchFAQTopics(?, ?, ?, ?, @err_code, @err_msg)";
       var [results] = await this.db.query(sql, [
-        pageIndex,
-        pageSize,
+        page_index,
+        page_size,
         searchContent,
         topic_id,
       ]);

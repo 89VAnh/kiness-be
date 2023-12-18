@@ -8,8 +8,8 @@ export interface Video extends BaseModel {
 }
 
 export interface SearchVideoModel {
-  pageIndex: number;
-  pageSize: number;
+  page_index: number;
+  page_size: number;
   search_content: string;
   is_foreign: boolean;
 }

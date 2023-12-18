@@ -23,15 +23,15 @@ export class NewsService {
   }
 
   async searchNews(
-    pageIndex: number,
-    pageSize: number,
+    page_index: number,
+    page_size: number,
     search_content: string,
     news_title: string,
     content: string,
   ): Promise<News> {
     return this.newsRepository.searchNews(
-      pageIndex,
-      pageSize,
+      page_index,
+      page_size,
       search_content,
       news_title,
       content,

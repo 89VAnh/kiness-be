@@ -65,8 +65,8 @@ export class BookRepository {
     try {
       const sql = "CALL SearchBooks(?, ?, ?, ?, @err_code, @err_msg)";
       const [results] = await this.db.query(sql, [
-        search_b_model.pageIndex,
-        search_b_model.pageSize,
+        search_b_model.page_index,
+        search_b_model.page_size,
         search_b_model.search_content,
         search_b_model.author_id,
       ]);

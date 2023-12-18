@@ -71,15 +71,15 @@ export class PageRepository {
   }
 
   async searchPage(
-    pageIndex: number,
-    pageSize: number,
+    page_index: number,
+    page_size: number,
     search_content: string,
   ): Promise<any> {
     try {
       const sql = "CALL SearchPage(?, ?, ?, @err_code, @err_msg)";
       const [results] = await this.db.query(sql, [
-        pageIndex,
-        pageSize,
+        page_index,
+        page_size,
         search_content,
       ]);
       return results;

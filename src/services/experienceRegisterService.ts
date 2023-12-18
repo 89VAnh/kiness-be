@@ -51,8 +51,8 @@ export class ExperienceRegisterService {
   }
 
   async printExperienceRegister(search: SearchExperienceRegister) {
-    search.pageIndex = 0;
-    search.pageSize = 0;
+    search.page_index = 0;
+    search.page_size = 0;
     const data: ExperienceRegister[] =
       await this.experienceRepository.searchExperienceRegister(search);
 

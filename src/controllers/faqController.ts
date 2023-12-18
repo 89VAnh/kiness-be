@@ -1,8 +1,8 @@
 import { Request, Response } from "express";
 import { injectable } from "tsyringe";
-import { DatabaseError } from "../utils/DatabaseError";
-import { FAQService } from "../services/faqService";
 import { FAQ, SearchFAQModel } from "../models/faq";
+import { FAQService } from "../services/faqService";
+import { DatabaseError } from "../utils/DatabaseError";
 
 @injectable()
 export class FAQController {
@@ -74,15 +74,15 @@ export class FAQController {
       var data = await this.faqService.searchFAQs(object);
       if (data) {
         var results = {
-          totalItems: Math.ceil(
+          total_items: Math.ceil(
             data && data.length > 0 ? data[0].RecordCount : 0,
           ),
-          page: object.pageIndex,
-          pageSize: object.pageSize,
+          page: object.page_index,
+          page_size: object.page_size,
           data: data,
-          pageCount: Math.ceil(
+          page_count: Math.ceil(
             (data && data.length > 0 ? data[0].RecordCount : 0) /
-              (object.pageSize ? object.pageSize : 1),
+              (object.page_size ? object.page_size : 1),
           ),
         };
         res.json({ data: results, success: true });

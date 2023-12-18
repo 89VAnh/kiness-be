@@ -9,8 +9,8 @@ export interface BookModel extends BaseModel {
 }
 
 export interface SearchBookModel {
-  pageIndex: number;
-  pageSize: number;
+  page_index: number;
+  page_size: number;
   search_content: string;
   author_id: number;
 }

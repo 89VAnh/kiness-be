@@ -38,8 +38,8 @@ export class EmployeeService {
     return this.employeeRepository.deleteEmployee(list_json, updated_by_id);
   }
   async searchEmployee(
-    pageIndex: number,
-    pageSize: number,
+    page_index: number,
+    page_size: number,
     user_id: string,
     search_content: string,
     employee_id: string,
@@ -49,8 +49,8 @@ export class EmployeeService {
     position_id: number,
   ) {
     let list = await this.employeeRepository.searchEmployee(
-      pageIndex,
-      pageSize,
+      page_index,
+      page_size,
       user_id,
       search_content,
       employee_id,

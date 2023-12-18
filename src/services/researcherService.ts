@@ -23,15 +23,15 @@ export class ResearcherService {
   }
 
   async searchResearcher(
-    pageIndex: number,
-    pageSize: number,
+    page_index: number,
+    page_size: number,
     search_content: string,
     researcher_title: string,
     content: string,
   ): Promise<Researcher> {
     return this.researcherRepository.searchResearcher(
-      pageIndex,
-      pageSize,
+      page_index,
+      page_size,
       search_content,
       researcher_title,
       content,

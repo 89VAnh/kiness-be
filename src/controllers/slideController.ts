@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { injectable } from "tsyringe";
-import { SlideService } from "../services/slideService";
 import { Slide } from "../models/slide";
+import { SlideService } from "../services/slideService";
 
 @injectable()
 export class SlideController {
@@ -81,7 +81,7 @@ export class SlideController {
       );
       if (data) {
         res.json({
-          totalItems: Math.ceil(
+          total_items: Math.ceil(
             data && data.length > 0 ? data[0].RecordCount : 0,
           ),
           slide: object.slideIndex,

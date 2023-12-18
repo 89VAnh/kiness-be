@@ -1,11 +1,11 @@
 import { Request, Response } from "express";
 import { injectable } from "tsyringe";
-import { LateStoryService } from "../services/lateStoryService";
 import {
   LateStoryModel,
   SearchClientLateStoryModel,
   SearchLateStoryModel,
 } from "../models/late-story";
+import { LateStoryService } from "../services/lateStoryService";
 import { DatabaseError } from "../utils/DatabaseError";
 import { UserError } from "../utils/UserError";
 
@@ -123,15 +123,15 @@ export class LateStoryController {
       const data = await this.lateStoryService.searchLateStories(object);
       if (data) {
         var results = {
-          totalItems: Math.ceil(
+          total_items: Math.ceil(
             data && data.length > 0 ? data[0].RecordCount : 0,
           ),
-          page: object.pageIndex,
-          pageSize: object.pageSize,
+          page: object.page_index,
+          page_size: object.page_size,
           data: data,
-          pageCount: Math.ceil(
+          page_count: Math.ceil(
             (data && data.length > 0 ? data[0].RecordCount : 0) /
-              (object.pageSize ? object.pageSize : 1),
+              (object.page_size ? object.page_size : 1),
           ),
         };
         res.json({ data: results, success: true });
@@ -156,15 +156,15 @@ export class LateStoryController {
       const data = await this.lateStoryService.searchClientLateStories(object);
       if (data) {
         var results = {
-          totalItems: Math.ceil(
+          total_items: Math.ceil(
             data && data.length > 0 ? data[0].RecordCount : 0,
           ),
-          page: object.pageIndex,
-          pageSize: object.pageSize,
+          page: object.page_index,
+          page_size: object.page_size,
           data: data,
-          pageCount: Math.ceil(
+          page_count: Math.ceil(
             (data && data.length > 0 ? data[0].RecordCount : 0) /
-              (object.pageSize ? object.pageSize : 1),
+              (object.page_size ? object.page_size : 1),
           ),
         };
         res.json({ data: results, success: true });

@@ -79,8 +79,8 @@ export class ResearcherRepository {
   }
 
   async searchResearcher(
-    pageIndex: number,
-    pageSize: number,
+    page_index: number,
+    page_size: number,
     search_content: string,
     researcher_name: string,
     position: string,
@@ -88,8 +88,8 @@ export class ResearcherRepository {
     try {
       const sql = "CALL SearchResearchers(?, ?, ?, ?, ?, @err_code, @err_msg)";
       const [results] = await this.db.query(sql, [
-        pageIndex,
-        pageSize,
+        page_index,
+        page_size,
         search_content,
         researcher_name,
         position,
