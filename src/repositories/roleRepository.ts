@@ -74,8 +74,8 @@ export class RoleRepository {
     try {
       const sql = "CALL SearchRole(?, ?, ?, ?, ?, ?, @err_code, @err_msg)";
       const [results] = await this.db.query(sql, [
-        search.pageIndex,
-        search.pageSize,
+        search.page_index,
+        search.page_size,
         search.search_content,
         search.role_name,
         search.role_code,

@@ -12,14 +12,14 @@ export interface LateStoryModel extends BaseModel {
 }
 
 export interface SearchLateStoryModel {
-  pageIndex: number;
-  pageSize: number;
+  page_index: number;
+  page_size: number;
   search_content: string;
   is_draft: boolean;
 }
 
 export interface SearchClientLateStoryModel {
-  pageIndex: number;
-  pageSize: number;
+  page_index: number;
+  page_size: number;
   search_content: string;
 }

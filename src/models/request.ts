@@ -19,15 +19,15 @@ export interface GetClientReadRequestModel {
 }
 
 export interface SearchRequestModel {
-  pageIndex: number;
-  pageSize: number;
+  page_index: number;
+  page_size: number;
   search_content: string;
   is_accepted: boolean;
   is_answered: boolean;
 }
 
 export interface SearchClientRequestModel {
-  pageIndex: number;
-  pageSize: number;
+  page_index: number;
+  page_size: number;
   search_content: string;
 }

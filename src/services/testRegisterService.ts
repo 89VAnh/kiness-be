@@ -31,8 +31,8 @@ export class TestRegisterService {
   }
 
   async printTestRegister(search: SearchTestRegister) {
-    search.pageIndex = 0;
-    search.pageSize = 0;
+    search.page_index = 0;
+    search.page_size = 0;
     const data: TestRegister[] =
       await this.testRepository.searchTestRegister(search);
 

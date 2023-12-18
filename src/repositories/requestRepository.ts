@@ -94,8 +94,8 @@ export class RequestRepository {
     try {
       const sql = "CALL SearchRequests(?, ?, ?, ?, ?, @err_code, @err_msg)";
       const [results] = await this.db.query(sql, [
-        model.pageIndex,
-        model.pageSize,
+        model.page_index,
+        model.page_size,
         model.search_content,
         model.is_accepted,
         model.is_answered,
@@ -110,8 +110,8 @@ export class RequestRepository {
     try {
       const sql = "CALL SearchClientRequests(?, ?, ?, @err_code, @err_msg)";
       const [results] = await this.db.query(sql, [
-        model.pageIndex,
-        model.pageSize,
+        model.page_index,
+        model.page_size,
         model.search_content,
       ]);
       return results;

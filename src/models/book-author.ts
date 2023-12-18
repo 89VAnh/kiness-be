@@ -6,7 +6,7 @@ export interface BookAuthorModel extends BaseModel {
 }
 
 export interface SearchBookAuthorModel {
-  pageIndex: number;
-  pageSize: number;
+  page_index: number;
+  page_size: number;
   search_content: string;
 }

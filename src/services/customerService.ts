@@ -40,8 +40,8 @@ export class CustomerService {
   }
 
   async searchCustomer(
-    pageIndex: number,
-    pageSize: number,
+    page_index: number,
+    page_size: number,
     user_id: string,
     search_content: string,
     customer_id: string,
@@ -50,8 +50,8 @@ export class CustomerService {
     email: string,
   ) {
     let list = await this.customerRepository.searchCustomer(
-      pageIndex,
-      pageSize,
+      page_index,
+      page_size,
       user_id,
       search_content,
       customer_id,

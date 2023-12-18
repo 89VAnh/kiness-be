@@ -1,9 +1,9 @@
-import { injectable } from "tsyringe";
 import { Request, Response } from "express";
+import { injectable } from "tsyringe";
 import { SearchVideoModel, Video } from "../models/video";
+import { VideoService } from "../services/videoService";
 import { DatabaseError } from "../utils/DatabaseError";
 import { UserError } from "../utils/UserError";
-import { VideoService } from "../services/videoService";
 
 @injectable()
 export class VideoController {
@@ -83,15 +83,15 @@ export class VideoController {
       const data = await this.videoService.searchVideos(object);
       if (data) {
         var results = {
-          totalItems: Math.ceil(
+          total_items: Math.ceil(
             data && data.length > 0 ? data[0].RecordCount : 0,
           ),
-          page: object.pageIndex,
-          pageSize: object.pageSize,
+          page: object.page_index,
+          page_size: object.page_size,
           data: data,
-          pageCount: Math.ceil(
+          page_count: Math.ceil(
             (data && data.length > 0 ? data[0].RecordCount : 0) /
-              (object.pageSize ? object.pageSize : 1),
+              (object.page_size ? object.page_size : 1),
           ),
         };
         res.json({ data: results, success: true });

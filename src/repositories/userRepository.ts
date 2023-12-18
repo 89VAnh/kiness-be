@@ -169,8 +169,8 @@ export class UserRepository {
   }
 
   async searchUser(
-    pageIndex: number,
-    pageSize: number,
+    page_index: number,
+    page_size: number,
     search_content: string,
     user_name: string,
     full_name: string,
@@ -184,8 +184,8 @@ export class UserRepository {
       const sql =
         "CALL SearchUser(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, @err_code, @err_msg)";
       const [results] = await this.db.query(sql, [
-        pageIndex,
-        pageSize,
+        page_index,
+        page_size,
         search_content,
         user_name,
         description,

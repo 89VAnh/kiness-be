@@ -72,8 +72,8 @@ export class CityRepository {
     try {
       const sql = "CALL SearchCity(?, ?, ?, ?, ?, @err_code, @err_msg)";
       const [results] = await this.db.query(sql, [
-        search.pageIndex,
-        search.pageSize,
+        search.page_index,
+        search.page_size,
         search.search_content,
         search.city_name,
         search.code,

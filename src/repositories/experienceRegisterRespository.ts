@@ -82,8 +82,8 @@ export class ExperienceRegisterRepository {
       const sql =
         "CALL SearchExperienceRegister(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, @err_code, @err_msg)";
       const [results] = await this.db.query(sql, [
-        search.pageIndex,
-        search.pageSize,
+        search.page_index,
+        search.page_size,
         search.user_id,
         search.search_content,
         search.branch_name,

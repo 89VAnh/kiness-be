@@ -1,11 +1,11 @@
 import { Request, Response } from "express";
 import { injectable } from "tsyringe";
-import { PostureStoryService } from "../services/postureStoryService";
 import {
   PostureStoryModel,
   SearchClientPostureStoryModel,
   SearchPostureStoryModel,
 } from "../models/posture-story";
+import { PostureStoryService } from "../services/postureStoryService";
 import { DatabaseError } from "../utils/DatabaseError";
 import { UserError } from "../utils/UserError";
 
@@ -127,15 +127,15 @@ export class PostureStoryController {
       const data = await this.postureStoryService.searchPostureStories(object);
       if (data) {
         var results = {
-          totalItems: Math.ceil(
+          total_items: Math.ceil(
             data && data.length > 0 ? data[0].RecordCount : 0,
           ),
-          page: object.pageIndex,
-          pageSize: object.pageSize,
+          page: object.page_index,
+          page_size: object.page_size,
           data: data,
-          pageCount: Math.ceil(
+          page_count: Math.ceil(
             (data && data.length > 0 ? data[0].RecordCount : 0) /
-              (object.pageSize ? object.pageSize : 1),
+              (object.page_size ? object.page_size : 1),
           ),
         };
         res.json({ data: results, success: true });
@@ -161,15 +161,15 @@ export class PostureStoryController {
         await this.postureStoryService.searchClientPostureStories(object);
       if (data) {
         var results = {
-          totalItems: Math.ceil(
+          total_items: Math.ceil(
             data && data.length > 0 ? data[0].RecordCount : 0,
           ),
-          page: object.pageIndex,
-          pageSize: object.pageSize,
+          page: object.page_index,
+          page_size: object.page_size,
           data: data,
-          pageCount: Math.ceil(
+          page_count: Math.ceil(
             (data && data.length > 0 ? data[0].RecordCount : 0) /
-              (object.pageSize ? object.pageSize : 1),
+              (object.page_size ? object.page_size : 1),
           ),
         };
         res.json({ data: results, success: true });

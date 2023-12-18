@@ -95,8 +95,8 @@ export class ObesityStoryRepository {
     try {
       const sql = "CALL SearchObesityStories(?, ?, ?, ?, @err_code, @err_msg)";
       const [results] = await this.db.query(sql, [
-        search_os_model.pageIndex,
-        search_os_model.pageSize,
+        search_os_model.page_index,
+        search_os_model.page_size,
         search_os_model.search_content,
         search_os_model.is_draft,
       ]);
@@ -113,8 +113,8 @@ export class ObesityStoryRepository {
       const sql =
         "CALL SearchClientObesityStories(?, ?, ?, @err_code, @err_msg)";
       const [results] = await this.db.query(sql, [
-        search_client_os.pageIndex,
-        search_client_os.pageSize,
+        search_client_os.page_index,
+        search_client_os.page_size,
         search_client_os.search_content,
       ]);
       return results;

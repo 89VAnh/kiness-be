@@ -8,8 +8,8 @@ export interface FAQ extends BaseModel {
 }
 
 export interface SearchFAQModel {
-  pageIndex: number;
-  pageSize: number;
+  page_index: number;
+  page_size: number;
   search_content: string;
   topic_id: number;
 }

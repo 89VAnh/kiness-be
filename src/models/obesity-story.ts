@@ -12,14 +12,14 @@ export interface ObesityStoryModel extends BaseModel {
 }
 
 export interface SearchObesityStoryModel {
-  pageIndex: number;
-  pageSize: number;
+  page_index: number;
+  page_size: number;
   search_content: string;
   is_draft: boolean;
 }
 
 export interface SearchClientObesityStoryModel {
-  pageIndex: number;
-  pageSize: number;
+  page_index: number;
+  page_size: number;
   search_content: string;
 }

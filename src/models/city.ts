@@ -7,8 +7,8 @@ export interface City extends BaseModel {
 }
 
 export interface SearchCity {
-  pageIndex: number;
-  pageSize: number;
+  page_index: number;
+  page_size: number;
   search_content: string;
   city_name: string;
   code: string;
