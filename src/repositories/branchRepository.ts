@@ -51,10 +51,10 @@ export class BranchRepository {
     }
   }
 
-  async deleteBranch(list_json: any, updated_by_id: string): Promise<any> {
+  async deleteBranch(list_json: any, lu_user_id: string): Promise<any> {
     try {
       const sql = "CALL DeleteBranchMulti(?, ?, @err_code, @err_msg)";
-      await this.db.query(sql, [JSON.stringify(list_json), updated_by_id]);
+      await this.db.query(sql, [JSON.stringify(list_json), lu_user_id]);
       return true;
     } catch (error: any) {
       throw new Error(error.message);

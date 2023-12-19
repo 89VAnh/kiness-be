@@ -18,8 +18,8 @@ export class ResearcherService {
     return this.researcherRepository.updateResearcher(researcher);
   }
 
-  async deleteResearcher(list_json: any, updated_by_id: string): Promise<any> {
-    return this.researcherRepository.deleteResearcher(list_json, updated_by_id);
+  async deleteResearcher(list_json: any, lu_user_id: string): Promise<any> {
+    return this.researcherRepository.deleteResearcher(list_json, lu_user_id);
   }
 
   async searchResearcher(

@@ -22,8 +22,8 @@ export class RoleService {
     return this.roleRepository.updateRole(role);
   }
 
-  async deleteRole(list_json: any, updated_by_id: string): Promise<any> {
-    return this.roleRepository.deleteRole(list_json, updated_by_id);
+  async deleteRole(list_json: any, lu_user_id: string): Promise<any> {
+    return this.roleRepository.deleteRole(list_json, lu_user_id);
   }
   async searchRole(search: SearchRole): Promise<Role> {
     return this.roleRepository.searchRole(search);

@@ -39,10 +39,10 @@ export class SlideRepository {
     }
   }
 
-  async deleteSlide(list_json: any, updated_by_id: string): Promise<any> {
+  async deleteSlide(list_json: any, lu_user_id: string): Promise<any> {
     try {
       const sql = "CALL DeleteSlideMulti(?, ?, @err_code, @err_msg)";
-      await this.db.query(sql, [JSON.stringify(list_json), updated_by_id]);
+      await this.db.query(sql, [JSON.stringify(list_json), lu_user_id]);
       return true;
     } catch (error: any) {
       throw new Error(error.message);

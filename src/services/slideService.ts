@@ -1,6 +1,6 @@
 import { injectable } from "tsyringe";
-import { SlideRepository } from "../repositories/slideRepository";
 import { Slide } from "../models/slide";
+import { SlideRepository } from "../repositories/slideRepository";
 
 @injectable()
 export class SlideService {
@@ -22,8 +22,8 @@ export class SlideService {
     return this.slideRepository.updateSlide(slide);
   }
 
-  async deleteSlide(list_json: any, updated_by_id: string): Promise<any> {
-    return this.slideRepository.deleteSlide(list_json, updated_by_id);
+  async deleteSlide(list_json: any, lu_user_id: string): Promise<any> {
+    return this.slideRepository.deleteSlide(list_json, lu_user_id);
   }
   async searchSlide(
     slideIndex: number,

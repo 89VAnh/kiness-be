@@ -16,6 +16,7 @@ import faqTopicRouter from "./faqTopicRouter";
 import funcRouter from "./functionRouter";
 import growthArticleRouter from "./growthArticleRouter";
 import growthStoryRouter from "./growthStoryRouter";
+import historyRouter from "./historyRouter";
 import lateStoryRouter from "./lateStoryRouter";
 import licenseOfInventionRouter from "./licenseOfInventionRouter";
 import newsRouter from "./newsRouter";
@@ -66,5 +67,6 @@ router.use("/license-of-invention", licenseOfInventionRouter);
 router.use("/book-author", bookAuthorRouter);
 router.use("/book", bookRouter);
 router.use("/function", funcRouter);
+router.use("/history", historyRouter);
 
 export default router;

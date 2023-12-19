@@ -27,11 +27,11 @@ export class ResearchArticleService {
 
   async deleteResearchArticle(
     list_json: any,
-    updated_by_id: string,
+    lu_user_id: string,
   ): Promise<any> {
     return this.researchArticleRepository.deleteResearchArticle(
       list_json,
-      updated_by_id,
+      lu_user_id,
     );
   }
   async searchResearchArticle(

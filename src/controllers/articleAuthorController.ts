@@ -48,10 +48,10 @@ export class ArticleAuthorController {
 
   async deleteArticleAuthor(req: Request, res: Response): Promise<void> {
     try {
-      const object = req.body.data as { list_json: any; updated_by_id: string };
+      const object = req.body.data as { list_json: any; lu_user_id: string };
       await this.articleAuthorService.deleteArticleAuthor(
         object.list_json,
-        object.updated_by_id,
+        object.lu_user_id,
       );
       res.json({ message: "Đã xóa thành công", results: true });
     } catch (error: any) {
