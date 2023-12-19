@@ -34,6 +34,7 @@ import funcRouter from "./functionRouter";
 import actionRouter from "./actionRouter";
 import roleFunctionRouter from "./roleFunctionRouter";
 import permissionRouter from "./rolePermissionRouter";
+import userRoleRouter from "./userRoleRouter";
 
 const router = Router();
 
@@ -72,5 +73,6 @@ router.use("/function", funcRouter);
 router.use("/action", actionRouter);
 router.use("/role-function", roleFunctionRouter);
 router.use("/permission", permissionRouter);
+router.use("/user-role", userRoleRouter);
 
 export default router;
