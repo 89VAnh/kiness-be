@@ -13,7 +13,8 @@ import employeeRouter from "./employeeRouter";
 import experienceRegisterRouter from "./experienceRegisterRouter";
 import faqRouter from "./faqRouter";
 import faqTopicRouter from "./faqTopicRouter";
-import growthArticleRouter from "./growthArticleRouter copy";
+import funcRouter from "./functionRouter";
+import growthArticleRouter from "./growthArticleRouter";
 import growthStoryRouter from "./growthStoryRouter";
 import lateStoryRouter from "./lateStoryRouter";
 import licenseOfInventionRouter from "./licenseOfInventionRouter";
@@ -30,7 +31,6 @@ import slideRouter from "./slideRouter";
 import testRegisterRouter from "./testRegisterRouter";
 import userRouter from "./userRouter";
 import videoRouter from "./videoRouter";
-import funcRouter from "./functionRouter";
 
 const router = Router();
 
