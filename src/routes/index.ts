@@ -31,6 +31,7 @@ import testRegisterRouter from "./testRegisterRouter";
 import userRouter from "./userRouter";
 import videoRouter from "./videoRouter";
 import funcRouter from "./functionRouter";
+import actionRouter from "./actionRouter";
 
 const router = Router();
 
@@ -66,5 +67,6 @@ router.use("/license-of-invention", licenseOfInventionRouter);
 router.use("/book-author", bookAuthorRouter);
 router.use("/book", bookRouter);
 router.use("/function", funcRouter);
+router.use("/action", actionRouter);
 
 export default router;
