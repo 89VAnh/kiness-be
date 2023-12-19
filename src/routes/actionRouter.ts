@@ -7,7 +7,6 @@ const actionRouter = Router();
 const actionController = container.resolve(ActionController);
 actionRouter.get(
     '/getbyid/:id', 
-    authenticate,
     actionController.getActionById.bind(actionController)
     );
 actionRouter.post(
@@ -27,6 +26,5 @@ actionRouter.post(
     );
 actionRouter.post(
     '/search',
-    authenticate, 
     actionController.searchAction.bind(actionController));
 export default actionRouter;
