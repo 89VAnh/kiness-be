@@ -1,13 +1,11 @@
-import { Request, Response } from 'express';
+import { Request, Response } from "express";
 import { injectable } from "tsyringe";
-import { ActionService } from '../services/actionService';
-import { Action } from '../models/action';
+import { ActionService } from "../services/actionService";
+import { Action } from "../models/action";
 
 @injectable()
 export class ActionController {
-  constructor(private actionService: ActionService
-  ) { }
-
+  constructor(private actionService: ActionService) {}
 
   async getActionById(req: Request, res: Response): Promise<void> {
     try {
@@ -16,21 +14,20 @@ export class ActionController {
       if (action) {
         res.json(action);
       } else {
-        res.json({ message: 'Bản ghi không tồn tại' });
+        res.json({ message: "Bản ghi không tồn tại" });
       }
     } catch (error: any) {
       res.json({ message: error.message });
     }
   }
 
-
   async createAction(req: Request, res: Response): Promise<void> {
     try {
       const action = req.body as Action;
       await this.actionService.createAction(action);
-      res.json({ message: 'Đã thêm thành công',results:true });
+      res.json({ message: "Đã thêm thành công", results: true });
     } catch (error: any) {
-      res.json({ message: error.message, results:false });
+      res.json({ message: error.message, results: false });
     }
   }
 
@@ -38,46 +35,63 @@ export class ActionController {
     try {
       const action = req.body as Action;
       await this.actionService.updateAction(action);
-      res.json({ message: 'Đã cập nhật thành công',results:true });
+      res.json({ message: "Đã cập nhật thành công", results: true });
     } catch (error: any) {
-      res.json({ message: error.message, results:false });
+      res.json({ message: error.message, results: false });
     }
   }
 
   async deleteAction(req: Request, res: Response): Promise<void> {
     try {
-      const object = req.body as {list_json:any, updated_by_id:string};
-      await this.actionService.deleteAction(object.list_json, object.updated_by_id);
-      res.json({ message: 'Đã xóa thành công',results:true });
+      const object = req.body as { list_json: any; updated_by_id: string };
+      await this.actionService.deleteAction(
+        object.list_json,
+        object.updated_by_id,
+      );
+      res.json({ message: "Đã xóa thành công", results: true });
     } catch (error: any) {
-      res.json({ message: error.message, results:false });
+      res.json({ message: error.message, results: false });
     }
   }
 
   async searchAction(req: Request, res: Response): Promise<void> {
     try {
-      const object = req.body as {pageIndex:number, pageSize:number, search_content:string, function_id:string, action_code:string, action_name:string, description:string};
-      const data:any = await this.actionService.searchAction(object.pageIndex,
-        object.pageSize, 
+      const object = req.body as {
+        pageIndex: number;
+        pageSize: number;
+        search_content: string;
+        function_id: string;
+        action_code: string;
+        action_name: string;
+        description: string;
+      };
+      const data: any = await this.actionService.searchAction(
+        object.pageIndex,
+        object.pageSize,
         object.search_content,
         object.function_id,
         object.action_code,
         object.action_name,
-        object.description);
+        object.description,
+      );
       if (data) {
-        res.json( {
-          totalItems: Math.ceil(data && data.length >0 ? data[0].RecordCount:0),
+        res.json({
+          totalItems: Math.ceil(
+            data && data.length > 0 ? data[0].RecordCount : 0,
+          ),
           page: object.pageIndex,
           pageSize: object.pageSize,
           data: data,
-          pageCount: Math.ceil((data && data.length >0 ? data[0].RecordCount:0) / (object.pageSize?object.pageSize:1))
+          pageCount: Math.ceil(
+            (data && data.length > 0 ? data[0].RecordCount : 0) /
+              (object.pageSize ? object.pageSize : 1),
+          ),
         });
       } else {
-        res.json({ message: 'Không tồn tại kết quả tìm kiếm' });
+        res.json({ message: "Không tồn tại kết quả tìm kiếm" });
       }
     } catch (error: any) {
       res.json({ message: error.message });
     }
   }
-
 }
