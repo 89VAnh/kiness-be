@@ -32,6 +32,7 @@ import userRouter from "./userRouter";
 import videoRouter from "./videoRouter";
 import funcRouter from "./functionRouter";
 import actionRouter from "./actionRouter";
+import roleFunctionRouter from "./roleFunctionRouter";
 
 const router = Router();
 
@@ -68,5 +69,6 @@ router.use("/book-author", bookAuthorRouter);
 router.use("/book", bookRouter);
 router.use("/function", funcRouter);
 router.use("/action", actionRouter);
+router.use("/role-function", roleFunctionRouter);
 
 export default router;
