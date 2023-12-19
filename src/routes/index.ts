@@ -33,6 +33,7 @@ import videoRouter from "./videoRouter";
 import funcRouter from "./functionRouter";
 import actionRouter from "./actionRouter";
 import roleFunctionRouter from "./roleFunctionRouter";
+import permissionRouter from "./rolePermissionRouter";
 
 const router = Router();
 
@@ -70,5 +71,6 @@ router.use("/book", bookRouter);
 router.use("/function", funcRouter);
 router.use("/action", actionRouter);
 router.use("/role-function", roleFunctionRouter);
+router.use("/permission", permissionRouter);
 
 export default router;
