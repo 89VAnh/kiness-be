@@ -1,5 +1,6 @@
 import { Router } from "express";
 import core_router from "../core/routes";
+import actionRouter from "./actionRouter";
 import articleAuthorRouter from "./articleAuthorRouter";
 import bookAuthorRouter from "./bookAuthorRouter";
 import bookRouter from "./bookRouter";
@@ -27,6 +28,8 @@ import postureStoryRouter from "./postureStoryRouter";
 import requestRouter from "./requestRouter";
 import researchArticleRouter from "./researchArticleRouter";
 import researcherRouter from "./researcherRouter";
+import roleFunctionRouter from "./roleFunctionRouter";
+import permissionRouter from "./rolePermissionRouter";
 import roleRouter from "./roleRouter";
 import slideRouter from "./slideRouter";
 import testRegisterRouter from "./testRegisterRouter";
@@ -67,6 +70,9 @@ router.use("/license-of-invention", licenseOfInventionRouter);
 router.use("/book-author", bookAuthorRouter);
 router.use("/book", bookRouter);
 router.use("/function", funcRouter);
+router.use("/action", actionRouter);
+router.use("/role-function", roleFunctionRouter);
+router.use("/permission", permissionRouter);
 router.use("/history", historyRouter);
 
 export default router;
