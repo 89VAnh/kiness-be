@@ -22,8 +22,8 @@ export class PageService {
     return this.pageRepository.updatePage(page);
   }
 
-  async deletePage(list_json: any, updated_by_id: string): Promise<any> {
-    return this.pageRepository.deletePage(list_json, updated_by_id);
+  async deletePage(list_json: any, lu_user_id: string): Promise<any> {
+    return this.pageRepository.deletePage(list_json, lu_user_id);
   }
   async searchPage(
     page_index: number,

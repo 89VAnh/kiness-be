@@ -21,13 +21,10 @@ export class ArticleAuthorService {
     return this.articleAuthorRepository.updateArticleAuthor(articleAuthor);
   }
 
-  async deleteArticleAuthor(
-    list_json: any,
-    updated_by_id: string,
-  ): Promise<any> {
+  async deleteArticleAuthor(list_json: any, lu_user_id: string): Promise<any> {
     return this.articleAuthorRepository.deleteArticleAuthor(
       list_json,
-      updated_by_id,
+      lu_user_id,
     );
   }
   async searchArticleAuthor(

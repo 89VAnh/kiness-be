@@ -23,11 +23,8 @@ export class TestRegisterService {
     return this.testRepository.searchTestRegister(search);
   }
 
-  async deleteTestRegister(
-    list_json: any,
-    updated_by_id: string,
-  ): Promise<any> {
-    return this.testRepository.deleteTestRegister(list_json, updated_by_id);
+  async deleteTestRegister(list_json: any, lu_user_id: string): Promise<any> {
+    return this.testRepository.deleteTestRegister(list_json, lu_user_id);
   }
 
   async printTestRegister(search: SearchTestRegister) {
