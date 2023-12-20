@@ -35,6 +35,7 @@ import actionRouter from "./actionRouter";
 import roleFunctionRouter from "./roleFunctionRouter";
 import permissionRouter from "./rolePermissionRouter";
 import userRoleRouter from "./userRoleRouter";
+import diagramRouter from "./diagramRouter";
 
 const router = Router();
 
@@ -74,5 +75,6 @@ router.use("/action", actionRouter);
 router.use("/role-function", roleFunctionRouter);
 router.use("/permission", permissionRouter);
 router.use("/user-role", userRoleRouter);
+router.use("/diagram", diagramRouter);
 
 export default router;
