@@ -35,8 +35,8 @@ export class CustomerService {
     return this.customerRepository.updateCustomer(customer);
   }
 
-  async deleteCustomer(list_json: any, updated_by_id: string): Promise<any> {
-    return this.customerRepository.deleteCustomer(list_json, updated_by_id);
+  async deleteCustomer(list_json: any, lu_user_id: string): Promise<any> {
+    return this.customerRepository.deleteCustomer(list_json, lu_user_id);
   }
 
   async searchCustomer(

@@ -1,7 +1,7 @@
 import { injectable } from "tsyringe";
-import { FunctionRepository } from "../repositories/functionRepository";
-import { FunctionModel } from "../models/function";
 import { v4 as uuidv4 } from "uuid";
+import { FunctionModel } from "../models/function";
+import { FunctionRepository } from "../repositories/functionRepository";
 import { Tree } from "../utils/tree";
 
 @injectable()
@@ -25,8 +25,8 @@ export class FunctionService {
     return this.functionRepository.updateFunction(func);
   }
 
-  async deleteFunction(list_json: any, updated_by_id: string): Promise<any> {
-    return this.functionRepository.deleteFunction(list_json, updated_by_id);
+  async deleteFunction(list_json: any, lu_user_id: string): Promise<any> {
+    return this.functionRepository.deleteFunction(list_json, lu_user_id);
   }
 
   async searchFunction(

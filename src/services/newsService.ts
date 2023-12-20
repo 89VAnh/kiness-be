@@ -1,6 +1,6 @@
 import { injectable } from "tsyringe";
-import { NewsRepository } from "../repositories/newsRepository";
 import { News } from "../models/news";
+import { NewsRepository } from "../repositories/newsRepository";
 
 @injectable()
 export class NewsService {
@@ -18,8 +18,8 @@ export class NewsService {
     return this.newsRepository.updateNews(news);
   }
 
-  async deleteNews(list_json: any, updated_by_id: string): Promise<any> {
-    return this.newsRepository.deleteNews(list_json, updated_by_id);
+  async deleteNews(list_json: any, lu_user_id: string): Promise<any> {
+    return this.newsRepository.deleteNews(list_json, lu_user_id);
   }
 
   async searchNews(

@@ -56,8 +56,8 @@ export class CityController {
 
   async deleteCity(req: Request, res: Response): Promise<void> {
     try {
-      const object = req.body as { list_json: any; updated_by_id: string };
-      await this.cityService.deleteCity(object.list_json, object.updated_by_id);
+      const object = req.body as { list_json: any; lu_user_id: string };
+      await this.cityService.deleteCity(object.list_json, object.lu_user_id);
       res.json({ message: "Đã xóa thành công", results: true });
     } catch (error: any) {
       res.json({ message: error.message, results: false });

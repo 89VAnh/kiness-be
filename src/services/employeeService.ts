@@ -34,8 +34,8 @@ export class EmployeeService {
     return this.employeeRepository.updateEmployee(employee);
   }
 
-  async deleteEmployee(list_json: any, updated_by_id: string): Promise<any> {
-    return this.employeeRepository.deleteEmployee(list_json, updated_by_id);
+  async deleteEmployee(list_json: any, lu_user_id: string): Promise<any> {
+    return this.employeeRepository.deleteEmployee(list_json, lu_user_id);
   }
   async searchEmployee(
     page_index: number,
