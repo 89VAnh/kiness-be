@@ -1,9 +1,9 @@
 import { injectable } from "tsyringe";
-import { UserRepository } from "../repositories/userRepository";
-import { User } from "../models/user";
-import { Action } from "../models/action";
-import { Tree } from "../utils/tree";
 import { verifyToken } from "../config/jwt";
+import { Action } from "../models/action";
+import { User } from "../models/user";
+import { UserRepository } from "../repositories/userRepository";
+import { Tree } from "../utils/tree";
 var md5 = require("md5");
 
 @injectable()
@@ -140,8 +140,8 @@ export class UserService {
     );
   }
 
-  async deleteUser(list_json: any, updated_by_id: string): Promise<any> {
-    return this.userRepository.deleteUser(list_json, updated_by_id);
+  async deleteUser(list_json: any, lu_user_id: string): Promise<any> {
+    return this.userRepository.deleteUser(list_json, lu_user_id);
   }
 
   async authorize(token: string) {
