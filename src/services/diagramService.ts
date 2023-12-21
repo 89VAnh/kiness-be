@@ -35,7 +35,7 @@ export class DiagramService {
     let dbResults = await this.diagramRepository.searchNodes(
       model
     );
-    let data = this.treeUltility.getFunctionTree(dbResults, 1, "0"); //this.getResultTree(dbResults, 1, "0");
+    let data = this.treeUltility.getDiagramTree(dbResults, 1, "0"); //this.getResultTree(dbResults, 1, "0");
     return data;
   }
 
