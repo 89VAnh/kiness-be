@@ -39,7 +39,7 @@ export class Tree {
         let lowerLevel: any[] = this.getDiagramTree(
           data,
           level + 1,
-          row.function_id,
+          row.node_id,
         );
         let isLeaf = lowerLevel.length == 0;
         let levelResult = {
