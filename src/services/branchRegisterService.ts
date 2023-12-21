@@ -25,11 +25,8 @@ export class BranchRegisterService {
     return this.branchRepository.searchBranchRegister(search);
   }
 
-  async deleteBranchRegister(
-    list_json: any,
-    updated_by_id: string,
-  ): Promise<any> {
-    return this.branchRepository.deleteBranchRegister(list_json, updated_by_id);
+  async deleteBranchRegister(list_json: any, lu_user_id: string): Promise<any> {
+    return this.branchRepository.deleteBranchRegister(list_json, lu_user_id);
   }
 
   // async printBranchRegister(

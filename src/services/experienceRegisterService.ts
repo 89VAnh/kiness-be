@@ -42,11 +42,11 @@ export class ExperienceRegisterService {
 
   async deleteExperienceRegister(
     list_json: any,
-    updated_by_id: string,
+    lu_user_id: string,
   ): Promise<any> {
     return this.experienceRepository.deleteExperienceRegister(
       list_json,
-      updated_by_id,
+      lu_user_id,
     );
   }
 

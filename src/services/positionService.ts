@@ -22,8 +22,8 @@ export class PositionService {
     return this.positionRepository.updatePosition(position);
   }
 
-  async deletePosition(list_json: any, updated_by_id: string): Promise<any> {
-    return this.positionRepository.deletePosition(list_json, updated_by_id);
+  async deletePosition(list_json: any, lu_user_id: string): Promise<any> {
+    return this.positionRepository.deletePosition(list_json, lu_user_id);
   }
   async searchPosition(
     page_index: number,

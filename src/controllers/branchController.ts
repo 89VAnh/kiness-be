@@ -57,10 +57,10 @@ export class BranchController {
 
   async deleteBranch(req: Request, res: Response): Promise<void> {
     try {
-      const object = req.body as { list_json: any; updated_by_id: string };
+      const object = req.body as { list_json: any; lu_user_id: string };
       await this.branchService.deleteBranch(
         object.list_json,
-        object.updated_by_id,
+        object.lu_user_id,
       );
       res.json({ message: "Đã xóa thành công", results: true });
     } catch (error: any) {

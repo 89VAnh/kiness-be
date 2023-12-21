@@ -22,8 +22,8 @@ export class BranchService {
     return this.branchRepository.updateBranch(branch);
   }
 
-  async deleteBranch(list_json: any, updated_by_id: string): Promise<any> {
-    return this.branchRepository.deleteBranch(list_json, updated_by_id);
+  async deleteBranch(list_json: any, lu_user_id: string): Promise<any> {
+    return this.branchRepository.deleteBranch(list_json, lu_user_id);
   }
   async searchBranch(search: SearchBranch): Promise<Branch> {
     return this.branchRepository.searchBranch(search);

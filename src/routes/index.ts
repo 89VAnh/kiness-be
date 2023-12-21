@@ -1,5 +1,6 @@
 import { Router } from "express";
 import core_router from "../core/routes";
+import actionRouter from "./actionRouter";
 import articleAuthorRouter from "./articleAuthorRouter";
 import bookAuthorRouter from "./bookAuthorRouter";
 import bookRouter from "./bookRouter";
@@ -16,6 +17,7 @@ import faqTopicRouter from "./faqTopicRouter";
 import funcRouter from "./functionRouter";
 import growthArticleRouter from "./growthArticleRouter";
 import growthStoryRouter from "./growthStoryRouter";
+import historyRouter from "./historyRouter";
 import lateStoryRouter from "./lateStoryRouter";
 import licenseOfInventionRouter from "./licenseOfInventionRouter";
 import newsRouter from "./newsRouter";
@@ -26,14 +28,13 @@ import postureStoryRouter from "./postureStoryRouter";
 import requestRouter from "./requestRouter";
 import researchArticleRouter from "./researchArticleRouter";
 import researcherRouter from "./researcherRouter";
+import roleFunctionRouter from "./roleFunctionRouter";
+import permissionRouter from "./rolePermissionRouter";
 import roleRouter from "./roleRouter";
 import slideRouter from "./slideRouter";
 import testRegisterRouter from "./testRegisterRouter";
 import userRouter from "./userRouter";
 import videoRouter from "./videoRouter";
-import actionRouter from "./actionRouter";
-import roleFunctionRouter from "./roleFunctionRouter";
-import permissionRouter from "./rolePermissionRouter";
 import userRoleRouter from "./userRoleRouter";
 import diagramRouter from "./diagramRouter";
 
@@ -76,5 +77,6 @@ router.use("/role-function", roleFunctionRouter);
 router.use("/permission", permissionRouter);
 router.use("/user-role", userRoleRouter);
 router.use("/diagram", diagramRouter);
+router.use("/history", historyRouter);
 
 export default router;
