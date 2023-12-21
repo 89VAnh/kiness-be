@@ -197,7 +197,7 @@ export class ExperienceRegisterService {
                 if (color !== "") {
                   cell.fill = {
                     type: "pattern",
-                    pattern: "darkVertical",
+                    pattern: "solid",
                     fgColor: { argb: color },
                   };
                 }
