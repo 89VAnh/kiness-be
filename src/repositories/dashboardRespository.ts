@@ -9,10 +9,7 @@ export class DashboardRepository {
     try {
       const sql = "CALL CountExperienceRegister(?, @err_code, @err_msg)";
       const [results] = await this.db.query(sql, [user_id]);
-      const r = {
-        total: results[0].registers_total,
-        success: results[0].registers_success,
-      };
+      const r = Number(results[0].total);
       return r;
     } catch (error: any) {
       throw new Error(error.message);

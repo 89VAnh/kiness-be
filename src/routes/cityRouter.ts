@@ -23,7 +23,7 @@ cityRouter.post(
   authenticate,
   cityController.updateCity.bind(cityController),
 );
-cityRouter.delete(
+cityRouter.post(
   "/delete",
   authenticate,
   cityController.deleteCity.bind(cityController),
