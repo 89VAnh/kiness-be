@@ -35,6 +35,8 @@ import slideRouter from "./slideRouter";
 import testRegisterRouter from "./testRegisterRouter";
 import userRouter from "./userRouter";
 import videoRouter from "./videoRouter";
+import userRoleRouter from "./userRoleRouter";
+import diagramRouter from "./diagramRouter";
 
 const router = Router();
 
@@ -73,6 +75,8 @@ router.use("/function", funcRouter);
 router.use("/action", actionRouter);
 router.use("/role-function", roleFunctionRouter);
 router.use("/permission", permissionRouter);
+router.use("/user-role", userRoleRouter);
+router.use("/diagram", diagramRouter);
 router.use("/history", historyRouter);
 
 export default router;
