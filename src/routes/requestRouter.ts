@@ -1,14 +1,13 @@
 import { Router } from "express";
 import { container } from "tsyringe";
-import { authenticate } from "../middlewares/authMiddleware";
 import { RequestController } from "../controllers/requestController";
+import { authenticate } from "../middlewares/authMiddleware";
 
 const requestRouter = Router();
 const requestController = container.resolve(RequestController);
 
 requestRouter.post(
   "/create",
-  authenticate,
   requestController.createRequest.bind(requestController),
 );
 

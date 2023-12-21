@@ -1,11 +1,11 @@
-import { Database } from "../config/database";
 import { injectable } from "tsyringe";
-import { DatabaseError } from "../utils/DatabaseError";
+import { Database } from "../config/database";
 import {
   ObesityStoryModel,
   SearchClientObesityStoryModel,
   SearchObesityStoryModel,
 } from "../models/obesity-story";
+import { DatabaseError } from "../utils/DatabaseError";
 
 @injectable()
 export class ObesityStoryRepository {
@@ -33,7 +33,7 @@ export class ObesityStoryRepository {
   async updateObesityStory(os: ObesityStoryModel): Promise<any> {
     try {
       const sql =
-        "CALL UpdateObesityStory(?, ?, ?, ?, ?, ?, ?, ?, @err_code, @err_msg)";
+        "CALL UpdateObesityStory(?, ?, ?, ?, ?, ?, ?, ?, ?, @err_code, @err_msg)";
       await this.db.query(sql, [
         os.obesity_story_id,
         os.title,
@@ -42,6 +42,7 @@ export class ObesityStoryRepository {
         os.posted_date,
         os.author_name,
         os.is_draft,
+        os.view_count,
         os.lu_user_id,
       ]);
       return true;
