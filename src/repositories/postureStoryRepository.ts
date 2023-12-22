@@ -1,11 +1,11 @@
-import { Database } from "../config/database";
 import { injectable } from "tsyringe";
-import { DatabaseError } from "../utils/DatabaseError";
+import { Database } from "../config/database";
 import {
   PostureStoryModel,
   SearchClientPostureStoryModel,
   SearchPostureStoryModel,
 } from "../models/posture-story";
+import { DatabaseError } from "../utils/DatabaseError";
 
 @injectable()
 export class PostureStoryRepository {
@@ -33,7 +33,7 @@ export class PostureStoryRepository {
   async updatePostureStory(ps: PostureStoryModel): Promise<any> {
     try {
       const sql =
-        "CALL UpdatePostureStory(?, ?, ?, ?, ?, ?, ?, ?, @err_code, @err_msg)";
+        "CALL UpdatePostureStory(?, ?, ?, ?, ?, ?, ?, ?, ?, @err_code, @err_msg)";
       await this.db.query(sql, [
         ps.posture_story_id,
         ps.title,
@@ -42,6 +42,7 @@ export class PostureStoryRepository {
         ps.posted_date,
         ps.author_name,
         ps.is_draft,
+        ps.view_count,
         ps.lu_user_id,
       ]);
       return true;
