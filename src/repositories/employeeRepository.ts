@@ -83,6 +83,16 @@ export class EmployeeRepository {
     }
   }
 
+  async checkEmployeeEmail(email: string): Promise<any> {
+    try {
+      const sql = "CALL CheckEmployeeEmail(?, @err_code, @err_msg)";
+      const results = await this.db.queryList(sql, [email]);
+      return results[0][0]?.id;
+    } catch (error: any) {
+      throw new Error(error.message);
+    }
+  }
+
   async getEmployeeDropdown(): Promise<any> {
     try {
       const sql = "CALL GetEmployeeDropdown(@err_code, @err_msg)";

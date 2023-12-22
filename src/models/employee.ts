@@ -25,7 +25,7 @@ export interface Employee {
   middle_name: string;
   last_name: string;
   avatar: string;
-  gender: boolean;
+  gender: number;
   date_of_birth: string;
 
   // user_roles

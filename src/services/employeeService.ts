@@ -20,6 +20,10 @@ export class EmployeeService {
     return this.employeeRepository.getEmployeeById(id);
   }
 
+  async checkEmployeeEmail(email: string): Promise<any> {
+    return this.employeeRepository.checkEmployeeEmail(email);
+  }
+
   async createEmployee(employee: Employee): Promise<any> {
     employee.user_id = this.guid.newGuid();
     employee.profile_id = this.guid.newGuid();

@@ -6,8 +6,8 @@ const emailRouter = Router();
 const emailController = container.resolve(EmailController);
 
 emailRouter.post(
-  "/verify-account",
-  emailController.sendMailVerify.bind(emailController),
+  "/new-password",
+  emailController.sendMailNewPw.bind(emailController),
 );
 emailRouter.post(
   "/send-register-verify",
