@@ -153,10 +153,10 @@ export class EmployeeRepository {
       throw new Error(error.message);
     }
   }
-  async resetPassword(user_name: string, email: string, new_password: string) {
+  async resetPassword(user_name: string, new_password: string) {
     try {
-      const sql = "CALL ResetPassword(?, ?, ?, @err_code, @err_msg)";
-      await this.db.query(sql, [user_name, email, new_password]);
+      const sql = "CALL ResetPw(?, ?, @err_code, @err_msg)";
+      await this.db.query(sql, [user_name, new_password]);
       return true;
     } catch (error: any) {
       throw new Error(error.message);

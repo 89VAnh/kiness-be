@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-// import { Md5 } from "ts-md5";
+import { Md5 } from "ts-md5";
 import { injectable } from "tsyringe";
 import { verifyToken } from "../config/jwt";
 import { Employee } from "../models/employee";
@@ -82,8 +82,13 @@ export class EmployeeController {
       const id = await this.employeeService.checkEmployeeEmail(email);
 
       if (id) {
-        res.json({ data: password, result: true });
-        // const new_password = Md5.hashStr(password);
+        const new_password = Md5.hashStr(password);
+        await this.employeeService.resetPassword(id, new_password);
+        res.json({
+          message: "Đã reset mật khẩu thành công",
+          data: password,
+          results: true,
+        });
       } else {
         res.json({ message: "Không tồn tại email này", results: false });
       }

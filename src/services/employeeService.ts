@@ -99,54 +99,7 @@ export class EmployeeService {
     );
   }
   async resetPassword(user_name: string, email: string) {
-    const generateRandomString = (length: number) => {
-      let result = "";
-      const characters =
-        "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-      const charactersLength = characters.length;
-      for (let i = 0; i < length; i++) {
-        result += characters.charAt(
-          Math.floor(Math.random() * charactersLength),
-        );
-      }
-      return result;
-    };
-    var new_password = generateRandomString(8);
-    var hashed_password = Md5.hashStr(new_password);
-    let result = await this.employeeRepository.resetPassword(
-      user_name,
-      email,
-      hashed_password,
-    );
-    if (result) {
-      let mailTransporter = nodemailer.createTransport({
-        service: "gmail",
-        auth: {
-          user: system_email.email,
-          pass: system_email.password,
-        },
-      });
-
-      const emailBody = `
-                      <p>Xin chào,</p>
-
-                      <p>Hệ thống đã nhận được yêu cầu đổi mật từ bạn.</p>
-
-                      <p>Mật khẩu mới của bạn là: <b> ${new_password}</b></p>
-                      <p>Trân trọng.</p>
-`;
-
-      var mailOptions = {
-        from: system_email.email,
-        to: email,
-        subject: "Đổi mật khẩu",
-        html: emailBody,
-      };
-
-      mailTransporter.sendMail(mailOptions, function (err) {
-        if (err) console.log(err);
-      });
-    }
+    return this.employeeRepository.resetPassword(user_name, email);
   }
 
   async resetPasswordByAdmin(user_id: string, lu_user_id: string) {
