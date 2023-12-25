@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { injectable } from "tsyringe";
-import { FunctionModel } from "../models/function";
+import { FunctionModel, SearchFunctionsModel } from "../models/function";
 import { FunctionService } from "../services/functionService";
 
 @injectable()
@@ -56,39 +56,18 @@ export class FunctionController {
 
   async searchFunction(req: Request, res: Response): Promise<any> {
     try {
-      const object = req.body as {
-        page_index: number;
-        page_size: number;
-        search_content: string;
-        function_id: string;
-        parent_id: string;
-        function_name: string;
-        url: string;
-        description: string;
-        level: number;
-      };
-      const data: any = await this.funcService.searchFunction(
-        object.page_index,
-        object.page_size,
-        object.search_content,
-        object.function_id,
-        object.parent_id,
-        object.function_name,
-        object.url,
-        object.description,
-        object.level,
-      );
+      const object = req.body as SearchFunctionsModel;
+      const data: any = await this.funcService.searchFunction(object);
       if (data) {
         res.json({
           total_items: Math.ceil(
             data && data.length > 0 ? data[0].RecordCount : 0,
           ),
-          page: object.page_index,
-          page_size: object.page_size,
+          page: 0,
+          page_size: 0,
           data: data,
           page_count: Math.ceil(
-            (data && data.length > 0 ? data[0].RecordCount : 0) /
-              (object.page_size ? object.page_size : 1),
+            data && data.length > 0 ? data[0].RecordCount : 0,
           ),
         });
       } else {

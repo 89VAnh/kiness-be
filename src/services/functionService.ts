@@ -1,6 +1,6 @@
 import { injectable } from "tsyringe";
 import { v4 as uuidv4 } from "uuid";
-import { FunctionModel } from "../models/function";
+import { FunctionModel, SearchFunctionsModel } from "../models/function";
 import { FunctionRepository } from "../repositories/functionRepository";
 import { Tree } from "../utils/tree";
 
@@ -29,28 +29,8 @@ export class FunctionService {
     return this.functionRepository.deleteFunction(list_json, lu_user_id);
   }
 
-  async searchFunction(
-    page_index: number,
-    page_size: number,
-    search_content: string,
-    function_id: string,
-    parent_id: string,
-    function_name: string,
-    url: string,
-    description: string,
-    level: number,
-  ): Promise<any> {
-    let dbResults = await this.functionRepository.searchFunction(
-      page_index,
-      page_size,
-      search_content,
-      function_id,
-      parent_id,
-      function_name,
-      url,
-      description,
-      level,
-    );
+  async searchFunction(search: SearchFunctionsModel): Promise<any> {
+    let dbResults = await this.functionRepository.searchFunction(search);
     let data = this.treeUltility.getFunctionTree(dbResults, 1, "0"); //this.getResultTree(dbResults, 1, "0");
     return data;
   }

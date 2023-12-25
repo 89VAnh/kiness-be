@@ -1,6 +1,6 @@
 import { injectable } from "tsyringe";
 import { Database } from "../config/database";
-import { FunctionModel } from "../models/function";
+import { FunctionModel, SearchFunctionsModel } from "../models/function";
 
 @injectable()
 export class FunctionRepository {
@@ -69,31 +69,16 @@ export class FunctionRepository {
     }
   }
 
-  async searchFunction(
-    page_index: number,
-    page_size: number,
-    search_content: string,
-    function_id: string,
-    parent_id: string,
-    function_name: string,
-    url: string,
-    description: string,
-    level: number,
-  ): Promise<any[]> {
+  async searchFunction(search: SearchFunctionsModel): Promise<any[]> {
     try {
-      const sql =
-        "CALL SearchFunctions(?, ?, ?, ?, ?, ?, ?, ?, ?,@err_code, @err_msg)";
+      const sql = "CALL SearchFunctions(?, ?, ?, ?, ?, @err_code, @err_msg)";
 
       const [results] = await this.db.query(sql, [
-        page_index,
-        page_size,
-        search_content,
-        function_id,
-        parent_id,
-        function_name,
-        url,
-        description,
-        level,
+        search.page_index || 0,
+        search.page_size || 0,
+        search.search_content,
+        search.function_id,
+        search.parent_id,
       ]);
       return results;
     } catch (error: any) {
