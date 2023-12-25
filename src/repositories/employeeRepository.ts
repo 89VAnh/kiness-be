@@ -83,6 +83,16 @@ export class EmployeeRepository {
     }
   }
 
+  async checkEmployeeEmail(email: string): Promise<any> {
+    try {
+      const sql = "CALL CheckEmployeeEmail(?, @err_code, @err_msg)";
+      const results = await this.db.queryList(sql, [email]);
+      return results[0][0]?.id;
+    } catch (error: any) {
+      throw new Error(error.message);
+    }
+  }
+
   async getEmployeeDropdown(): Promise<any> {
     try {
       const sql = "CALL GetEmployeeDropdown(@err_code, @err_msg)";
@@ -143,10 +153,10 @@ export class EmployeeRepository {
       throw new Error(error.message);
     }
   }
-  async resetPassword(user_name: string, email: string, new_password: string) {
+  async resetPassword(user_name: string, new_password: string) {
     try {
-      const sql = "CALL ResetPassword(?, ?, ?, @err_code, @err_msg)";
-      await this.db.query(sql, [user_name, email, new_password]);
+      const sql = "CALL ResetPw(?, ?, @err_code, @err_msg)";
+      await this.db.query(sql, [user_name, new_password]);
       return true;
     } catch (error: any) {
       throw new Error(error.message);

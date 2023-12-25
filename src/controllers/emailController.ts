@@ -1,13 +1,13 @@
 import { Request, Response } from "express";
 import nodemailer from "nodemailer";
 import { system_email } from "../config/system_email";
-import { verifyAccount } from "../template/verifyAccount";
-import { verifyRegister } from "../template/verifyRegister";
+import { changePwEmailTemplate } from "../template/newPassword";
 import { verifyConfirmPassword } from "../template/verifyConfirmPassword";
+import { verifyRegister } from "../template/verifyRegister";
 
 export class EmailController {
   // async..await is not allowed in global scope, must use a wrapper
-  async sendMailVerify(req: Request, res: Response) {
+  async sendMailNewPw(req: Request, res: Response) {
     let mailHost = "smtp.gmail.com";
     let mailPort = 587;
     // create reusable transporter object using the default SMTP transport
@@ -22,14 +22,16 @@ export class EmailController {
       },
     });
 
+    const { url, email } = req.body;
+
     // send mail with defined transport object
     await transporter
       .sendMail({
         from: "Kiness Việt Nam <" + system_email.email + ">", // sender address
-        to: req.body.email, // sender address
-        subject: `[KINESS] - Xác minh tài khoản`, // Subject line
+        to: email, // sender address
+        subject: `[KINESS] - Mật khẩu mới`, // Subject line
         // text: 'Hello world?', // plain text body
-        html: verifyAccount(req.body), // html body
+        html: changePwEmailTemplate(url, email), // html body
       })
       .then((data) => res.json(data))
       .catch((err) => res.json(err));

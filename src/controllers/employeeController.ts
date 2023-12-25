@@ -1,5 +1,7 @@
 import { Request, Response } from "express";
+import { Md5 } from "ts-md5";
 import { injectable } from "tsyringe";
+import { verifyToken } from "../config/jwt";
 import { Employee } from "../models/employee";
 import { EmployeeService } from "../services/employeeService";
 
@@ -68,6 +70,28 @@ export class EmployeeController {
         object.lu_user_id,
       );
       res.json({ message: "Đã xóa thành công", results: true });
+    } catch (error: any) {
+      res.json({ message: error.message, results: false });
+    }
+  }
+
+  async getNewPw(req: Request, res: Response) {
+    try {
+      const token = req.params.token;
+      const { email, password } = verifyToken(token);
+      const id = await this.employeeService.checkEmployeeEmail(email);
+
+      if (id) {
+        const new_password = Md5.hashStr(password);
+        await this.employeeService.resetPassword(id, new_password);
+        res.json({
+          message: "Đã reset mật khẩu thành công",
+          data: password,
+          results: true,
+        });
+      } else {
+        res.json({ message: "Không tồn tại email này", results: false });
+      }
     } catch (error: any) {
       res.json({ message: error.message, results: false });
     }
