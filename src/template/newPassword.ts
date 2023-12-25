@@ -1,4 +1,19 @@
-export const verifyAccount = (body: any) => {
+import { generateToken } from "../config/jwt";
+
+export const changePwEmailTemplate = (fe_url: string, email: string) => {
+  const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+  let password = "";
+
+  const length = 6;
+
+  for (let i = 0; i < length; i++) {
+    const randomIndex = Math.floor(Math.random() * characters.length);
+    password += characters.charAt(randomIndex);
+  }
+  const token = generateToken({ email, password });
+
+  const link = fe_url + "/new-password?token=" + token;
+
   return `<table width="100%" border="0" cellspacing="0" cellpadding="0" style="width:100%!important">
   <tbody>
     <tr>
@@ -13,7 +28,7 @@ export const verifyAccount = (body: any) => {
                       <tr>
                         <td align="center">
                           <div><img src="http://kiness.aiacademy.edu.vn/assets/logo-e5782d2d.png" width="200" alt="Kiness" class="CToWUd" data-bit="iit"></div>
-                          <h1 style="color:#000;font-family:-apple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,&quot;Roboto&quot;,&quot;Oxygen&quot;,&quot;Ubuntu&quot;,&quot;Cantarell&quot;,&quot;Fira Sans&quot;,&quot;Droid Sans&quot;,&quot;Helvetica Neue&quot;,sans-serif;font-size:24px;font-weight:normal;margin:30px 0;padding:0">Xác minh tài khoản</h1>
+                          <h1 style="color:#000;font-family:-apple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,&quot;Roboto&quot;,&quot;Oxygen&quot;,&quot;Ubuntu&quot;,&quot;Cantarell&quot;,&quot;Fira Sans&quot;,&quot;Droid Sans&quot;,&quot;Helvetica Neue&quot;,sans-serif;font-size:24px;font-weight:normal;margin:30px 0;padding:0">Xác minh đổi mật khẩu</h1>
                         </td>
                       </tr>
                     </tbody>
@@ -26,10 +41,10 @@ export const verifyAccount = (body: any) => {
                             <tbody>
                               <tr>
                                 <td>
-                                  <p style="color:#000;font-family:-apple-system,system-ui,BlinkMacSystemFont,&quot;Segoe UI&quot;,&quot;Roboto&quot;,&quot;Oxygen&quot;,&quot;Ubuntu&quot;,&quot;Cantarell&quot;,&quot;Fira Sans&quot;,&quot;Droid Sans&quot;,&quot;Helvetica Neue&quot;,sans-serif;font-size:14px;line-height:24px"><span style="color:#000;font-family:-apple-system,system-ui,BlinkMacSystemFont,&quot;Segoe UI&quot;,&quot;Roboto&quot;,&quot;Oxygen&quot;,&quot;Ubuntu&quot;,&quot;Cantarell&quot;,&quot;Fira Sans&quot;,&quot;Droid Sans&quot;,&quot;Helvetica Neue&quot;,sans-serif;font-size:14px;line-height:24px;word-break:break-all">Xin chào ${body.full_name},</span></p>
+                                  <p style="color:#000;font-family:-apple-system,system-ui,BlinkMacSystemFont,&quot;Segoe UI&quot;,&quot;Roboto&quot;,&quot;Oxygen&quot;,&quot;Ubuntu&quot;,&quot;Cantarell&quot;,&quot;Fira Sans&quot;,&quot;Droid Sans&quot;,&quot;Helvetica Neue&quot;,sans-serif;font-size:14px;line-height:24px"><span style="color:#000;font-family:-apple-system,system-ui,BlinkMacSystemFont,&quot;Segoe UI&quot;,&quot;Roboto&quot;,&quot;Oxygen&quot;,&quot;Ubuntu&quot;,&quot;Cantarell&quot;,&quot;Fira Sans&quot;,&quot;Droid Sans&quot;,&quot;Helvetica Neue&quot;,sans-serif;font-size:14px;line-height:24px;word-break:break-all">Xin chào ${email},</span></p>
                                   <p style="color:#000;font-family:-apple-system,system-ui,BlinkMacSystemFont,&quot;Segoe UI&quot;,&quot;Roboto&quot;,&quot;Oxygen&quot;,&quot;Ubuntu&quot;,&quot;Cantarell&quot;,&quot;Fira Sans&quot;,&quot;Droid Sans&quot;,&quot;Helvetica Neue&quot;,sans-serif;font-size:14px;line-height:24px"></p>
                                   <p style="color:#000;font-family:-apple-system,system-ui,BlinkMacSystemFont,&quot;Segoe UI&quot;,&quot;Roboto&quot;,&quot;Oxygen&quot;,&quot;Ubuntu&quot;,&quot;Cantarell&quot;,&quot;Fira Sans&quot;,&quot;Droid Sans&quot;,&quot;Helvetica Neue&quot;,sans-serif;font-size:14px;line-height:24px">
-                                    Cảm ơn bạn đã tin tưởng Kiness, để xác minh tài khoản vui lòng bấm nút bên dưới</p>
+                                    Để thay đổi mật khẩu mới cho tài khoản của bạn, vui lòng nhấn nút bên dưới</p>
                                 </td>
                               </tr>
                             </tbody>
@@ -53,8 +68,8 @@ export const verifyAccount = (body: any) => {
                                           <table border="0" cellspacing="0" cellpadding="0">
                                             <tbody>
                                               <tr>
-                                                <td id="m_-3187421344056754534cfa16f4e-0d1c-480e-a0ab-446aa6cf9e3e"><a href="${body.link}" style="background-color:#000;border-radius:5px;color:#fff;display:inline-block;font-family:-apple-system,system-ui,BlinkMacSystemFont,&quot;Segoe UI&quot;,&quot;Roboto&quot;,&quot;Oxygen&quot;,&quot;Ubuntu&quot;,&quot;Cantarell&quot;,&quot;Fira Sans&quot;,&quot;Droid Sans&quot;,&quot;Helvetica Neue&quot;,sans-serif;font-size:12px;font-weight:500;line-height:50px;text-align:center;text-decoration:none;width:200px" target="_blank">
-                                                    Xác Minh
+                                                <td id="m_-3187421344056754534cfa16f4e-0d1c-480e-a0ab-446aa6cf9e3e"><a href="${link}" style="background-color:#000;border-radius:5px;color:#fff;display:inline-block;font-family:-apple-system,system-ui,BlinkMacSystemFont,&quot;Segoe UI&quot;,&quot;Roboto&quot;,&quot;Oxygen&quot;,&quot;Ubuntu&quot;,&quot;Cantarell&quot;,&quot;Fira Sans&quot;,&quot;Droid Sans&quot;,&quot;Helvetica Neue&quot;,sans-serif;font-size:12px;font-weight:500;line-height:50px;text-align:center;text-decoration:none;width:200px" target="_blank">
+                                                    Đổi mật khẩu mới
                                                   </a></td>
                                               </tr>
                                             </tbody>
@@ -82,7 +97,7 @@ export const verifyAccount = (body: any) => {
                                   <p style="color:#000;font-family:-apple-system,system-ui,BlinkMacSystemFont,&quot;Segoe UI&quot;,&quot;Roboto&quot;,&quot;Oxygen&quot;,&quot;Ubuntu&quot;,&quot;Cantarell&quot;,&quot;Fira Sans&quot;,&quot;Droid Sans&quot;,&quot;Helvetica Neue&quot;,sans-serif;font-size:14px;line-height:24px">
 
                                     Bạn cũng có thể dùng URL bên dưới:</p>
-                                  <p style="color:#000;font-family:-apple-system,system-ui,BlinkMacSystemFont,&quot;Segoe UI&quot;,&quot;Roboto&quot;,&quot;Oxygen&quot;,&quot;Ubuntu&quot;,&quot;Cantarell&quot;,&quot;Fira Sans&quot;,&quot;Droid Sans&quot;,&quot;Helvetica Neue&quot;,sans-serif;font-size:14px;line-height:24px"><a href="${body.link}" style="color:#067df7;text-decoration:none" target="_blank"><code style="color:rgb(189,16,224);font-family:Menlo,Monaco,&quot;Lucida Console&quot;,&quot;Liberation Mono&quot;,&quot;DejaVu Sans Mono&quot;,&quot;Bitstream Vera Sans Mono&quot;,&quot;Courier New&quot;,monospace,serif;font-size:0.9em;text-decoration:none">https://kiness.aiacademy.edu.vn/verify</code></a><br></p>
+                                  <p style="color:#000;font-family:-apple-system,system-ui,BlinkMacSystemFont,&quot;Segoe UI&quot;,&quot;Roboto&quot;,&quot;Oxygen&quot;,&quot;Ubuntu&quot;,&quot;Cantarell&quot;,&quot;Fira Sans&quot;,&quot;Droid Sans&quot;,&quot;Helvetica Neue&quot;,sans-serif;font-size:14px;line-height:24px"><a href="${link}" style="color:#067df7;text-decoration:none" target="_blank"><code style="color:rgb(189,16,224);font-family:Menlo,Monaco,&quot;Lucida Console&quot;,&quot;Liberation Mono&quot;,&quot;DejaVu Sans Mono&quot;,&quot;Bitstream Vera Sans Mono&quot;,&quot;Courier New&quot;,monospace,serif;font-size:0.9em;text-decoration:none">https://kiness-admin.aiacademy.edu.vn/new-password</code></a><br></p>
                                 </td>
                               </tr>
                             </tbody>
@@ -92,7 +107,7 @@ export const verifyAccount = (body: any) => {
                     </tbody>
                   </table>
                   <hr style="border:none;border-top:1px solid #eaeaea;margin:26px 0;width:100%">
-                  <p style="color:#666666;font-family:-apple-system,system-ui,BlinkMacSystemFont,&quot;Segoe UI&quot;,&quot;Roboto&quot;,&quot;Oxygen&quot;,&quot;Ubuntu&quot;,&quot;Cantarell&quot;,&quot;Fira Sans&quot;,&quot;Droid Sans&quot;,&quot;Helvetica Neue&quot;,sans-serif;font-size:12px;line-height:24px">Kiness. - <a href="http://kiness.aiacademy.edu.vn" style="color:#067df7;text-decoration:none" target="_blank">kiness.com</a></p>
+                  <p style="color:#666666;font-family:-apple-system,system-ui,BlinkMacSystemFont,&quot;Segoe UI&quot;,&quot;Roboto&quot;,&quot;Oxygen&quot;,&quot;Ubuntu&quot;,&quot;Cantarell&quot;,&quot;Fira Sans&quot;,&quot;Droid Sans&quot;,&quot;Helvetica Neue&quot;,sans-serif;font-size:12px;line-height:24px">Kiness. - <a href="http://kiness.aiacademy.edu.vn" style="color:#067df7;text-decoration:none" target="_blank">kiness.aiacademy.edu.vn</a></p>
                 </div>
               </td>
             </tr>

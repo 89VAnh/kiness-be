@@ -10,3 +10,11 @@ export interface FunctionModel extends BaseModel {
   level: number;
   css_class: string;
 }
+
+export interface SearchFunctionsModel {
+  page_index: number;
+  page_size: number;
+  search_content: string;
+  function_id: string;
+  parent_id: string;
+}

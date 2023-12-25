@@ -45,4 +45,8 @@ employeeRouter.post(
   "/reset-password-by-admin",
   employeeController.resetPasswordByAdmin.bind(employeeController),
 );
+employeeRouter.get(
+  "/new-pw/:token",
+  employeeController.getNewPw.bind(employeeController),
+);
 export default employeeRouter;
