@@ -4,7 +4,7 @@ import { DiagramModel, SearchNodesModel } from "../models/diagram";
 import { DiagramService } from "../services/diagramService";
 
 @injectable()
-export class DiagramController{
+export class DiagramController {
   constructor(private diagramService: DiagramService) {}
 
   async getNodeById(req: Request, res: Response): Promise<void> {
@@ -12,7 +12,7 @@ export class DiagramController{
       const id = req.params.id;
       const diagram = await this.diagramService.getNodeById(id);
       if (diagram) {
-        res.json({data: diagram, success: true});
+        res.json({ data: diagram, success: true });
       } else {
         res.json({ message: "Bản ghi không tồn tại", success: false });
       }
@@ -35,40 +35,40 @@ export class DiagramController{
     try {
       const diagram = req.body as DiagramModel;
       await this.diagramService.updateNode(diagram);
-      res.json({ message: "Đã cập nhật thành công",success: true });
+      res.json({ message: "Đã cập nhật thành công", success: true });
     } catch (error: any) {
-      res.json({ message: error.message, success: false});
+      res.json({ message: error.message, success: false });
     }
   }
 
   async deleteNode(req: Request, res: Response): Promise<void> {
     try {
-      const object = req.body as { list_json: any; };
+      const object = req.body as { list_json: any };
       await this.diagramService.deleteNode(object.list_json);
-      res.json({ message: "Đã xóa thành công", success: true});
+      res.json({ message: "Đã xóa thành công", success: true });
     } catch (error: any) {
-      res.json({ message: error.message, success: false});
+      res.json({ message: error.message, success: false });
     }
   }
 
   async searchNodes(req: Request, res: Response): Promise<any> {
     try {
-      const object = req.body as SearchNodesModel
+      const object = req.body as SearchNodesModel;
       const data: any = await this.diagramService.searchNodes(object);
       if (data) {
         let results = {
-            total_items: Math.ceil(
-              data && data.length > 0 ? data[0].RecordCount : 0,
-            ),
-            page: object.pageIndex,
-            page_size: object.pageSize,
-            data: data,
-            page_count: Math.ceil(
-              (data && data.length > 0 ? data[0].RecordCount : 0) /
-                (object.pageSize ? object.pageSize : 1),
-            ),
-          }
-        res.json({data: results, success: true});
+          total_items: Math.ceil(
+            data && data.length > 0 ? data[0].RecordCount : 0,
+          ),
+          page: object.pageIndex,
+          page_size: object.pageSize,
+          data: data,
+          page_count: Math.ceil(
+            (data && data.length > 0 ? data[0].RecordCount : 0) /
+              (object.pageSize ? object.pageSize : 1),
+          ),
+        };
+        res.json({ data: results, success: true });
       } else {
         res.json({ message: "Không tồn tại kết quả tìm kiếm", success: false });
       }
