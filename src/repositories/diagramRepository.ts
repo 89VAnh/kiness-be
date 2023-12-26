@@ -1,6 +1,6 @@
 import { injectable } from "tsyringe";
-import { DiagramModel, SearchNodesModel } from "../models/diagram";
 import { Database } from "../config/database";
+import { DiagramModel, SearchNodesModel } from "../models/diagram";
 
 @injectable()
 export class DiagramRepository {
@@ -8,8 +8,7 @@ export class DiagramRepository {
 
   async createNode(diagram: DiagramModel): Promise<any> {
     try {
-      const sql =
-        "CALL InsertNode(?, ?, ?, ?, ?, ?, ?, @err_code, @err_msg)";
+      const sql = "CALL InsertNode(?, ?, ?, ?, ?, ?, ?, @err_code, @err_msg)";
       await this.db.query(sql, [
         diagram.node_id,
         diagram.parent_id,
@@ -17,7 +16,7 @@ export class DiagramRepository {
         diagram.color,
         diagram.sort_order,
         diagram.level,
-        diagram.created_by_user_id
+        diagram.created_by_user_id,
       ]);
       return true;
     } catch (error: any) {
@@ -27,8 +26,7 @@ export class DiagramRepository {
 
   async updateNode(diagram: DiagramModel): Promise<any> {
     try {
-      const sql =
-        "CALL UpdateNode(?, ?, ?, ?, ?, ?, ?, @err_code, @err_msg)";
+      const sql = "CALL UpdateNode(?, ?, ?, ?, ?, ?, ?, @err_code, @err_msg)";
       await this.db.query(sql, [
         diagram.node_id,
         diagram.parent_id,
@@ -36,7 +34,7 @@ export class DiagramRepository {
         diagram.color,
         diagram.sort_order,
         diagram.level,
-        diagram.lu_user_id
+        diagram.lu_user_id,
       ]);
       return true;
     } catch (error: any) {
@@ -67,9 +65,7 @@ export class DiagramRepository {
     }
   }
 
-  async searchNodes(
-    model: SearchNodesModel
-  ): Promise<any[]> {
+  async searchNodes(model: SearchNodesModel): Promise<any[]> {
     try {
       const sql =
         "CALL SearchNodes(?, ?, ?, ?, ?, ?, ?, ?, ?,@err_code, @err_msg)";
@@ -83,7 +79,7 @@ export class DiagramRepository {
         model.node_name,
         model.color,
         model.sort_order,
-        model.level
+        model.level,
       ]);
       return results;
     } catch (error: any) {
