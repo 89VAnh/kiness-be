@@ -62,7 +62,6 @@ export class HistoryRepository {
 
   async searchHistories(search: SearchHistoryModel): Promise<any> {
     try {
-      console.log(search.page_index, search.page_size, search.search_content);
       const sql = "CALL SearchHistories(?, ?, ?, @err_code, @err_msg)";
       const [results] = await this.db.query(sql, [
         search.page_index,
