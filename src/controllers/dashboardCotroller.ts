@@ -67,4 +67,13 @@ export class DashboardController {
       res.json({ message: error.message });
     }
   }
+
+  async statisticExperience(_: Request, res: Response): Promise<void> {
+    try {
+      const data = await this.dashboardService.statisticExperience();
+      res.json(data);
+    } catch (error: any) {
+      res.json({ message: error.message });
+    }
+  }
 }

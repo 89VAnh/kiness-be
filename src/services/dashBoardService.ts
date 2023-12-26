@@ -19,4 +19,8 @@ export class DashboardService {
   async countRequest(): Promise<number> {
     return this.dashboardRepository.countRequest();
   }
+
+  async statisticExperience(): Promise<number> {
+    return this.dashboardRepository.statisticExperience();
+  }
 }

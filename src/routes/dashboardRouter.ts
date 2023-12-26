@@ -31,4 +31,9 @@ dashboardRouter.get(
   dashboardController.countRequest.bind(dashboardController),
 );
 
+dashboardRouter.get(
+  "/statistic-experience",
+  dashboardController.statisticExperience.bind(dashboardController),
+);
+
 export default dashboardRouter;

@@ -48,4 +48,14 @@ export class DashboardRepository {
       throw new Error(error.message);
     }
   }
+
+  async statisticExperience(): Promise<number> {
+    try {
+      const sql = "CALL StatisticExperience(@err_code, @err_msg)";
+      const [results] = await this.db.query(sql, []);
+      return results;
+    } catch (error: any) {
+      throw new Error(error.message);
+    }
+  }
 }
