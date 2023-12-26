@@ -16,10 +16,14 @@ export interface SearchPostureStoryModel {
   page_size: number;
   search_content: string;
   is_draft: boolean;
+  from_date: Date;
+  to_date: Date;
 }
 
 export interface SearchClientPostureStoryModel {
   page_index: number;
   page_size: number;
   search_content: string;
+  from_date: Date;
+  to_date: Date;
 }

@@ -1,11 +1,11 @@
-import { Database } from "../config/database";
 import { injectable } from "tsyringe";
-import { DatabaseError } from "../utils/DatabaseError";
+import { Database } from "../config/database";
 import {
   LateStoryModel,
   SearchClientLateStoryModel,
   SearchLateStoryModel,
 } from "../models/late-story";
+import { DatabaseError } from "../utils/DatabaseError";
 
 @injectable()
 export class LateStoryRepository {
@@ -91,12 +91,15 @@ export class LateStoryRepository {
 
   async searchLateStories(search_ls_model: SearchLateStoryModel): Promise<any> {
     try {
-      const sql = "CALL SearchLateStories(?, ?, ?, ?, @err_code, @err_msg)";
+      const sql =
+        "CALL SearchLateStories(?, ?, ?, ?, ?, ?, @err_code, @err_msg)";
       const [results] = await this.db.query(sql, [
         search_ls_model.page_index,
         search_ls_model.page_size,
         search_ls_model.search_content,
         search_ls_model.is_draft,
+        search_ls_model.from_date,
+        search_ls_model.to_date,
       ]);
       return results;
     } catch (error: any) {
