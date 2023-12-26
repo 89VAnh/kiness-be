@@ -1,8 +1,8 @@
 import { injectable } from "tsyringe";
-import { DiagramRepository } from "../repositories/diagramRepository";
 import { v4 as uuidv4 } from "uuid";
-import { Tree } from "../utils/tree";
 import { DiagramModel, SearchNodesModel } from "../models/diagram";
+import { DiagramRepository } from "../repositories/diagramRepository";
+import { Tree } from "../utils/tree";
 
 @injectable()
 export class DiagramService {
@@ -17,7 +17,7 @@ export class DiagramService {
 
   async createNode(diagram: DiagramModel): Promise<any> {
     diagram.node_id = uuidv4();
-    diagram.parent_id = diagram.parent_id == null ? "" : diagram.node_id;
+    diagram.parent_id = diagram.parent_id || "";
     return this.diagramRepository.createNode(diagram);
   }
 
@@ -29,14 +29,9 @@ export class DiagramService {
     return this.diagramRepository.deleteNode(list_json);
   }
 
-  async searchNodes(
-    model: SearchNodesModel
-  ): Promise<any> {
-    let dbResults = await this.diagramRepository.searchNodes(
-      model
-    );
+  async searchNodes(model: SearchNodesModel): Promise<any> {
+    let dbResults = await this.diagramRepository.searchNodes(model);
     let data = this.treeUltility.getDiagramTree(dbResults, 1, "0"); //this.getResultTree(dbResults, 1, "0");
     return data;
   }
-
 }

@@ -1,6 +1,6 @@
 import { injectable } from "tsyringe";
-import { SearchVideoModel, Video } from "../models/video";
 import { Database } from "../config/database";
+import { SearchVideoModel, Video } from "../models/video";
 import { DatabaseError } from "../utils/DatabaseError";
 
 @injectable()
@@ -12,7 +12,7 @@ export class VideoRepository {
       const sql = "CALL InsertVideo(?, ?, ?, ?, @err_code, @err_msg)";
       await this.db.query(sql, [
         video.video_name,
-        video.video_link,
+        video.video_code,
         video.is_foreign,
         video.created_by_user_id,
       ]);
@@ -28,7 +28,7 @@ export class VideoRepository {
       await this.db.query(sql, [
         video.video_id,
         video.video_name,
-        video.video_link,
+        video.video_code,
         video.is_foreign,
         video.created_by_user_id,
       ]);
