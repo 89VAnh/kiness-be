@@ -94,12 +94,15 @@ export class PostureStoryRepository {
     search_ps_model: SearchPostureStoryModel,
   ): Promise<any> {
     try {
-      const sql = "CALL SearchPostureStories(?, ?, ?, ?, @err_code, @err_msg)";
+      const sql =
+        "CALL SearchPostureStories(?, ?, ?, ?, ? ,?, @err_code, @err_msg)";
       const [results] = await this.db.query(sql, [
         search_ps_model.page_index,
         search_ps_model.page_size,
         search_ps_model.search_content,
         search_ps_model.is_draft,
+        search_ps_model.from_date,
+        search_ps_model.to_date,
       ]);
       return results;
     } catch (error: any) {
