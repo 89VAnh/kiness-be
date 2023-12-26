@@ -16,6 +16,8 @@ export interface SearchLateStoryModel {
   page_size: number;
   search_content: string;
   is_draft: boolean;
+  from_date: Date;
+  to_date: Date;
 }
 
 export interface SearchClientLateStoryModel {
