@@ -31,6 +31,8 @@ export class FunctionService {
 
   async searchFunction(search: SearchFunctionsModel): Promise<any> {
     let dbResults = await this.functionRepository.searchFunction(search);
+    if (search.search_content)
+      dbResults = await this.treeUltility.searchFunctionTree(dbResults);
     let data = this.treeUltility.getFunctionTree(dbResults, 1, "0"); //this.getResultTree(dbResults, 1, "0");
     return data;
   }

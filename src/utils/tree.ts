@@ -1,7 +1,9 @@
 import { injectable } from "tsyringe";
+import { FunctionModel } from "../models/function";
+import { FunctionRepository } from "../repositories/functionRepository";
 @injectable()
 export class Tree {
-  constructor() {}
+  constructor(private functionRepository: FunctionRepository) {}
 
   getFunctionTree(data: any[], level: number, root: string): any[] {
     let result: any[] = [];
@@ -28,6 +30,23 @@ export class Tree {
         result.push(levelResult);
       }
     }
+    return result;
+  }
+
+  async searchFunctionTree(data: FunctionModel[]): Promise<FunctionModel[]> {
+    const result: FunctionModel[] = [];
+    for (const func of data) {
+      let node: FunctionModel = func;
+      if (!result.some((x) => x.function_id === node.function_id))
+        result.push(node);
+      while (node.parent_id !== "0") {
+        node = await this.functionRepository.getFunctionById(node.parent_id);
+
+        if (!result.some((x) => x.function_id === node.function_id))
+          result.push(node);
+      }
+    }
+
     return result;
   }
 
