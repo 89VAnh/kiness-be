@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { injectable } from "tsyringe";
-import { ActionService } from "../services/actionService";
 import { Action } from "../models/action";
+import { ActionService } from "../services/actionService";
 
 @injectable()
 export class ActionController {
@@ -57,8 +57,8 @@ export class ActionController {
   async searchAction(req: Request, res: Response): Promise<void> {
     try {
       const object = req.body as {
-        pageIndex: number;
-        pageSize: number;
+        page_index: number;
+        page_size: number;
         search_content: string;
         function_id: string;
         action_code: string;
@@ -66,8 +66,8 @@ export class ActionController {
         description: string;
       };
       const data: any = await this.actionService.searchAction(
-        object.pageIndex,
-        object.pageSize,
+        object.page_index,
+        object.page_size,
         object.search_content,
         object.function_id,
         object.action_code,
@@ -76,15 +76,15 @@ export class ActionController {
       );
       if (data) {
         res.json({
-          totalItems: Math.ceil(
+          total_items: Math.ceil(
             data && data.length > 0 ? data[0].RecordCount : 0,
           ),
-          page: object.pageIndex,
-          pageSize: object.pageSize,
+          page: object.page_index,
+          page_size: object.page_size,
           data: data,
           pageCount: Math.ceil(
             (data && data.length > 0 ? data[0].RecordCount : 0) /
-              (object.pageSize ? object.pageSize : 1),
+              (object.page_size ? object.page_size : 1),
           ),
         });
       } else {

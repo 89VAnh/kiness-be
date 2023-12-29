@@ -1,6 +1,6 @@
 import { injectable } from "tsyringe";
-import { Action } from "../models/action";
 import { Database } from "../config/database";
+import { Action } from "../models/action";
 
 @injectable()
 export class ActionRepository {
@@ -62,8 +62,8 @@ export class ActionRepository {
   }
 
   async searchAction(
-    pageIndex: number,
-    pageSize: number,
+    page_index: number,
+    page_size: number,
     search_content: string,
     function_id: string,
     action_code: string,
@@ -73,8 +73,8 @@ export class ActionRepository {
     try {
       const sql = "CALL SearchAction(?, ?, ?, ?, ?, ?, ?,@err_code, @err_msg)";
       const [results] = await this.db.query(sql, [
-        pageIndex,
-        pageSize,
+        page_index,
+        page_size,
         search_content,
         function_id,
         action_code,
