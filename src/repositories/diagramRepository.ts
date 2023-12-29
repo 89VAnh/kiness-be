@@ -71,8 +71,8 @@ export class DiagramRepository {
         "CALL SearchNodes(?, ?, ?, ?, ?, ?, ?, ?, ?,@err_code, @err_msg)";
 
       const [results] = await this.db.query(sql, [
-        model.pageIndex,
-        model.pageSize,
+        model.page_index,
+        model.page_size,
         model.search_content,
         model.node_id,
         model.parent_id,

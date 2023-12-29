@@ -1,6 +1,6 @@
 import { injectable } from "tsyringe";
-import { ActionRepository } from "../repositories/actionRepository";
 import { Action } from "../models/action";
+import { ActionRepository } from "../repositories/actionRepository";
 
 @injectable()
 export class ActionService {
@@ -23,8 +23,8 @@ export class ActionService {
   }
 
   async searchAction(
-    pageIndex: number,
-    pageSize: number,
+    page_index: number,
+    page_size: number,
     search_content: string,
     function_id: string,
     action_code: string,
@@ -32,8 +32,8 @@ export class ActionService {
     description: string,
   ): Promise<any> {
     let dbResults = await this.actionRepository.searchAction(
-      pageIndex,
-      pageSize,
+      page_index,
+      page_size,
       search_content,
       function_id,
       action_code,

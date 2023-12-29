@@ -72,14 +72,13 @@ export class RoleRepository {
 
   async searchRole(search: SearchRole): Promise<any> {
     try {
-      const sql = "CALL SearchRole(?, ?, ?, ?, ?, ?, @err_code, @err_msg)";
+      const sql = "CALL SearchRole(?, ?, ?, ?, ?, @err_code, @err_msg)";
       const [results] = await this.db.query(sql, [
         search.page_index,
         search.page_size,
         search.search_content,
         search.role_name,
         search.role_code,
-        search.description,
       ]);
       return results;
     } catch (error: any) {
