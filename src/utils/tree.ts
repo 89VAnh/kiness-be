@@ -1,9 +1,14 @@
 import { injectable } from "tsyringe";
+import { DiagramModel } from "../models/diagram";
 import { FunctionModel } from "../models/function";
+import { DiagramRepository } from "../repositories/diagramRepository";
 import { FunctionRepository } from "../repositories/functionRepository";
 @injectable()
 export class Tree {
-  constructor(private functionRepository: FunctionRepository) {}
+  constructor(
+    private functionRepository: FunctionRepository,
+    private diagramRepository: DiagramRepository,
+  ) {}
 
   getFunctionTree(data: any[], level: number, root: string): any[] {
     let result: any[] = [];
@@ -53,7 +58,7 @@ export class Tree {
   getDiagramTree(data: any[], level: number, root: string): any[] {
     let result: any[] = [];
     for (let i = 0; i < data.length; i++) {
-      if (data[i].level == level && data[i].parent_id == root) {
+      if (data[i]?.level == level && data[i]?.parent_id == root) {
         let row = Object.assign({}, data[i]);
         let lowerLevel: any[] = this.getDiagramTree(
           data,
@@ -75,6 +80,24 @@ export class Tree {
         result.push(levelResult);
       }
     }
+    return result;
+  }
+
+  async searchDiagramTree(data: DiagramModel[]): Promise<DiagramModel[]> {
+    const result: DiagramModel[] = [];
+    for (const diagram of data) {
+      let node: DiagramModel = diagram;
+      if (!result.some((x) => x?.node_id === node?.node_id)) result.push(node);
+      while (node !== null && node?.parent_id !== "0") {
+        if (node?.parent_id)
+          node = await this.diagramRepository.getNodeById(node.parent_id);
+        else break;
+
+        if (!result.some((x) => x?.node_id === node?.node_id))
+          result.push(node);
+      }
+    }
+
     return result;
   }
 }

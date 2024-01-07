@@ -31,6 +31,9 @@ export class DiagramService {
 
   async searchNodes(model: SearchNodesModel): Promise<any> {
     let dbResults = await this.diagramRepository.searchNodes(model);
+
+    if (model.search_content)
+      dbResults = await this.treeUltility.searchDiagramTree(dbResults);
     let data = this.treeUltility.getDiagramTree(dbResults, 1, "0"); //this.getResultTree(dbResults, 1, "0");
     return data;
   }
